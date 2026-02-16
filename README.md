@@ -52,7 +52,7 @@ mizzou-safe-ai/
 │     ├─ route_ranker.py          # fastest vs safest route selection
 │     └─ explain.py               # 1-2 line explanation generator
 │
-```
 └─ tests/
    ├─ test_router.py
    └─ test_risk.py
+```
