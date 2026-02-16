@@ -1,0 +1,21 @@
+location_name,lat,lon,zone,type
+820 CONLEY AVE,38.938,-92.325,campus_south,residence
+1199 E STADIUM BLVD,38.9355,-92.3306,campus_south,street
+1 HOSPITAL DR,38.9403,-92.3245,campus_north,building
+3315 BERRYWOOD DR,38.929,-92.318,off_campus,residence
+812 N KEENE ST,38.952,-92.329,off_campus,street
+1133 ASHLAND RD,38.951,-92.321,off_campus,street
+MEMORIAL UNION,38.9404,-92.3277,campus_center,building
+STUDENT CENTER,38.9423,-92.3268,campus_center,building
+ELLIS LIBRARY,38.9445,-92.3263,campus_north,building
+REC CENTER,38.9389,-92.3301,campus_south,building
+ENGINEERING BUILDING,38.9438,-92.3256,campus_north,building
+PARKING LOT A1,38.945,-92.324,campus_north,parking
+PARKING LOT C2,38.938,-92.335,campus_south,parking
+GREEK TOWN,38.9395,-92.332,campus_south,area
+HITT STREET,38.9415,-92.328,campus_center,street
+TIGER PLAZA,38.943,-92.3275,campus_center,plaza
+TRULASKE BUSINESS,38.9398,-92.3271,campus_center,building
+JESSE HALL,38.9441,-92.3269,campus_center,building
+FAUROT FIELD,38.9355,-92.3306,campus_south,venue
+MIZZOU ARENA,38.9356,-92.3332,campus_south,venue
