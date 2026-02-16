@@ -151,6 +151,7 @@ mizzou-integrated/
 │   │   └── crime_data_clean.csv (sample included)
 │   └── index/                 # FAISS index (generated)
 │
+<<<<<<< HEAD
 ├── example.py                 # Usage examples
 ├── requirements.txt
 ├── .env.example
@@ -441,3 +442,9 @@ Educational use for MUIDSI Hackathon 2026
 **Built with Archia | Two-Agent Architecture | RAG + Crime Data**
 
 **Stay Safe, Tigers! 🐯**
+=======
+└─ tests/
+   ├─ test_router.py
+   └─ test_risk.py
+```
+>>>>>>> ef23c9e08e0e14a4abe9f3ee9698499f247bb59a
