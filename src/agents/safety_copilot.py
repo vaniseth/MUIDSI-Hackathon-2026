@@ -85,15 +85,62 @@ class SafetyCopilot:
             'friend_walk': {
                 'name': '👥 Request Friend Walk',
                 'contact': '573-884-9255',
-                'description': 'Walking escort service'
+                'description': 'Walking escort service (7 PM - 3 AM)'
             },
             'report_online': {
                 'name': '📝 Report Online',
-                'contact': 'https://mupd.missouri.edu/report-crime/',
-                'description': 'Submit non-emergency report'
+                'contact': 'https://mupolice.missouri.edu/report-crime/',
+                'description': 'Submit non-emergency crime report'
             }
         }
         return actions.get(urgency['action'], actions['report_online'])
+
+    def get_relevant_links(self, query: str, urgency: Dict) -> List[Dict]:
+        """
+        Return relevant official MU reporting links based on query context
+        """
+        from src.config import MU_REPORTING_LINKS
+        query_lower = query.lower()
+        links = []
+
+        # Always include MUPD online report for crimes
+        if any(kw in query_lower for kw in ['crime', 'theft', 'vandal', 'report', 'stolen', 'broke']):
+            links.append(MU_REPORTING_LINKS['online_crime_report'])
+
+        # Sexual assault, harassment, stalking, discrimination → OIE + RSVP
+        if any(kw in query_lower for kw in ['assault', 'harass', 'stalk', 'rape', 'discriminat', 'title ix', 'violence', 'relationship']):
+            links.append(MU_REPORTING_LINKS['oie_report'])
+            links.append(MU_REPORTING_LINKS['rsvp_center'])
+
+        # Anonymous reporting
+        if any(kw in query_lower for kw in ['anonymous', 'anonymous', 'don\'t want my name', 'silent']):
+            links.append(MU_REPORTING_LINKS['silent_witness'])
+
+        # Concerned about a student
+        if any(kw in query_lower for kw in ['student', 'friend', 'concern', 'distress', 'mental', 'suicid', 'self-harm']):
+            links.append(MU_REPORTING_LINKS['student_at_risk'])
+
+        # CSA reporting
+        if any(kw in query_lower for kw in ['csa', 'campus security authority', 'clery']):
+            links.append(MU_REPORTING_LINKS['csa_report'])
+
+        # Emergency level → add MU Alert signup
+        if urgency['level'] in ['emergency', 'high']:
+            links.append(MU_REPORTING_LINKS['mu_alert'])
+
+        # Default: always add online crime report if no other links matched
+        if not links:
+            links.append(MU_REPORTING_LINKS['online_crime_report'])
+
+        # Deduplicate
+        seen = set()
+        unique = []
+        for link in links:
+            if link['url'] not in seen:
+                seen.add(link['url'])
+                unique.append(link)
+
+        return unique[:3]  # Return top 3 most relevant
     
     def get_safety_checklist(self, urgency: Dict) -> List[str]:
         """Generate contextual safety checklist"""
@@ -145,22 +192,26 @@ class SafetyCopilot:
         # 4. Generate safety checklist
         safety_checklist = self.get_safety_checklist(urgency)
         
-        # 5. Create prompt for LLM
+        # 5. Get relevant official MU links
+        relevant_links = self.get_relevant_links(query, urgency)
+        
+        # 6. Create prompt for LLM
         prompt = self._create_prompt(query, context_str, user_context)
         
-        # 6. Get LLM response
+        # 7. Get LLM response
         llm_response = self.client.chat(
             system_prompt=SAFETY_COPILOT_SYSTEM_PROMPT,
             user_message=prompt,
             temperature=0.3
         )
         
-        # 7. Compile response
+        # 8. Compile response
         return {
             'agent': 'safety_copilot',
             'urgency': urgency,
             'primary_action': primary_action,
             'safety_checklist': safety_checklist,
+            'relevant_links': relevant_links,
             'llm_guidance': llm_response,
             'sources': sources,
             'retrieved_docs': results
@@ -177,7 +228,7 @@ class SafetyCopilot:
             if user_context.get('is_alone'):
                 info.append("I am alone")
             if user_context.get('immediate_danger'):
-                info.append("I feel I'm in immediate danger")
+                info.append("⚠️ I feel I'm in immediate danger")
             
             if info:
                 parts.append("**Situation:** " + ", ".join(info))

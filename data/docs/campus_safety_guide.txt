@@ -1,90 +1,225 @@
-MU CAMPUS SAFETY GUIDE - Quick Reference
+MU CAMPUS SAFETY GUIDE
+University of Missouri - Columbia
 
+================================================================================
 EMERGENCY CONTACTS
+================================================================================
 
-Call 911 for all emergencies including:
-- Medical emergencies
-- Fire or smoke
-- Violent crimes in progress
-- Any immediate danger situation
+IMMEDIATE DANGER - CALL 911
+Use for: Medical emergencies, fire, violent crimes in progress, active threats, any life-threatening situation.
 
 MU Police Department (MUPD): 573-882-7201
-Available 24/7 for campus safety concerns, crime reporting, and non-emergency assistance.
+Available 24/7. Use for: Non-emergency safety concerns, suspicious activity, crime reporting, escort requests.
+Website: https://mupolice.missouri.edu/
 
+Friend Walk (Walking Escort): 573-884-9255
+Hours: Sunday-Thursday, 7:00 PM - 3:00 AM
+Free walking escort service anywhere on campus. Call when uncomfortable walking alone.
+Also available via Mizzou Safe app.
+
+Safe Ride (Campus Shuttle): 573-882-1010
+Hours: Daily, 7:00 PM - 3:00 AM
+Free shuttle service across campus. Wait time usually 10-15 minutes.
+
+MU Alert - Emergency Notification System
+Sign up at: https://mupolice.missouri.edu/services/mu-alert/
+MU Alert sends emergency texts, emails, and desktop notifications during campus threats, severe weather, or active incidents. Sign up immediately.
+
+Mizzou Safe App
+Download the Mizzou Safe app to: call MUPD, request Friend Walk, report tips, and access safety resources directly from your phone.
+
+================================================================================
+REPORTING A CRIME OR INCIDENT - OFFICIAL FORMS & LINKS
+================================================================================
+
+1. CAMPUS SECURITY AUTHORITY (CSA) INCIDENT REPORTING FORM
+   Use when: You are a Campus Security Authority and witnessed or were told about a Clery Act crime.
+   Form: https://missouri.qualtrics.com/jfe/form/SV_1THwCQ2fvSs1SzH
+   Required by: Jeanne Clery Campus Safety Act
+
+2. ONLINE CRIME REPORT (MUPD)
+   Use for: Lost property, theft, theft from vehicle, vandalism, vandalism to a vehicle.
+   Report at: https://mupolice.missouri.edu/report-crime/
+   Note: For emergencies or crimes in progress, call 911 or 573-882-7201 instead.
+
+3. SILENT WITNESS - ANONYMOUS REPORTING
+   Use when: You want to report a crime or suspicious activity anonymously.
+   Report at: https://mupolice.missouri.edu/about/units/investigations/
+   Note: MUPD receives your report but not your name or location.
+
+4. OFFICE OF INSTITUTIONAL EQUITY (OIE) - DISCRIMINATION & TITLE IX REPORT
+   Use for: Sexual assault, sexual harassment, dating/domestic violence, stalking, discrimination, retaliation, or bias incidents.
+   Report at: https://equity.missouri.edu/reporting-and-policies/
+   Phone: 573-882-3880
+   Email: equity@missouri.edu
+   Location: 320 Jesse Hall and 145 Heinkel Building
+   Note: MU employees are Mandated Reporters and must report to OIE.
+
+5. STUDENT AT RISK / CARE TEAM REPORT
+   Use when: You are concerned about a student who is distressed, displaying harmful behavior, or needs support (financial hardship, mental health, housing insecurity, etc.).
+   Report at: https://studentaffairs.missouri.edu/concerned-about-a-student/
+   Phone: Dean of Students Office: 573-882-5397
+   Note: If student is an immediate threat, call MUPD at 573-882-7201 instead.
+
+6. COLUMBIA CRIME STOPPERS - ANONYMOUS TIP LINE
+   Use when: You have information about a crime and want to remain anonymous.
+   Phone: 573-875-TIPS (8477)
+   No name required. May be eligible for reward money.
+
+================================================================================
+LATE NIGHT SAFETY SERVICES
+================================================================================
+
+Friend Walk: 573-884-9255 | Sunday-Thursday, 7 PM - 3 AM
+Safe Ride: 573-882-1010 | Daily, 7 PM - 3 AM
+MUPD Escort (Unarmed): 573-882-7201 | 24/7 | Request an escort to walk you home any time.
+
+================================================================================
+SEXUAL ASSAULT & INTERPERSONAL VIOLENCE RESOURCES
+================================================================================
+
+RSVP CENTER (Relationship & Sexual Violence Prevention)
+Services: FREE and CONFIDENTIAL crisis support, case management, advocacy.
+RSVP staff are exempt from mandated reporting - your information stays with them.
+Location: G216 MU Student Center
+Phone: 573-882-6638
+Email: rsvp@missouri.edu
+Hours: Monday-Friday, 8 AM - 4 PM
+Website: https://rsvp.missouri.edu/
+
+TRUE NORTH - Domestic & Sexual Violence Services
+Services: Comprehensive support for survivors of intimate partner violence and sexual assault.
+Phone: 573-875-1369
+Website: https://www.truenorthcolumbia.org/
+
+UNIVERSITY HOSPITAL S.A.N.E. CLINIC
+Services: Sexual Assault Nurse Examiners (SANE) conduct exams following sexual assault/rape. Evidence collected can be preserved even if you are not ready to report.
+
+If you experience sexual assault:
+1. Get to a safe place
+2. Call 911 or MUPD if in immediate danger
+3. Contact RSVP Center: 573-882-6638 (confidential)
+4. Consider medical attention at University Hospital SANE Clinic
+5. Preserve evidence if possible (do not shower, change clothes)
+6. Report to OIE (optional but supported): https://equity.missouri.edu/reporting-and-policies/
+7. Report to MUPD (optional): 573-882-7201
+
+================================================================================
 REPORTING SUSPICIOUS ACTIVITY
+================================================================================
 
 If you observe suspicious activity:
 1. Trust your instincts
 2. Note details: person description, vehicle, location, time
-3. Call MUPD at 573-882-7201 immediately
+3. Call MUPD at 573-882-7201 or use Silent Witness for anonymity
 4. Do not confront the individual
-5. Move to a safe, well-lit, populated area
+5. Move to a well-lit, populated area
 
-Examples of suspicious activity include people trying door handles, loitering in unusual places, taking photos of security measures, or unattended packages.
+Examples include: people trying door handles, loitering without purpose, unattended bags or packages, individuals following others.
 
-LATE NIGHT SAFETY SERVICES
+================================================================================
+MENTAL HEALTH & CRISIS SUPPORT
+================================================================================
 
-Friend Walk: 573-884-9255
-Hours: Sunday-Thursday, 7:00 PM - 3:00 AM
-Free walking escort service anywhere on campus. Call when you feel uncomfortable walking alone.
+MU Counseling Center: 573-882-6601
+Hours: Monday-Friday, 8 AM - 5 PM
+After Hours Crisis Line: 573-882-6601 (press 2)
 
-Safe Ride: 573-882-1010
-Hours: Daily, 7:00 PM - 3:00 AM
-Free shuttle service across campus. Wait time is usually 10-15 minutes.
+Crisis Intervention Team (CIT):
+Call MUPD at 573-882-7201 to request a CIT officer for mental health-related concerns. Officers are trained to assist students in mental health crises and can connect them to University Hospital Psychiatric Center (MUPC) if needed.
 
+National Suicide Prevention Lifeline: 988 (call or text)
+
+================================================================================
 PERSONAL SAFETY TIPS
+================================================================================
 
-When walking on campus:
-- Stay in well-lit areas
-- Walk with friends when possible
-- Keep phone charged and accessible
-- Be aware of surroundings
+Walking on campus:
+- Stay in well-lit areas, especially at night
+- Use Friend Walk or Safe Ride after dark
+- Keep your phone charged and accessible
+- Be aware of your surroundings - avoid headphones at max volume
 - Trust your instincts
 - Use emergency blue light phones if needed
-- Call Friend Walk if alone at night
 
-Dorm safety:
-- Always lock your door
-- Don't prop doors open
-- Report strangers in building
-- Don't share entry codes
-- Use peephole before opening door
+Dorm and housing safety:
+- Always lock your door, even briefly
+- Do not prop exterior doors open
+- Report strangers in your building to RA or MUPD
+- Do not share entry codes or swipe access
+- Register your bike and electronics with MUPD: https://mupolice.missouri.edu/services/bicycle-registration/
 
-SEXUAL ASSAULT RESOURCES
+Digital safety:
+- Register valuables (electronics, bike) with MUPD
+- Keep valuables out of plain view in your car
+- Lock your car at all times
 
-Title IX Office: 573-882-3880
-Confidential support for sexual harassment, assault, dating violence, and stalking.
+================================================================================
+VICTIM RIGHTS & LEGAL RESOURCES
+================================================================================
 
-24/7 Hotline: 573-882-6638
-Relationship & Sexual Violence Prevention Center
+Boone County Prosecutor's Office Victim Services: 573-886-4100
+For information on victim rights, local resources, and Boone County Victim Response Team.
 
-If you experience sexual assault:
-1. Get to safe place
-2. Consider medical attention
-3. Preserve evidence if possible
-4. Contact someone you trust
-5. Call Title IX: 573-882-3880
-6. Can report to MUPD: 573-882-7201
+Missouri Attorney General's Office: Free brochures and information on victim rights.
+Website: https://ago.mo.gov/
 
-CRIME REPORTING
+MUPD Victim Assistance: https://mupolice.missouri.edu/services/vrights/
+Officers refer survivors to RSVP, True North, OIE, SANE Clinic, and other resources.
 
-Report crimes by:
-- Calling MUPD: 573-882-7201
-- Online: https://mupd.missouri.edu/report-crime/
-- In person at MUPD Office
-- Anonymous tips online
+================================================================================
+ANNUAL SECURITY REPORT
+================================================================================
 
-When reporting, provide: what happened, when, where, who was involved, witnesses, and any evidence.
+The MU Annual Fire Safety and Security Report contains 3 years of campus crime statistics, security policies, and safety resources.
 
-Report within 24 hours for best results.
+2025 Report: https://mupolice.missouri.edu/wp-content/uploads/2025/09/2025-Annual-Security-and-Fire-Safety-Report-Crime-Statistics-1.pdf
+All reports: https://mupolice.missouri.edu/about/annual-security-report/
 
-IMPORTANT REMINDERS
+================================================================================
+CLERY ACT & CAMPUS SECURITY AUTHORITIES
+================================================================================
 
-- Your safety is the top priority
-- Trust your instincts
-- Don't hesitate to call for help
-- Use available resources
-- Look out for fellow students
-- Report all crimes and suspicious activity
+The Jeanne Clery Campus Safety Act requires MU to:
+- Maintain a public daily crime log
+- Issue timely warnings for serious threats
+- Publish annual crime statistics
+- Train Campus Security Authorities (CSAs)
 
-For more information: police.missouri.edu
+CSA Incident Report Form: https://missouri.qualtrics.com/jfe/form/SV_1THwCQ2fvSs1SzH
+CSA Training (Percipio): Log in to Percipio, look for "2024 Campus Security Authority Training" under assignments.
+Clery Coordinator contact: https://mupolice.missouri.edu/clery-act/
+
+================================================================================
+KEY WEBSITES AT A GLANCE
+================================================================================
+
+MUPD Homepage:              https://mupolice.missouri.edu/
+Online Crime Report:        https://mupolice.missouri.edu/report-crime/
+Silent Witness (anonymous): https://mupolice.missouri.edu/about/units/investigations/
+CSA Report Form:            https://missouri.qualtrics.com/jfe/form/SV_1THwCQ2fvSs1SzH
+OIE (Title IX / Equity):    https://equity.missouri.edu/reporting-and-policies/
+RSVP Center:                https://rsvp.missouri.edu/
+Student At Risk / Care Team:https://studentaffairs.missouri.edu/concerned-about-a-student/
+MU Alert Signup:            https://mupolice.missouri.edu/services/mu-alert/
+Annual Security Report:     https://mupolice.missouri.edu/about/annual-security-report/
+Victim Assistance:          https://mupolice.missouri.edu/services/vrights/
+
+================================================================================
+EMERGENCY CONTACTS AT A GLANCE
+================================================================================
+
+911                  - Emergency Services
+573-882-7201         - MUPD (24/7)
+573-884-9255         - Friend Walk (7 PM - 3 AM)
+573-882-1010         - Safe Ride (7 PM - 3 AM)
+573-882-6638         - RSVP Center (confidential)
+573-882-3880         - Title IX / OIE
+573-882-5397         - Dean of Students
+573-882-6601         - Counseling Center / Crisis Line
+573-875-1369         - True North (domestic/sexual violence)
+573-875-8477         - Columbia Crime Stoppers (anonymous)
+988                  - Suicide & Crisis Lifeline
+
+Your safety is the top priority. Trust your instincts. Don't hesitate to use these resources.
+

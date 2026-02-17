@@ -12,6 +12,7 @@ sys.path.append(str(Path(__file__).parent.parent))
 from src.config import FAISS_INDEX_PATH, METADATA_PATH, DOCSTORE_PATH
 from src.archia_client import ArchiaClient
 from src.document_processor import DocumentProcessor
+from src.config import EMBEDDING_DIMENSION
 
 
 class VectorIndexBuilder:
@@ -52,7 +53,7 @@ class VectorIndexBuilder:
         print("\n🏗️  Building FAISS index...")
         
         dimension = embeddings.shape[1]
-        index = faiss.IndexFlatL2(dimension)
+        index = faiss.IndexFlatL2(EMBEDDING_DIMENSION)
         index.add(embeddings)
         
         print(f"✅ Index built with {index.ntotal} vectors")

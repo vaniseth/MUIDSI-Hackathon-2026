@@ -112,13 +112,13 @@ class DocumentProcessor:
         for doc in documents:
             chunks = chunk_text(doc['content'])
             
-            for idx, chunk_text in enumerate(chunks):
+            for idx, chunk_content in enumerate(chunks):
                 chunk = {
                     'chunk_id': f"{doc['filename']}_chunk_{idx}",
-                    'text': chunk_text,
+                    'text': chunk_content,
                     'source': doc['filename'],
                     'chunk_index': idx,
-                    'word_count': len(chunk_text.split())
+                    'word_count': len(chunk_content.split())
                 }
                 all_chunks.append(chunk)
         
