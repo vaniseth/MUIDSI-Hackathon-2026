@@ -556,23 +556,26 @@ def load_data(hour_param: int):
         },
         "student_survey": {
             "available": True,
-            "n": 25,
-            "day_safety_avg": 4.76,
-            "night_safety_avg": 3.72,
-            "safety_drop": 1.04,
-            "route_changed_pct": 44,
-            "mizzou_safe_used_pct": 16,
+            "n": 50,
+            "day_safety_avg": 4.58,
+            "night_safety_avg": 3.64,
+            "safety_drop": 0.94,
+            "route_changed_pct": 52,
+            "mizzou_safe_used_pct": 12,
             "top_unsafe_locations": [
-                {"location": "Downtown",        "mentions": 22, "pct": 88},
-                {"location": "Parking Garages", "mentions": 18, "pct": 72},
-                {"location": "Hitt Street",     "mentions": 9,  "pct": 36},
-                {"location": "Greek Town",      "mentions": 8,  "pct": 32},
-                {"location": "Conley Ave",      "mentions": 7,  "pct": 28},
+                {"location": "Downtown",        "mentions": 42, "pct": 84},
+                {"location": "Parking Garages", "mentions": 33, "pct": 66},
+                {"location": "Greek Town",      "mentions": 20, "pct": 40},
+                {"location": "Hitt Street",     "mentions": 19, "pct": 38},
+                {"location": "Student Dorms",   "mentions": 7,  "pct": 14},
+                {"location": "Conley Ave",      "mentions": 7,  "pct": 14},
             ],
             "top_concerns": [
-                {"concern": "Poor Lighting",  "pct": 56},
-                {"concern": "Isolation",      "pct": 56},
-                {"concern": "Harassment",     "pct": 44},
+                {"concern": "Poor Lighting",       "pct": 62},
+                {"concern": "Isolation",           "pct": 60},
+                {"concern": "Suspicious Activity", "pct": 48},
+                {"concern": "Harassment",          "pct": 46},
+                {"concern": "Theft",               "pct": 32},
             ],
         },
         "temporal_analysis": {
@@ -1341,12 +1344,51 @@ with tab_survey:
             <div class="card" style="margin-top:8px">
               <div class="card-title">Why This Validates Our Approach</div>
               <div class="card-body">
-                <b>Poor lighting and isolation</b> each cited by 56% of students — exactly 
-                what VIIRS satellite data and TIGER road analysis measure. 
-                <b>{survey['route_changed_pct']}% of students</b> actively change their behavior 
-                around these locations, confirming this is a real quality-of-life impact, not 
-                just a statistical pattern. The incumbent app has <b>only {survey['mizzou_safe_used_pct']}% adoption</b> — 
-                because telling students to avoid places isn't enough. Fix the campus.
+                <b>Poor lighting (62%) and isolation (60%)</b> are the top two concerns among 50 surveyed students —
+                exactly what VIIRS satellite measurements and TIGER road surveillance scores quantify.
+                <b>{survey['route_changed_pct']}% of students</b> actively change their behavior
+                around these locations, confirming a real quality-of-life impact beyond just statistics.
+                Meanwhile, the Mizzou Safe App has <b>only {survey['mizzou_safe_used_pct']}% adoption</b>
+                and 24% of students have never heard of it —
+                because telling students to avoid places isn't a solution. Fix the campus.
+              </div>
+            </div>
+            """, unsafe_allow_html=True)
+
+        # ── PDF Viewer ────────────────────────────────────────────────────────
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown('<div class="sign-header navy" style="font-size:11px">📄 Full Survey Report</div>',
+                    unsafe_allow_html=True)
+
+        pdf_path = Path("data/survey_results.pdf")
+        if pdf_path.exists():
+            import base64
+            with open(pdf_path, "rb") as f:
+                b64 = base64.b64encode(f.read()).decode()
+            st.markdown(f"""
+            <div style="border:2px solid #ccc9b8;border-radius:6px;overflow:hidden;
+                        box-shadow:0 2px 8px rgba(0,0,0,0.08)">
+              <iframe
+                src="data:application/pdf;base64,{b64}"
+                width="100%"
+                height="720"
+                style="display:block;border:none"
+                type="application/pdf">
+              </iframe>
+            </div>
+            <div style="font-family:Oswald,sans-serif;font-size:10px;letter-spacing:0.15em;
+                        color:#8a7a5a;text-align:right;margin-top:6px;text-transform:uppercase">
+              Student Safety Perception Survey · University of Missouri · February 2026 · n=50
+            </div>
+            """, unsafe_allow_html=True)
+        else:
+            st.markdown(f"""
+            <div style="background:#F5F2E4;border:2px dashed #ccc9b8;border-radius:6px;
+                        padding:32px;text-align:center">
+              <div style="font-family:Oswald,sans-serif;font-size:13px;letter-spacing:0.12em;
+                          color:#8a7a5a;text-transform:uppercase">PDF not found</div>
+              <div style="font-size:12px;color:#a09880;margin-top:8px">
+                Save the survey PDF to: <code>data/survey_results.pdf</code>
               </div>
             </div>
             """, unsafe_allow_html=True)
@@ -1417,7 +1459,7 @@ st.markdown("</div>", unsafe_allow_html=True)
 st.markdown("""
 <div style="text-align:center;padding:18px 32px;background:#14532d;margin-top:24px;
      font-family:Oswald,sans-serif;font-size:11px;letter-spacing:0.15em;color:rgba(255,255,255,0.4)">
-  TIGERTOWN · TigerTown · UNIVERSITY OF MISSOURI · MUIDSI HACKATHON 2026
+  TIGERTOWN · MIZZOUSAFE · UNIVERSITY OF MISSOURI · MUIDSI HACKATHON 2026
   &nbsp;·&nbsp; EMERGENCY: 911 &nbsp;·&nbsp; MUPD: 573-882-7201 &nbsp;·&nbsp; SAFE RIDE: 573-882-1010
 </div>
 """, unsafe_allow_html=True)
