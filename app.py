@@ -1262,116 +1262,397 @@ with tab_impact:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────────────────
 # TAB 4 — STUDENT SURVEY
 # ─────────────────────────────────────────────────────────────────────────────
 
+# Always-on fallback — tab never goes blank even if backend survey unavailable
+_SURVEY_HARDCODED = {
+    "available": True,
+    "n": 50,
+    "day_safety_avg": 4.58,
+    "night_safety_avg": 3.64,
+    "safety_drop": 0.94,
+    "route_changed_pct": 52,
+    "mizzou_safe_used_pct": 12,
+    "top_unsafe_locations": [
+        {"location": "Downtown",        "pct": 84},
+        {"location": "Parking Garages", "pct": 66},
+        {"location": "Greek Town",      "pct": 40},
+        {"location": "Hitt Street",     "pct": 38},
+        {"location": "Student Dorms",   "pct": 14},
+        {"location": "Conley Ave",      "pct": 14},
+    ],
+    "top_concerns": [
+        {"concern": "Poor Lighting",       "pct": 62},
+        {"concern": "Isolation",           "pct": 60},
+        {"concern": "Suspicious Activity", "pct": 48},
+        {"concern": "Harassment",          "pct": 46},
+        {"concern": "Theft",               "pct": 32},
+    ],
+}
+# Use live data if backend loaded it, otherwise always use hardcoded
+sd = survey if survey.get("available") else _SURVEY_HARDCODED
+
+RESPONSES_FILE = Path("data/survey_responses.csv")
+RESPONSES_FILE.parent.mkdir(parents=True, exist_ok=True)
+
 with tab_survey:
-    st.markdown('<div class="sign-header">📋 Student Safety Survey — February 2026</div>', unsafe_allow_html=True)
 
-    if not survey.get("available"):
-        st.info("Survey data not loaded. Save survey CSV to data/crime_data/survey_results.csv")
-    else:
-        c1, c2 = st.columns([1, 1.4])
+    sub_results, sub_form, sub_pdf = st.tabs([
+        "📊  Survey Results",
+        "✏️  Take the Survey",
+        "📄  Full Report PDF",
+    ])
 
-        with c1:
+    # ══════════════════════════════════════════════════════════════
+    # SUB-TAB 1 — RESULTS (always renders from hardcoded/live data)
+    # ══════════════════════════════════════════════════════════════
+    with sub_results:
+        st.markdown(
+            '<div class="sign-header">📊 Aggregated Results — n=50 Responses</div>',
+            unsafe_allow_html=True,
+        )
+
+        col_stats, col_charts = st.columns([1, 1.4])
+
+        with col_stats:
             st.markdown(f"""
             <div class="survey-box">
-              <div class="s-title">Key Findings · n={survey['n']}</div>
+              <div class="s-title">Key Findings · n={sd['n']}</div>
               <div class="survey-stat">
                 <span>Daytime safety avg</span>
-                <strong>4.76 / 5</strong>
+                <strong>{sd['day_safety_avg']} / 5</strong>
               </div>
               <div class="survey-stat">
                 <span>Night safety avg</span>
-                <strong style="color:#fcd34d">{survey['night_safety_avg']} / 5</strong>
+                <strong style="color:#fcd34d">{sd['night_safety_avg']} / 5</strong>
               </div>
               <div class="survey-stat">
                 <span>Safety drop after dark</span>
-                <strong style="color:#fca5a5">↓ {survey['safety_drop']} pts</strong>
+                <strong style="color:#fca5a5">&#8595; {sd['safety_drop']} pts</strong>
               </div>
               <div class="survey-stat">
                 <span>Changed route due to safety</span>
-                <strong>{survey['route_changed_pct']}% of students</strong>
+                <strong>{sd['route_changed_pct']}% of students</strong>
               </div>
               <div class="survey-stat">
-                <span>Use existing Mizzou Safe App</span>
-                <strong style="color:#fca5a5">Only {survey['mizzou_safe_used_pct']}%</strong>
+                <span>Ever used Mizzou Safe App</span>
+                <strong style="color:#fca5a5">Only {sd['mizzou_safe_used_pct']}%</strong>
+              </div>
+              <div class="survey-stat">
+                <span>Never heard of Mizzou Safe App</span>
+                <strong style="color:#fca5a5">24% of students</strong>
               </div>
             </div>
             """, unsafe_allow_html=True)
 
-            st.markdown('<div class="sign-header" style="font-size:11px">Top Concerns</div>', unsafe_allow_html=True)
-            for concern in survey.get("top_concerns", []):
+            st.markdown(
+                '<div class="sign-header" style="font-size:11px;margin-top:4px">Top Safety Concerns</div>',
+                unsafe_allow_html=True,
+            )
+            for concern in sd.get("top_concerns", []):
                 pct = concern["pct"]
                 st.markdown(f"""
-                <div style="margin-bottom:7px">
-                  <div style="display:flex;justify-content:space-between;font-family:Oswald,sans-serif;font-size:12px;margin-bottom:3px">
+                <div style="margin-bottom:9px">
+                  <div style="display:flex;justify-content:space-between;
+                              font-family:Oswald,sans-serif;font-size:12px;margin-bottom:3px">
                     <span style="color:#14532d;font-weight:600">{concern['concern']}</span>
                     <span style="color:#F4B942;font-weight:700">{pct}%</span>
                   </div>
-                  <div style="background:#e0ddd0;border-radius:2px;height:6px">
+                  <div style="background:#e0ddd0;border-radius:2px;height:7px">
                     <div style="background:#F4B942;width:{pct}%;height:100%;border-radius:2px"></div>
                   </div>
                 </div>
                 """, unsafe_allow_html=True)
 
-        with c2:
-            st.markdown('<div class="sign-header amber" style="font-size:11px">Unsafe Locations Reported</div>', unsafe_allow_html=True)
-            locs = survey.get("top_unsafe_locations", [])
-            if locs:
-                loc_names = [l["location"] for l in locs]
-                loc_pcts  = [l["pct"] for l in locs]
-                fig4 = go.Figure(go.Bar(
-                    y=loc_names[::-1], x=loc_pcts[::-1],
-                    orientation="h",
-                    marker_color="#14532d",
-                    text=[f"{p}%" for p in loc_pcts[::-1]],
-                    textposition="outside",
-                    textfont=dict(family="Oswald, sans-serif", size=11, color="#14532d"),
-                ))
-                fig4.update_layout(
-                    height=280, margin=dict(l=0,r=40,t=10,b=0),
-                    paper_bgcolor="rgba(0,0,0,0)",
-                    plot_bgcolor="#F5F2E4",
-                    xaxis=dict(title="% of students", gridcolor="#e0ddd0", range=[0,105]),
-                    yaxis=dict(gridcolor="rgba(0,0,0,0)"),
-                    font=dict(family="Oswald, sans-serif"),
-                    showlegend=False,
-                )
-                st.plotly_chart(fig4, use_container_width=True)
+        with col_charts:
+            st.markdown(
+                '<div class="sign-header amber" style="font-size:11px">Locations Reported Unsafe</div>',
+                unsafe_allow_html=True,
+            )
+            locs      = sd.get("top_unsafe_locations", [])
+            loc_names = [l["location"] for l in locs]
+            loc_pcts  = [l["pct"] for l in locs]
+            fig_loc = go.Figure(go.Bar(
+                y=loc_names[::-1],
+                x=loc_pcts[::-1],
+                orientation="h",
+                marker_color="#14532d",
+                text=[f"{p}%" for p in loc_pcts[::-1]],
+                textposition="outside",
+                textfont=dict(family="Oswald, sans-serif", size=11, color="#14532d"),
+            ))
+            fig_loc.update_layout(
+                height=300,
+                margin=dict(l=0, r=50, t=10, b=0),
+                paper_bgcolor="rgba(0,0,0,0)",
+                plot_bgcolor="#F5F2E4",
+                xaxis=dict(title="% of students", gridcolor="#e0ddd0", range=[0, 110]),
+                yaxis=dict(gridcolor="rgba(0,0,0,0)"),
+                font=dict(family="Oswald, sans-serif"),
+                showlegend=False,
+            )
+            st.plotly_chart(fig_loc, use_container_width=True, key="survey_locations_chart")
 
             st.markdown(f"""
-            <div class="card" style="margin-top:8px">
+            <div class="card">
               <div class="card-title">Why This Validates Our Approach</div>
               <div class="card-body">
-                <b>Poor lighting (62%) and isolation (60%)</b> are the top two concerns among 50 surveyed students —
-                exactly what VIIRS satellite measurements and TIGER road surveillance scores quantify.
-                <b>{survey['route_changed_pct']}% of students</b> actively change their behavior
-                around these locations, confirming a real quality-of-life impact beyond just statistics.
-                Meanwhile, the Mizzou Safe App has <b>only {survey['mizzou_safe_used_pct']}% adoption</b>
-                and 24% of students have never heard of it —
-                because telling students to avoid places isn't a solution. Fix the campus.
+                <b>Poor lighting (62%) and isolation (60%)</b> are the top two concerns
+                among {sd['n']} surveyed students — exactly what VIIRS satellite measurements
+                and TIGER road surveillance scores quantify.
+                <b>{sd['route_changed_pct']}% of students</b> actively change their routes,
+                confirming a real quality-of-life impact. The Mizzou Safe App has
+                <b>only {sd['mizzou_safe_used_pct']}% adoption</b> and 24% have never heard
+                of it — because telling students to avoid places is not a solution.
+                <b>Fix the campus.</b>
               </div>
             </div>
             """, unsafe_allow_html=True)
 
-        # ── PDF Viewer ────────────────────────────────────────────────────────
-        st.markdown("<br>", unsafe_allow_html=True)
-        st.markdown('<div class="sign-header navy" style="font-size:11px">📄 Full Survey Report</div>',
-                    unsafe_allow_html=True)
+            # Show live response count from the form if any collected
+            if RESPONSES_FILE.exists():
+                try:
+                    n_live = len(pd.read_csv(RESPONSES_FILE))
+                    st.markdown(f"""
+                    <div style="background:#14532d;color:white;border-radius:4px;padding:10px 16px;
+                                font-family:Oswald,sans-serif;font-size:12px;letter-spacing:0.1em;
+                                display:flex;align-items:center;gap:12px">
+                      <span style="font-size:22px;font-weight:700;color:#F4B942">{n_live}</span>
+                      <span>NEW RESPONSES COLLECTED VIA TIGERTOWN FORM</span>
+                    </div>
+                    """, unsafe_allow_html=True)
+                except Exception:
+                    pass
 
-        pdf_path = Path("data/survey_results.pdf")
-        if pdf_path.exists():
-            import base64
-            with open(pdf_path, "rb") as f:
-                b64 = base64.b64encode(f.read()).decode()
+    # ══════════════════════════════════════════════════════════════
+    # SUB-TAB 2 — LIVE SURVEY FORM
+    # ══════════════════════════════════════════════════════════════
+    with sub_form:
+        st.markdown(
+            '<div class="sign-header amber">✏️ Student Safety Perception Survey</div>',
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            '<div style="font-size:13px;color:#6b6458;margin-bottom:20px">'
+            'Your response is anonymous and saved to help improve campus safety analysis.</div>',
+            unsafe_allow_html=True,
+        )
+
+        with st.form("safety_survey_form", clear_on_submit=True):
+
+            # ── Q1 & Q2 ──────────────────────────────────────────
+            st.markdown(
+                '<div style="font-family:Oswald,sans-serif;font-size:10px;letter-spacing:0.2em;'
+                'text-transform:uppercase;color:#8a7a5a;margin-bottom:6px">Safety Ratings</div>',
+                unsafe_allow_html=True,
+            )
+            col_q1, col_q2 = st.columns(2)
+            with col_q1:
+                q1 = st.select_slider(
+                    "1. How safe do you feel on campus during the DAY?",
+                    options=[1, 2, 3, 4, 5],
+                    value=4,
+                    format_func=lambda x: {1:"1 — Unsafe", 2:"2", 3:"3", 4:"4", 5:"5 — Very Safe"}[x],
+                )
+            with col_q2:
+                q2 = st.select_slider(
+                    "2. How safe do you feel on campus at NIGHT (after 7 PM)?",
+                    options=[1, 2, 3, 4, 5],
+                    value=3,
+                    format_func=lambda x: {1:"1 — Unsafe", 2:"2", 3:"3", 4:"4", 5:"5 — Very Safe"}[x],
+                )
+
+            st.divider()
+
+            # ── Q3 & Q4 ──────────────────────────────────────────
+            st.markdown(
+                '<div style="font-family:Oswald,sans-serif;font-size:10px;letter-spacing:0.2em;'
+                'text-transform:uppercase;color:#8a7a5a;margin-bottom:6px">Locations & Timing</div>',
+                unsafe_allow_html=True,
+            )
+            q3 = st.multiselect(
+                "3. Where do you feel unsafe on campus? (select all that apply)",
+                ["Downtown", "Parking Garages", "Greek Town / East Campus",
+                 "Hitt Street", "Conley Ave", "Student Dorms", "Rec Center",
+                 "The Quad", "Memorial Union", "Ellis Library", "Other"],
+            )
+            q4 = st.multiselect(
+                "4. When do you feel most unsafe in these locations?",
+                ["Morning (6 AM–12 PM)", "Afternoon (12 PM–6 PM)",
+                 "Evening (6 PM–9 PM)", "Late Night (10 PM–4 AM)",
+                 "Weekends", "All the time"],
+            )
+
+            st.divider()
+
+            # ── Q5 ───────────────────────────────────────────────
+            st.markdown(
+                '<div style="font-family:Oswald,sans-serif;font-size:10px;letter-spacing:0.2em;'
+                'text-transform:uppercase;color:#8a7a5a;margin-bottom:6px">Safety Concerns</div>',
+                unsafe_allow_html=True,
+            )
+            q5 = st.multiselect(
+                "5. What type of safety concerns do you associate with these locations?",
+                ["Poor lighting", "Theft", "Harassment", "Assault",
+                 "Suspicious activity", "Traffic safety (speeding, accidents)",
+                 "Isolation (few people around)", "Previous personal experience", "Other"],
+            )
+
+            st.divider()
+
+            # ── Q6 & Q7 ──────────────────────────────────────────
+            st.markdown(
+                '<div style="font-family:Oswald,sans-serif;font-size:10px;letter-spacing:0.2em;'
+                'text-transform:uppercase;color:#8a7a5a;margin-bottom:6px">Your Behaviour</div>',
+                unsafe_allow_html=True,
+            )
+            col_q6, col_q10 = st.columns(2)
+            with col_q6:
+                q6 = st.radio(
+                    "6. Have you changed your route because you felt unsafe?",
+                    ["Yes", "No"],
+                    horizontal=True,
+                )
+            with col_q10:
+                q10 = st.radio(
+                    "10. Have you used the Mizzou Safe App before?",
+                    ["Yes", "No", "Have never heard of it"],
+                    horizontal=True,
+                )
+            q7 = st.multiselect(
+                "7. If yes — what did you do? (select all that apply)",
+                ["Walked a longer route", "Used Safe Ride / STRIPES",
+                 "Called or walked with a friend", "Avoided that area entirely",
+                 "Left campus earlier than planned", "Other"],
+            )
+
+            st.divider()
+
+            # ── Q8 & Q9 ──────────────────────────────────────────
+            st.markdown(
+                '<div style="font-family:Oswald,sans-serif;font-size:10px;letter-spacing:0.2em;'
+                'text-transform:uppercase;color:#8a7a5a;margin-bottom:6px">AI Tool Interest</div>',
+                unsafe_allow_html=True,
+            )
+            col_q8, col_q9 = st.columns(2)
+            with col_q8:
+                q8 = st.select_slider(
+                    "8. Likelihood of using AI to advise on safety actions?",
+                    options=[1, 2, 3, 4, 5],
+                    value=3,
+                    format_func=lambda x: {1:"1 — Not Likely", 2:"2", 3:"3", 4:"4", 5:"5 — Very Likely"}[x],
+                )
+            with col_q9:
+                q9 = st.select_slider(
+                    "9. Likelihood of using AI to plan safer routes?",
+                    options=[1, 2, 3, 4, 5],
+                    value=3,
+                    format_func=lambda x: {1:"1 — Not Likely", 2:"2", 3:"3", 4:"4", 5:"5 — Very Likely"}[x],
+                )
+
+            submitted = st.form_submit_button(
+                "🐾  Submit Response",
+                use_container_width=True,
+            )
+
+        # ── Handle submission ─────────────────────────────────────
+        if submitted:
+            import csv as _csv
+            new_row = {
+                "timestamp":            datetime.now().isoformat(),
+                "q1_day_safety":        q1,
+                "q2_night_safety":      q2,
+                "q3_unsafe_locations":  "; ".join(q3),
+                "q4_unsafe_times":      "; ".join(q4),
+                "q5_safety_concerns":   "; ".join(q5),
+                "q6_changed_route":     q6,
+                "q7_route_actions":     "; ".join(q7),
+                "q8_ai_action":         q8,
+                "q9_ai_route":          q9,
+                "q10_mizzou_safe_app":  q10,
+            }
+            file_exists = RESPONSES_FILE.exists()
+            with open(RESPONSES_FILE, "a", newline="") as f:
+                writer = _csv.DictWriter(f, fieldnames=new_row.keys())
+                if not file_exists:
+                    writer.writeheader()
+                writer.writerow(new_row)
+
+            st.success("✅  Response saved — thank you for helping make MU safer!")
+
+        # ── Download + count ──────────────────────────────────────
+        if RESPONSES_FILE.exists():
+            try:
+                resp_df = pd.read_csv(RESPONSES_FILE)
+                n_resp  = len(resp_df)
+                st.markdown(f"""
+                <div style="background:#14532d;color:white;border-radius:6px;
+                            padding:14px 20px;font-family:Oswald,sans-serif;
+                            display:flex;align-items:center;gap:20px;margin-top:12px">
+                  <div style="font-size:32px;font-weight:700;color:#F4B942;line-height:1">{n_resp}</div>
+                  <div>
+                    <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase">
+                      Responses collected via TigerTown</div>
+                    <div style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:2px">
+                      Saved to data/survey_responses.csv</div>
+                  </div>
+                </div>
+                """, unsafe_allow_html=True)
+
+                col_dl1, col_dl2 = st.columns(2)
+                with col_dl1:
+                    st.download_button(
+                        "📥 Download Responses (CSV)",
+                        data=resp_df.to_csv(index=False),
+                        file_name=f"tigertown_responses_{datetime.now().strftime('%Y%m%d')}.csv",
+                        mime="text/csv",
+                    )
+                with col_dl2:
+                    try:
+                        import io
+                        buf = io.BytesIO()
+                        with pd.ExcelWriter(buf, engine="openpyxl") as xw:
+                            resp_df.to_excel(xw, index=False, sheet_name="Survey Responses")
+                        st.download_button(
+                            "📥 Download Responses (Excel)",
+                            data=buf.getvalue(),
+                            file_name=f"tigertown_responses_{datetime.now().strftime('%Y%m%d')}.xlsx",
+                            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        )
+                    except ImportError:
+                        st.caption("Install openpyxl for Excel export: pip install openpyxl")
+            except Exception:
+                pass
+
+    # ══════════════════════════════════════════════════════════════
+    # SUB-TAB 3 — FULL PDF REPORT
+    # ══════════════════════════════════════════════════════════════
+    with sub_pdf:
+        st.markdown(
+            '<div class="sign-header navy">📄 Full Survey Report PDF</div>',
+            unsafe_allow_html=True,
+        )
+
+        import base64 as _b64
+        _pdf_candidates = [
+            Path("data/survey_results.pdf"),
+            Path("data/crime_data/survey_results.pdf"),
+            Path("Student_Safety_Perception_Survey___University_of_Missouri.pdf"),
+        ]
+        _pdf_path = next((p for p in _pdf_candidates if p.exists()), None)
+
+        if _pdf_path:
+            with open(_pdf_path, "rb") as _f:
+                _b64_str = _b64.b64encode(_f.read()).decode()
             st.markdown(f"""
             <div style="border:2px solid #ccc9b8;border-radius:6px;overflow:hidden;
                         box-shadow:0 2px 8px rgba(0,0,0,0.08)">
               <iframe
-                src="data:application/pdf;base64,{b64}"
+                src="data:application/pdf;base64,{_b64_str}#toolbar=0&navpanes=0"
                 width="100%"
-                height="720"
+                height="840"
                 style="display:block;border:none"
                 type="application/pdf">
               </iframe>
@@ -1382,19 +1663,21 @@ with tab_survey:
             </div>
             """, unsafe_allow_html=True)
         else:
-            st.markdown(f"""
+            st.markdown("""
             <div style="background:#F5F2E4;border:2px dashed #ccc9b8;border-radius:6px;
-                        padding:32px;text-align:center">
-              <div style="font-family:Oswald,sans-serif;font-size:13px;letter-spacing:0.12em;
-                          color:#8a7a5a;text-transform:uppercase">PDF not found</div>
-              <div style="font-size:12px;color:#a09880;margin-top:8px">
-                Save the survey PDF to: <code>data/survey_results.pdf</code>
+                        padding:48px 32px;text-align:center">
+              <div style="font-size:36px;margin-bottom:14px">📄</div>
+              <div style="font-family:Oswald,sans-serif;font-size:13px;letter-spacing:0.14em;
+                          color:#8a7a5a;text-transform:uppercase;margin-bottom:10px">
+                PDF Report Not Found</div>
+              <div style="font-size:12px;color:#a09880;line-height:2">
+                Save the survey PDF to either of these paths:<br>
+                <code>data/survey_results.pdf</code><br>
+                <code>data/crime_data/survey_results.pdf</code>
               </div>
             </div>
             """, unsafe_allow_html=True)
 
-
-# ─────────────────────────────────────────────────────────────────────────────
 # TAB 5 — EXPORT
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -1459,7 +1742,7 @@ st.markdown("</div>", unsafe_allow_html=True)
 st.markdown("""
 <div style="text-align:center;padding:18px 32px;background:#14532d;margin-top:24px;
      font-family:Oswald,sans-serif;font-size:11px;letter-spacing:0.15em;color:rgba(255,255,255,0.4)">
-  TIGERTOWN · MIZZOUSAFE · UNIVERSITY OF MISSOURI · MUIDSI HACKATHON 2026
+  TIGERTOWN · TigerTown · UNIVERSITY OF MISSOURI · MUIDSI HACKATHON 2026
   &nbsp;·&nbsp; EMERGENCY: 911 &nbsp;·&nbsp; MUPD: 573-882-7201 &nbsp;·&nbsp; SAFE RIDE: 573-882-1010
 </div>
 """, unsafe_allow_html=True)
