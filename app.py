@@ -63,11 +63,11 @@ body, p, div, span, label {
    ══════════════════════════════════════════ */
 .plate-header {
     background: #F5F2E4;
-    border-top: 8px solid #1B3A6B;
-    border-bottom: 6px solid #1B3A6B;
-    padding: 18px 36px 14px;
+    border-top: 8px solid #14532d;
+    border-bottom: 6px solid #14532d;
+    padding: 22px 52px 18px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     position: relative;
     box-shadow: 0 3px 16px rgba(0,0,0,0.18);
@@ -85,109 +85,111 @@ body, p, div, span, label {
     top: 50%; transform: translateY(-50%);
     box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
 }
-.plate-header::before { left: 16px; }
-.plate-header::after  { right: 16px; }
+.plate-header::before { left: 22px; }
+.plate-header::after  { right: 22px; }
+
+/* Meta info — top corners */
+.plate-meta-left {
+    position: absolute;
+    left: 52px; top: 50%; transform: translateY(-50%);
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: #8a7a5a;
+    text-transform: uppercase;
+    text-align: left;
+    line-height: 1.6;
+}
+.plate-meta-right {
+    position: absolute;
+    right: 52px; top: 50%; transform: translateY(-50%);
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: #8a7a5a;
+    text-transform: uppercase;
+    text-align: right;
+    line-height: 1.6;
+}
+.plate-meta-right .status-live { color: #14532d; font-weight: 700; font-size: 11px; }
 
 .plate-logo-area {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 20px;
-    padding: 0 36px;
+    gap: 0;
 }
 
-/* The green road sign badge */
+/* The green road sign badge — now the hero */
 .sign-badge {
     background: #2E7D32;
-    border: 4px solid #1B5E20;
-    border-radius: 6px;
-    padding: 8px 20px;
+    border: 5px solid #1B5E20;
+    border-radius: 8px;
+    padding: 12px 36px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 2px 2px 0 #1B5E20, 4px 4px 0 rgba(0,0,0,0.2);
+    box-shadow: 3px 3px 0 #1B5E20, 6px 6px 0 rgba(0,0,0,0.15);
     position: relative;
 }
 .sign-badge::before {
     content: '';
     position: absolute;
-    inset: 3px;
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 3px;
+    inset: 4px;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 4px;
     pointer-events: none;
 }
 .sign-title {
     font-family: 'Oswald', sans-serif;
-    font-size: 26px;
+    font-size: 42px;
     font-weight: 700;
     color: white;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     line-height: 1;
-    text-shadow: 1px 1px 0 rgba(0,0,0,0.4);
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.35);
 }
-.sign-paws { font-size: 14px; margin-left: 4px; }
+.sign-paws { font-size: 28px; margin-left: 8px; vertical-align: middle; }
 .sign-tagline {
     background: #F4B942;
     color: #3d2b00;
     font-family: 'Oswald', sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    padding: 2px 10px;
-    margin-top: 5px;
+    padding: 4px 14px;
+    margin-top: 8px;
     border-radius: 2px;
     width: 100%;
     text-align: center;
+    box-shadow: 1px 1px 0 rgba(0,0,0,0.2);
 }
 
-.plate-center {
-    text-align: center;
-    flex: 1;
-    padding: 0 20px;
-}
-.plate-main-text {
+.plate-sub {
     font-family: 'Oswald', sans-serif;
-    font-size: 40px;
-    font-weight: 700;
-    color: #1B3A6B;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
-    line-height: 1;
-}
-.plate-state {
-    font-family: 'Oswald', sans-serif;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 500;
     color: #8a7a5a;
-    letter-spacing: 0.35em;
+    letter-spacing: 0.32em;
     text-transform: uppercase;
-    margin-top: 2px;
+    margin-top: 10px;
+    text-align: center;
 }
 
-.plate-right {
-    text-align: right;
-    padding: 0 36px;
-    font-family: 'Oswald', sans-serif;
-}
-.plate-date {
-    font-size: 11px;
-    color: #8a7a5a;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-}
-.plate-status {
-    font-size: 13px;
-    font-weight: 600;
-    color: #1B3A6B;
-    letter-spacing: 0.1em;
-}
+/* Keep these for any remaining refs */
+.plate-center { display: none; }
+.plate-main-text { display: none; }
+.plate-state { display: none; }
+.plate-right { display: none; }
+.plate-date { display: none; }
+.plate-status { display: none; }
 
 /* ══════════════════════════════════════════
    NAV STRIP
    ══════════════════════════════════════════ */
 .nav-strip {
-    background: #1B3A6B;
+    background: #14532d;
     padding: 0 36px;
     display: flex;
     gap: 0;
@@ -197,7 +199,7 @@ body, p, div, span, label {
     font-family: 'Oswald', sans-serif;
     font-size: 13px;
     font-weight: 500;
-    color: #7fa8d4;
+    color: #86efac;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     border-bottom: 3px solid transparent;
@@ -213,7 +215,7 @@ body, p, div, span, label {
    KPI ROW
    ══════════════════════════════════════════ */
 .kpi-strip {
-    background: #1B3A6B;
+    background: #14532d;
     padding: 20px 32px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -288,10 +290,10 @@ body, p, div, span, label {
     box-shadow: 2px 2px 0 #c48f00;
 }
 .sign-header.navy {
-    background: #1B3A6B;
+    background: #14532d;
     color: white;
-    border-color: #0f2347;
-    box-shadow: 2px 2px 0 #0f2347;
+    border-color: #0f3d1f;
+    box-shadow: 2px 2px 0 #0f3d1f;
 }
 .sign-header.red {
     background: #b91c1c;
@@ -315,7 +317,7 @@ body, p, div, span, label {
     font-family: 'Oswald', sans-serif;
     font-size: 16px;
     font-weight: 600;
-    color: #1B3A6B;
+    color: #14532d;
     letter-spacing: 0.06em;
     margin-bottom: 6px;
 }
@@ -342,13 +344,13 @@ body, p, div, span, label {
 }
 .hotspot-card.critical { border-left-color: #dc2626; }
 .hotspot-card.high     { border-left-color: #F4B942; }
-.hotspot-card.medium   { border-left-color: #1B3A6B; }
+.hotspot-card.medium   { border-left-color: #14532d; }
 
 .hotspot-location {
     font-family: 'Oswald', sans-serif;
     font-size: 17px;
     font-weight: 600;
-    color: #1B3A6B;
+    color: #14532d;
     letter-spacing: 0.04em;
 }
 .hotspot-meta {
@@ -372,7 +374,7 @@ body, p, div, span, label {
 }
 .badge-critical { background: #fee2e2; color: #7f1d1d; border: 1px solid #fca5a5; }
 .badge-high     { background: #fef3c7; color: #78350f; border: 1px solid #fcd34d; }
-.badge-medium   { background: #dbeafe; color: #1e3a8a; border: 1px solid #93c5fd; }
+.badge-medium   { background: #dcfce7; color: #14532d; border: 1px solid #86efac; }
 
 .deficiency-item {
     font-size: 13px;
@@ -402,7 +404,7 @@ body, p, div, span, label {
     margin: 6px 0;
     font-size: 13px;
 }
-.iv-name { font-weight: 600; color: #1B3A6B; font-family: 'Oswald', sans-serif; letter-spacing: 0.04em; }
+.iv-name { font-weight: 600; color: #14532d; font-family: 'Oswald', sans-serif; letter-spacing: 0.04em; }
 .iv-cost { color: #2E7D32; font-weight: 600; font-family: 'Oswald', sans-serif; }
 .iv-impact { 
     background: #2E7D32; color: white;
@@ -414,7 +416,7 @@ body, p, div, span, label {
 
 /* ROI summary bar */
 .roi-bar {
-    background: #1B3A6B;
+    background: #14532d;
     color: white;
     border-radius: 4px;
     padding: 14px 18px;
@@ -430,7 +432,7 @@ body, p, div, span, label {
 
 /* Survey callout */
 .survey-box {
-    background: #1B3A6B;
+    background: #14532d;
     border-radius: 6px;
     padding: 18px 20px;
     margin-bottom: 16px;
@@ -477,7 +479,7 @@ body, p, div, span, label {
     border: none !important;
 }
 .stTabs [aria-selected="true"] {
-    background: #1B3A6B !important;
+    background: #14532d !important;
     color: white !important;
 }
 .stTabs [data-baseweb="tab-panel"] {
@@ -487,7 +489,7 @@ body, p, div, span, label {
 /* Divider */
 .plate-divider {
     height: 3px;
-    background: linear-gradient(to right, #1B3A6B, #F4B942, #2E7D32, #F4B942, #1B3A6B);
+    background: linear-gradient(to right, #14532d, #F4B942, #166534, #F4B942, #14532d);
     margin: 0;
 }
 
@@ -894,19 +896,20 @@ hotspots = report.get("top_hotspots", [])
 
 st.markdown(f"""
 <div class="plate-header">
+  <div class="plate-meta-left">
+    University of Missouri<br>
+    Campus Safety Intelligence
+  </div>
   <div class="plate-logo-area">
     <div class="sign-badge">
       <div class="sign-title">TIGER TOWN <span class="sign-paws">🐾</span></div>
       <div class="sign-tagline">Fix the campus, not the route</div>
     </div>
+    <div class="plate-sub">TigerTown · MUIDSI Hackathon 2026</div>
   </div>
-  <div class="plate-center">
-    <div class="plate-main-text">TigerTown</div>
-    <div class="plate-state">University of Missouri · Campus Safety Intelligence</div>
-  </div>
-  <div class="plate-right">
-    <div class="plate-date">{report.get('generated_date', datetime.now().strftime('%b %d, %Y'))}</div>
-    <div class="plate-status">{"⬤ LIVE" if data_mode == "live" else "⬤ DEMO"}</div>
+  <div class="plate-meta-right">
+    {report.get('generated_date', datetime.now().strftime('%b %d, %Y'))}<br>
+    <span class="status-live">{"⬤ LIVE" if data_mode == "live" else "⬤ DEMO"}</span>
   </div>
 </div>
 <div class="plate-divider"></div>
@@ -973,7 +976,7 @@ with tab_map:
     priority_cfg = {
         "Critical": {"color": "#dc2626", "size": 28},
         "High":     {"color": "#F4B942", "size": 22},
-        "Medium":   {"color": "#1B3A6B", "size": 17},
+        "Medium":   {"color": "#14532d", "size": 17},
     }
 
     # Group by priority to avoid legend duplicates
@@ -1020,7 +1023,7 @@ with tab_map:
             bgcolor="rgba(245,242,228,0.95)",
             bordercolor="#ccc9b8",
             borderwidth=1,
-            font=dict(family="Oswald, sans-serif", size=12, color="#1B3A6B"),
+            font=dict(family="Oswald, sans-serif", size=12, color="#14532d"),
         ),
     )
     st.plotly_chart(fig, use_container_width=True)
@@ -1035,7 +1038,7 @@ with tab_map:
     for col, (label, val, clr) in zip(
         [c1, c2, c3, c4],
         [
-            ("Locations Scanned", report.get("locations_scanned", 22), "#1B3A6B"),
+            ("Locations Scanned", report.get("locations_scanned", 22), "#14532d"),
             ("Lighting Gaps (VIIRS)", lighting_gaps, "#dc2626"),
             ("Poor Sightline (<5/10)", sightline_poor, "#F4B942"),
             ("Locations Scanned", gaps.get("locations_needing_call_box", 0), "#2E7D32"),
@@ -1179,7 +1182,7 @@ with tab_impact:
             hours  = list(by_hour.keys())
             counts = list(by_hour.values())
             colors = ["#dc2626" if (int(h.split(":")[0]) >= 20 or int(h.split(":")[0]) < 6)
-                      else "#1B3A6B" for h in hours]
+                      else "#14532d" for h in hours]
             fig2 = go.Figure(go.Bar(
                 x=hours, y=counts,
                 marker_color=colors,
@@ -1210,15 +1213,15 @@ with tab_impact:
         <div class="card">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
             <div><div style="font-family:Oswald,sans-serif;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#8a7a5a">Total Investment</div>
-              <div style="font-family:Oswald,sans-serif;font-size:26px;font-weight:700;color:#1B3A6B">${roi_sum.get('total_infrastructure_cost',0):,}</div></div>
+              <div style="font-family:Oswald,sans-serif;font-size:26px;font-weight:700;color:#14532d">${roi_sum.get('total_infrastructure_cost',0):,}</div></div>
             <div><div style="font-family:Oswald,sans-serif;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#8a7a5a">Annual Savings</div>
               <div style="font-family:Oswald,sans-serif;font-size:26px;font-weight:700;color:#2E7D32">${roi_sum.get('total_annual_savings',0):,}</div></div>
             <div><div style="font-family:Oswald,sans-serif;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#8a7a5a">Overall ROI</div>
               <div style="font-family:Oswald,sans-serif;font-size:26px;font-weight:700;color:#F4B942">{roi_sum.get('overall_roi_pct',0)}%</div></div>
             <div><div style="font-family:Oswald,sans-serif;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#8a7a5a">vs. Consulting Saves</div>
-              <div style="font-family:Oswald,sans-serif;font-size:26px;font-weight:700;color:#1B3A6B">${roi_sum.get('vs_consulting_savings',0):,}</div></div>
+              <div style="font-family:Oswald,sans-serif;font-size:26px;font-weight:700;color:#14532d">${roi_sum.get('vs_consulting_savings',0):,}</div></div>
           </div>
-          <div style="margin-top:14px;padding:10px 14px;background:#1B3A6B;border-radius:4px;font-size:12px;color:rgba(255,255,255,0.7);font-family:Oswald,sans-serif;letter-spacing:0.06em">
+          <div style="margin-top:14px;padding:10px 14px;background:#14532d;border-radius:4px;font-size:12px;color:rgba(255,255,255,0.7);font-family:Oswald,sans-serif;letter-spacing:0.06em">
             Based on $8,500 national avg. cost per campus incident · <span style="color:#F4B942">Traditional consulting: ~$150,000</span>
           </div>
         </div>
@@ -1234,7 +1237,7 @@ with tab_impact:
         fig3 = go.Figure(go.Bar(
             x=["MU Current", "Peer Average", "Top Quartile", "MU Projected"],
             y=[mu_rate, peer_avg, top_q, projected],
-            marker_color=["#dc2626", "#F4B942", "#2E7D32", "#1B3A6B"],
+            marker_color=["#dc2626", "#F4B942", "#2E7D32", "#14532d"],
             text=[f"{v}/10k" for v in [mu_rate, peer_avg, top_q, projected]],
             textposition="outside",
             textfont=dict(family="Oswald, sans-serif", size=11),
@@ -1300,7 +1303,7 @@ with tab_survey:
                 st.markdown(f"""
                 <div style="margin-bottom:7px">
                   <div style="display:flex;justify-content:space-between;font-family:Oswald,sans-serif;font-size:12px;margin-bottom:3px">
-                    <span style="color:#1B3A6B;font-weight:600">{concern['concern']}</span>
+                    <span style="color:#14532d;font-weight:600">{concern['concern']}</span>
                     <span style="color:#F4B942;font-weight:700">{pct}%</span>
                   </div>
                   <div style="background:#e0ddd0;border-radius:2px;height:6px">
@@ -1318,10 +1321,10 @@ with tab_survey:
                 fig4 = go.Figure(go.Bar(
                     y=loc_names[::-1], x=loc_pcts[::-1],
                     orientation="h",
-                    marker_color="#1B3A6B",
+                    marker_color="#14532d",
                     text=[f"{p}%" for p in loc_pcts[::-1]],
                     textposition="outside",
-                    textfont=dict(family="Oswald, sans-serif", size=11, color="#1B3A6B"),
+                    textfont=dict(family="Oswald, sans-serif", size=11, color="#14532d"),
                 ))
                 fig4.update_layout(
                     height=280, margin=dict(l=0,r=40,t=10,b=0),
@@ -1412,7 +1415,7 @@ with tab_export:
 # Footer
 st.markdown("</div>", unsafe_allow_html=True)
 st.markdown("""
-<div style="text-align:center;padding:18px 32px;background:#1B3A6B;margin-top:24px;
+<div style="text-align:center;padding:18px 32px;background:#14532d;margin-top:24px;
      font-family:Oswald,sans-serif;font-size:11px;letter-spacing:0.15em;color:rgba(255,255,255,0.4)">
   TIGERTOWN · TigerTown · UNIVERSITY OF MISSOURI · MUIDSI HACKATHON 2026
   &nbsp;·&nbsp; EMERGENCY: 911 &nbsp;·&nbsp; MUPD: 573-882-7201 &nbsp;·&nbsp; SAFE RIDE: 573-882-1010
