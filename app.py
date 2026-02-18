@@ -1578,41 +1578,41 @@ with tab_survey:
                 pass
 
     # ── PDF Report ────────────────────────────────────────────────────────────
-    with sub_pdf:
-        st.markdown('<div class="sign-header navy">📄 Full Survey Report PDF</div>', unsafe_allow_html=True)
-        import base64 as _b64
-        _pdf_candidates = [
-            Path("data/survey_results.pdf"),
-            Path("data/crime_data/survey_results.pdf"),
-            Path("Student_Safety_Perception_Survey___University_of_Missouri.pdf"),
-        ]
-        _pdf_path = next((p for p in _pdf_candidates if p.exists()), None)
+    # with sub_pdf:
+    #     st.markdown('<div class="sign-header navy">📄 Full Survey Report PDF</div>', unsafe_allow_html=True)
+    #     import base64 as _b64
+    #     _pdf_candidates = [
+    #         Path("data/survey_results.pdf"),
+    #         Path("data/crime_data/survey_results.pdf"),
+    #         Path("Student_Safety_Perception_Survey___University_of_Missouri.pdf"),
+    #     ]
+    #     _pdf_path = next((p for p in _pdf_candidates if p.exists()), None)
 
-        if _pdf_path:
-            with open(_pdf_path, "rb") as _f:
-                _b64_str = _b64.b64encode(_f.read()).decode()
-            st.markdown(f"""
-            <div style="border:2px solid #ccc9b8;border-radius:6px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08)">
-              <iframe src="data:application/pdf;base64,{_b64_str}#toolbar=0&navpanes=0"
-                width="100%" height="840" style="display:block;border:none" type="application/pdf">
-              </iframe>
-            </div>
-            <div style="font-family:Oswald,sans-serif;font-size:10px;letter-spacing:0.15em;color:#8a7a5a;text-align:right;margin-top:6px;text-transform:uppercase">
-              Student Safety Perception Survey · University of Missouri · February 2026 · n=50
-            </div>
-            """, unsafe_allow_html=True)
-        else:
-            st.markdown("""
-            <div style="background:#F5F2E4;border:2px dashed #ccc9b8;border-radius:6px;padding:48px 32px;text-align:center">
-              <div style="font-size:36px;margin-bottom:14px">📄</div>
-              <div style="font-family:Oswald,sans-serif;font-size:13px;letter-spacing:0.14em;color:#8a7a5a;text-transform:uppercase;margin-bottom:10px">PDF Report Not Found</div>
-              <div style="font-size:12px;color:#a09880;line-height:2">
-                Save the survey PDF to either of these paths:<br>
-                <code>data/survey_results.pdf</code><br>
-                <code>data/crime_data/survey_results.pdf</code>
-              </div>
-            </div>
-            """, unsafe_allow_html=True)
+    #     if _pdf_path:
+    #         with open(_pdf_path, "rb") as _f:
+    #             _b64_str = _b64.b64encode(_f.read()).decode()
+    #         st.markdown(f"""
+    #         <div style="border:2px solid #ccc9b8;border-radius:6px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08)">
+    #           <iframe src="data:application/pdf;base64,{_b64_str}#toolbar=0&navpanes=0"
+    #             width="100%" height="840" style="display:block;border:none" type="application/pdf">
+    #           </iframe>
+    #         </div>
+    #         <div style="font-family:Oswald,sans-serif;font-size:10px;letter-spacing:0.15em;color:#8a7a5a;text-align:right;margin-top:6px;text-transform:uppercase">
+    #           Student Safety Perception Survey · University of Missouri · February 2026 · n=50
+    #         </div>
+    #         """, unsafe_allow_html=True)
+    #     else:
+    #         st.markdown("""
+    #         <div style="background:#F5F2E4;border:2px dashed #ccc9b8;border-radius:6px;padding:48px 32px;text-align:center">
+    #           <div style="font-size:36px;margin-bottom:14px">📄</div>
+    #           <div style="font-family:Oswald,sans-serif;font-size:13px;letter-spacing:0.14em;color:#8a7a5a;text-transform:uppercase;margin-bottom:10px">PDF Report Not Found</div>
+    #           <div style="font-size:12px;color:#a09880;line-height:2">
+    #             Save the survey PDF to either of these paths:<br>
+    #             <code>data/survey_results.pdf</code><br>
+    #             <code>data/crime_data/survey_results.pdf</code>
+    #           </div>
+    #         </div>
+    #         """, unsafe_allow_html=True)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
