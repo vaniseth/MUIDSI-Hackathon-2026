@@ -1,8 +1,8 @@
-# TigerTrail— Campus Safety Infrastructure Analysis System
+# TigerTown— Campus Safety Infrastructure Analysis System
 
 > **"Don't tell students how to avoid dangerous places. Tell the university how to eliminate them."**
 
-TigerTrail is a multi-agent AI system that analyzes crime patterns on the University of Missouri campus and generates prioritized, evidence-backed infrastructure recommendations using Crime Prevention Through Environmental Design (CPTED) principles. Rather than routing students around danger, it diagnoses the environmental root causes of crime hotspots and recommends permanent fixes — backed by satellite data, road network analysis, and peer-reviewed research.
+TigerTown is a multi-agent AI system that analyzes crime patterns on the University of Missouri campus and generates prioritized, evidence-backed infrastructure recommendations using Crime Prevention Through Environmental Design (CPTED) principles. Rather than routing students around danger, it diagnoses the environmental root causes of crime hotspots and recommends permanent fixes — backed by satellite data, road network analysis, and peer-reviewed research.
 
 ---
 
@@ -39,7 +39,7 @@ This is reactive safety. It places the burden entirely on students to modify the
 
 Crime doesn't happen randomly. It clusters in specific places at specific times for specific environmental reasons — a blind corner, a burned-out light, a call box that's 800 feet away instead of 300. These are infrastructure failures, and infrastructure failures can be fixed.
 
-TigerTrail is a  **B2B tool for campus administrators** . Its users are facilities directors, MUPD leadership, and university safety committees — people with the authority and budget to implement permanent improvements. It answers a single question that no existing tool answers:
+TigerTown is a  **B2B tool for campus administrators** . Its users are facilities directors, MUPD leadership, and university safety committees — people with the authority and budget to implement permanent improvements. It answers a single question that no existing tool answers:
 
 > *"Where exactly should we spend the facilities budget to get the greatest reduction in campus crime?"*
 
@@ -84,7 +84,7 @@ Unlike adding more police patrols (temporary, expensive, contested), environment
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                        TigerTrail                              │
+│                        TigerTown                                │
 │                   Multi-Agent AI System                         │
 └──────────────────────┬──────────────────────────────────────────┘
                        │
@@ -318,7 +318,7 @@ Agent 2 serves the student-facing use case — someone who needs to get from A t
 
 **Depends on:** Agent 1 (Safety Copilot), VIIRSLoader, TIGERLoader, ROICalculator
 
-This is the core innovation of TigerTrail. Agent 3 takes a crime hotspot and produces a complete environmental diagnosis with costed, citation-backed infrastructure recommendations.
+This is the core innovation of TigerTown. Agent 3 takes a crime hotspot and produces a complete environmental diagnosis with costed, citation-backed infrastructure recommendations.
 
 ### Processing Pipeline
 
@@ -537,7 +537,7 @@ Payback:            74 days
 | Approach                                       | Cost                             |
 | ---------------------------------------------- | -------------------------------- |
 | Traditional safety consultant + implementation | ~$183,000                        |
-| TigerTrail + implementation                    | ~$38,000                         |
+| TigerTown + implementation                    | ~$38,000                         |
 | **Savings**                              | **$145,000 (79% cheaper)** |
 
 ### Campus-Wide Impact
@@ -554,7 +554,7 @@ If all top-5 hotspots are addressed, projected outcomes:
 ## 11. File Structure
 
 ```
-TigerTrail/
+TigerTown/
 │
 ├── src/
 │   ├── agents/
@@ -816,4 +816,4 @@ Open the generated CSV. *"This is the exact format a facilities director needs t
 
 ---
 
-*TigerTrail— Built for the University of Missouri. Powered by satellite data, road network geometry, and peer-reviewed environmental design research.*
+*TigerTown — Built by Vani and Pari for the University of Missouri. Powered by satellite data, road network geometry, and peer-reviewed environmental design research.*
