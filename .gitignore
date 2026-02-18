@@ -1,2 +1,7 @@
 .env
 venv
+# Large datasets
+data/viirs/
+*.tif
+*.tiff
+
