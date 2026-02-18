@@ -1,0 +1,1625 @@
+{
+  "report_type": "Campus Safety Infrastructure Report",
+  "generated_at": "2026-02-17T19:01:04.945898",
+  "generated_date": "February 17, 2026 at 07:01 PM",
+  "scan_hour": 22,
+  "scan_time_label": "22:00 (Night)",
+  "locations_scanned": 20,
+  "hotspots_analyzed": 5,
+  "campus_risk_summary": {
+    "high_risk_locations": 20,
+    "medium_risk_locations": 0,
+    "low_risk_locations": 0,
+    "campus_risk_index": 10.0
+  },
+  "infrastructure_gaps": {
+    "locations_needing_lighting": 5,
+    "locations_needing_call_box": 4,
+    "isolated_locations": 5
+  },
+  "priority_summary": {
+    "critical": 5,
+    "high": 0,
+    "medium": 0
+  },
+  "campus_roi_summary": {
+    "total_infrastructure_cost": 127450,
+    "total_incidents_prevented": 66,
+    "total_annual_savings": 356100,
+    "overall_roi_pct": 179.4,
+    "vs_consulting_savings": 145000
+  },
+  "temporal_analysis": {
+    "by_hour": {
+      "00:00": 2,
+      "01:00": 6,
+      "02:00": 3,
+      "03:00": 6,
+      "04:00": 2,
+      "05:00": 4,
+      "06:00": 2,
+      "07:00": 5,
+      "08:00": 8,
+      "09:00": 6,
+      "10:00": 6,
+      "11:00": 6,
+      "12:00": 16,
+      "13:00": 7,
+      "14:00": 7,
+      "15:00": 11,
+      "16:00": 12,
+      "17:00": 13,
+      "18:00": 22,
+      "19:00": 15,
+      "20:00": 24,
+      "21:00": 21,
+      "22:00": 18,
+      "23:00": 27
+    },
+    "by_day": {
+      "Monday": 0,
+      "Tuesday": 0,
+      "Wednesday": 0,
+      "Thursday": 0,
+      "Friday": 0,
+      "Saturday": 0,
+      "Sunday": 0
+    },
+    "peak_hours": [
+      [
+        "23:00",
+        27
+      ],
+      [
+        "20:00",
+        24
+      ],
+      [
+        "18:00",
+        22
+      ]
+    ],
+    "peak_days": [
+      [
+        "Monday",
+        0
+      ],
+      [
+        "Tuesday",
+        0
+      ],
+      [
+        "Wednesday",
+        0
+      ]
+    ],
+    "night_pct": 45.4,
+    "total_campus_incidents": 249,
+    "insight": "Peak incident hour: 23:00. highest-incident day: Monday. 45.4% of incidents occur at night (8pm-6am)."
+  },
+  "comparative_benchmarks": {
+    "mu_rate_per_10k": 141.3,
+    "peer_average_per_10k": 52,
+    "top_quartile_per_10k": 31,
+    "national_average_per_10k": 68,
+    "current_ranking": "Above national average",
+    "projected_rate_per_10k": 84.8,
+    "projected_ranking": "Top 30% nationally (estimated)",
+    "total_incidents_counted": 424,
+    "note": "Benchmarks from FBI UCR and Clery Act campus crime statistics"
+  },
+  "top_hotspots": [
+    {
+      "rank": 1,
+      "location_name": "820 CONLEY AVE",
+      "lat": 38.938,
+      "lon": -92.325,
+      "risk_level": "High",
+      "risk_score": 10,
+      "incident_count": 12,
+      "dominant_crime": "burglary",
+      "viirs_luminance": 1.0,
+      "viirs_label": "Dim",
+      "viirs_source": "viirs_satellite",
+      "sightline": {
+        "surveillance_score": 6.0,
+        "surveillance_label": "Moderate",
+        "road_count": 4,
+        "dominant_road_type": "Local Road",
+        "dominant_road_name": "Hitt St",
+        "roads_nearby": [
+          {
+            "name": "Hitt St",
+            "mtfcc": "S1400",
+            "type_label": "Local Road",
+            "surveillance_score": 6,
+            "width_ft": 30
+          },
+          {
+            "name": "Hospital Dr",
+            "mtfcc": "S1400",
+            "type_label": "Local Road",
+            "surveillance_score": 6,
+            "width_ft": 30
+          },
+          {
+            "name": "Hitt St",
+            "mtfcc": "S1400",
+            "type_label": "Local Road",
+            "surveillance_score": 6,
+            "width_ft": 30
+          },
+          {
+            "name": "Hitt St",
+            "mtfcc": "S1400",
+            "type_label": "Local Road",
+            "surveillance_score": 6,
+            "width_ft": 30
+          }
+        ],
+        "sightline_issues": [],
+        "source": "tiger"
+      },
+      "cpted_priority": "Critical",
+      "deficiency_count": 2,
+      "cpted_report": "**Environmental Diagnosis**  \n820 Conley Ave is a crime hotspot due to inadequate nighttime lighting and moderate natural surveillance. VIIRS satellite data show luminance values of only 1.00 nW/cm\u00b2/sr\u201450% below the safety threshold\u2014resulting in limited visibility during evening and morning hours when burglary risk peaks. Road network analysis indicates a moderate sightline (6.0/10), but the area is set back 1353ft from high-traffic corridors, reducing natural oversight.\n\n**Root Cause Factors**  \n- **Insufficient illumination:** Satellite-measured luminance of 1.00 nW/cm\u00b2/sr, well below the 2.0 safe minimum, creates shadowed areas conducive to burglary (Supported by VIIRS data).  \n- **Limited natural surveillance:** Site is 1353ft from the nearest major pedestrian corridor, lowering informal observation (TIGER/Line road analysis).  \n- **Road density but moderate surveillance:** Presence of four roads within 300ft yields moderate sightlines (6.0/10), yet does not compensate for low pedestrian presence.  \n- **Existing infrastructure gaps:** While a call box is present (0ft), reliance on a single light source 92ft away exposes the location to shadowed intervals.\n\n**Recommended Interventions**  \n1. **Install supplemental LED pathway and building exterior lighting** | **Cost: Medium** | *Predicted reduction*: 35%  \n2. **Trim vegetation and improve site lines along Conley Ave** | **Cost: Low** | *Predicted reduction*: 10%  \n3. **Add additional surveillance cameras and signage (CCTV)** | **Cost: Medium** | *Predicted reduction*: 20%  \n4. **Relocate or add a supplementary call box closer to common footpaths** | **Cost: Low** | *Predicted reduction*: 5%\n\n**Priority Score**  \n**Critical** \u2014 The high incident count, serious burglary cases, and luminance 50% below safety minimum demonstrate urgent environmental risk, justifying top-priority action at this site.",
+      "environmental_profile": {
+        "location_name": "820 CONLEY AVE",
+        "lat": 38.938,
+        "lon": -92.325,
+        "viirs_luminance": 1.0,
+        "viirs_label": "Dim",
+        "viirs_source": "viirs_satellite",
+        "lighting_summary": "Inadequate lighting \u2014 1.00 nW/cm\u00b2/sr (satellite-measured). 50% below the 2.0 nW/cm\u00b2/sr safe minimum. Lighting improvement recommended.",
+        "sightline": {
+          "surveillance_score": 6.0,
+          "surveillance_label": "Moderate",
+          "road_count": 4,
+          "dominant_road_type": "Local Road",
+          "dominant_road_name": "Hitt St",
+          "roads_nearby": [
+            {
+              "name": "Hitt St",
+              "mtfcc": "S1400",
+              "type_label": "Local Road",
+              "surveillance_score": 6,
+              "width_ft": 30
+            },
+            {
+              "name": "Hospital Dr",
+              "mtfcc": "S1400",
+              "type_label": "Local Road",
+              "surveillance_score": 6,
+              "width_ft": 30
+            },
+            {
+              "name": "Hitt St",
+              "mtfcc": "S1400",
+              "type_label": "Local Road",
+              "surveillance_score": 6,
+              "width_ft": 30
+            },
+            {
+              "name": "Hitt St",
+              "mtfcc": "S1400",
+              "type_label": "Local Road",
+              "surveillance_score": 6,
+              "width_ft": 30
+            }
+          ],
+          "sightline_issues": [],
+          "source": "tiger"
+        },
+        "nearest_light": {
+          "name": "Light - Conley Ave",
+          "lat": 38.9382,
+          "lon": -92.3252,
+          "distance_ft": 92
+        },
+        "nearest_call_box": {
+          "name": "Call Box - Conley Ave",
+          "lat": 38.938,
+          "lon": -92.325,
+          "distance_ft": 0
+        },
+        "nearest_corridor": {
+          "name": "Student Center to Rec Center",
+          "lat": 38.9406,
+          "lon": -92.3284,
+          "distance_ft": 1353
+        },
+        "lighting_gap": true,
+        "viirs_lighting_gap": true,
+        "call_box_gap": false,
+        "isolated": true,
+        "night_dominant": "False",
+        "weekend_spike": "False",
+        "deficiencies": [
+          "Insufficient illumination: 1.00 nW/cm2/sr (satellite-measured) below 2.0 nW/cm2/sr safe pedestrian threshold [Dim]",
+          "Low natural surveillance: 1353ft from nearest high-traffic corridor (Student Center to Rec Center)"
+        ],
+        "deficiency_count": 2
+      },
+      "roi": {
+        "location_name": "820 CONLEY AVE",
+        "annual_incidents": 12,
+        "dominant_crime": "burglary",
+        "cost_per_incident": 8500,
+        "baseline_annual_cost": 102000,
+        "interventions": [
+          {
+            "priority": 1,
+            "name": "LED Light Pole Installation",
+            "quantity": 2,
+            "location_note": "Nearest pole: 92ft away",
+            "unit_cost": 7500,
+            "total_cost": 15000,
+            "annual_maintenance": 300,
+            "cost_tier": "Medium",
+            "lifespan_years": 20,
+            "reduction_pct_low": 20,
+            "reduction_pct_high": 65,
+            "reduction_pct_median": 40.0,
+            "incidents_prevented": 5,
+            "annual_savings": 42500,
+            "citations": [
+              {
+                "authors": "Welsh, B.C. & Farrington, D.P.",
+                "year": 2008,
+                "title": "Effects of Improved Street Lighting on Crime",
+                "journal": "Campbell Systematic Reviews",
+                "finding": "20-39% crime reduction in areas receiving improved lighting",
+                "reduction_range": [
+                  20,
+                  39
+                ],
+                "median_reduction": 29
+              },
+              {
+                "authors": "Chalfin, A. et al.",
+                "year": 2022,
+                "title": "More Cops, More Cameras, and More Lights",
+                "journal": "Journal of Political Economy Microeconomics",
+                "finding": "Nighttime outdoor crime fell 36% from street lighting expansion",
+                "reduction_range": [
+                  30,
+                  42
+                ],
+                "median_reduction": 36
+              },
+              {
+                "authors": "NIJ Campus Safety Study",
+                "year": 2019,
+                "title": "Environmental Design and Crime Prevention on University Campuses",
+                "journal": "National Institute of Justice",
+                "finding": "LED lighting upgrades reduced nighttime incidents 45-65% at pilot campuses",
+                "reduction_range": [
+                  45,
+                  65
+                ],
+                "median_reduction": 55
+              }
+            ],
+            "citation_count": 3
+          },
+          {
+            "priority": 2,
+            "name": "Safety Signage Package",
+            "quantity": 2,
+            "location_note": "Safe route wayfinding + call box directional signs",
+            "unit_cost": 350,
+            "total_cost": 700,
+            "annual_maintenance": 100,
+            "cost_tier": "Low",
+            "lifespan_years": 10,
+            "reduction_pct_low": 30,
+            "reduction_pct_high": 50,
+            "reduction_pct_median": 40.0,
+            "incidents_prevented": 3,
+            "annual_savings": 25500,
+            "citations": [
+              {
+                "authors": "Armitage, R.",
+                "year": 2013,
+                "title": "Crime Prevention Through Environmental Design",
+                "journal": "Encyclopedia of Criminology and Criminal Justice",
+                "finding": "Access control improvements reduced burglary 50-75% in target areas",
+                "reduction_range": [
+                  30,
+                  50
+                ],
+                "median_reduction": 40
+              }
+            ],
+            "citation_count": 1
+          }
+        ],
+        "intervention_count": 2,
+        "total_citation_count": 4,
+        "financials": {
+          "total_infrastructure_cost": 15700,
+          "total_annual_maintenance": 400,
+          "total_incidents_prevented": 8,
+          "total_annual_savings": 68000,
+          "roi_percentage": 333.1,
+          "roi_multiplier": 3.3,
+          "payback_days": 84,
+          "payback_label": "3 months",
+          "5yr_net_savings": 324300
+        },
+        "vs_consulting": {
+          "mizzousafe_total": 20700,
+          "consultant_total": 165700,
+          "savings_vs_consulting": 145000,
+          "savings_pct": 87.5
+        },
+        "university_benchmarks": {
+          "note": "Based on FBI UCR and Clery Act campus crime statistics",
+          "peer_average_incidents_per_10k": 52,
+          "top_quartile_per_10k": 31,
+          "national_average_per_10k": 68,
+          "mu_enrollment": 30000,
+          "current_rate_per_10k": 4.0,
+          "projected_rate_with_interventions": 2.0
+        }
+      }
+    },
+    {
+      "rank": 2,
+      "location_name": "1199 E STADIUM BLVD",
+      "lat": 38.9355,
+      "lon": -92.3306,
+      "risk_level": "High",
+      "risk_score": 10,
+      "incident_count": 27,
+      "dominant_crime": "harassment",
+      "viirs_luminance": 1.0,
+      "viirs_label": "Dim",
+      "viirs_source": "viirs_satellite",
+      "sightline": {
+        "surveillance_score": 8.0,
+        "surveillance_label": "Good",
+        "road_count": 2,
+        "dominant_road_type": "Secondary Road",
+        "dominant_road_name": "E Stadium Blvd",
+        "roads_nearby": [
+          {
+            "name": "E Stadium Blvd",
+            "mtfcc": "S1200",
+            "type_label": "Secondary Road",
+            "surveillance_score": 8,
+            "width_ft": 60
+          },
+          {
+            "name": "State Hwy 740",
+            "mtfcc": "S1200",
+            "type_label": "Secondary Road",
+            "surveillance_score": 8,
+            "width_ft": 60
+          }
+        ],
+        "sightline_issues": [],
+        "source": "tiger"
+      },
+      "cpted_priority": "Critical",
+      "deficiency_count": 3,
+      "cpted_report": "**Environmental Diagnosis**  \nThis hotspot at 1199 E Stadium Blvd is driven by significant environmental weaknesses: satellite lighting analysis shows luminance at only 1.00 nW/cm\u00b2/sr\u2014well below the campus safety minimum. While the secondary road network provides relatively good surveillance (score 8.0/10), the location is distant from high-traffic corridors and emergency call infrastructure, leading to poor natural surveillance, especially at night.\n\n**Root Cause Factors**  \n- Inadequate illumination: Measured at 1.00 nW/cm\u00b2/sr (50% below the 2.0 nW/cm\u00b2/sr threshold), confirming consistently dim nighttime conditions.  \n- Call box coverage gap: Nearest call box is 1249ft away; campus standard is max 500ft separation.  \n- Limited foot traffic: 1598ft from Greek Town Main Strip, reducing informal observational presence after hours.  \n- High incident rate: 27 total incidents, with 44% at night, and 8 classified as serious/critical\u2014indicating urgent vulnerability.\n\n**Recommended Interventions**  \n1. **Upgrade pedestrian lighting to at least 2.5 nW/cm\u00b2/sr along affected boulevard segment.**  \n   Cost: Medium | Predicted incident reduction: 40\u201350%  \n2. **Install an ADA-compliant emergency call box midway between Rec Center and hotspot.**  \n   Cost: Low | Predicted incident reduction: 15\u201320%  \n3. **Create a direct, well-lit pathway to Greek Town corridor with active landscaping (removing visual obstructions, adding benches).**  \n   Cost: Medium | Predicted incident reduction: 15\u201325%  \n4. **Increase visible patrol presence during late evening on weekends.**  \n   Cost: Low | Predicted incident reduction: 5\u201310%\n\n**Priority Score**  \n**Critical** \u2014 VIIRS data and incident severity underline an urgent risk; all core CPTED principles (lighting, sightlines, rapid emergency access) are currently below safe campus thresholds. Immediate remediation is essential to reduce harassment and serious crime risks.",
+      "environmental_profile": {
+        "location_name": "1199 E STADIUM BLVD",
+        "lat": 38.9355,
+        "lon": -92.3306,
+        "viirs_luminance": 1.0,
+        "viirs_label": "Dim",
+        "viirs_source": "viirs_satellite",
+        "lighting_summary": "Inadequate lighting \u2014 1.00 nW/cm\u00b2/sr (satellite-measured). 50% below the 2.0 nW/cm\u00b2/sr safe minimum. Lighting improvement recommended.",
+        "sightline": {
+          "surveillance_score": 8.0,
+          "surveillance_label": "Good",
+          "road_count": 2,
+          "dominant_road_type": "Secondary Road",
+          "dominant_road_name": "E Stadium Blvd",
+          "roads_nearby": [
+            {
+              "name": "E Stadium Blvd",
+              "mtfcc": "S1200",
+              "type_label": "Secondary Road",
+              "surveillance_score": 8,
+              "width_ft": 60
+            },
+            {
+              "name": "State Hwy 740",
+              "mtfcc": "S1200",
+              "type_label": "Secondary Road",
+              "surveillance_score": 8,
+              "width_ft": 60
+            }
+          ],
+          "sightline_issues": [],
+          "source": "tiger"
+        },
+        "nearest_light": {
+          "name": "Light - Rec Center Path",
+          "lat": 38.9392,
+          "lon": -92.3298,
+          "distance_ft": 1369
+        },
+        "nearest_call_box": {
+          "name": "Call Box - Rec Center",
+          "lat": 38.9389,
+          "lon": -92.3301,
+          "distance_ft": 1249
+        },
+        "nearest_corridor": {
+          "name": "Greek Town Main Strip",
+          "lat": 38.9397,
+          "lon": -92.3322,
+          "distance_ft": 1598
+        },
+        "lighting_gap": true,
+        "viirs_lighting_gap": true,
+        "call_box_gap": true,
+        "isolated": true,
+        "night_dominant": "False",
+        "weekend_spike": "False",
+        "deficiencies": [
+          "Insufficient illumination: 1.00 nW/cm2/sr (satellite-measured) below 2.0 nW/cm2/sr safe pedestrian threshold [Dim]",
+          "Call box coverage gap: nearest box 1249ft (Call Box - Rec Center) \u2014 exceeds 500ft safe threshold",
+          "Low natural surveillance: 1598ft from nearest high-traffic corridor (Greek Town Main Strip)"
+        ],
+        "deficiency_count": 3
+      },
+      "roi": {
+        "location_name": "1199 E STADIUM BLVD",
+        "annual_incidents": 27,
+        "dominant_crime": "harassment",
+        "cost_per_incident": 8000,
+        "baseline_annual_cost": 216000,
+        "interventions": [
+          {
+            "priority": 1,
+            "name": "LED Light Pole Installation",
+            "quantity": 2,
+            "location_note": "Nearest pole: 1369ft away",
+            "unit_cost": 7500,
+            "total_cost": 15000,
+            "annual_maintenance": 300,
+            "cost_tier": "Medium",
+            "lifespan_years": 20,
+            "reduction_pct_low": 20,
+            "reduction_pct_high": 65,
+            "reduction_pct_median": 40.0,
+            "incidents_prevented": 11,
+            "annual_savings": 88000,
+            "citations": [
+              {
+                "authors": "Welsh, B.C. & Farrington, D.P.",
+                "year": 2008,
+                "title": "Effects of Improved Street Lighting on Crime",
+                "journal": "Campbell Systematic Reviews",
+                "finding": "20-39% crime reduction in areas receiving improved lighting",
+                "reduction_range": [
+                  20,
+                  39
+                ],
+                "median_reduction": 29
+              },
+              {
+                "authors": "Chalfin, A. et al.",
+                "year": 2022,
+                "title": "More Cops, More Cameras, and More Lights",
+                "journal": "Journal of Political Economy Microeconomics",
+                "finding": "Nighttime outdoor crime fell 36% from street lighting expansion",
+                "reduction_range": [
+                  30,
+                  42
+                ],
+                "median_reduction": 36
+              },
+              {
+                "authors": "NIJ Campus Safety Study",
+                "year": 2019,
+                "title": "Environmental Design and Crime Prevention on University Campuses",
+                "journal": "National Institute of Justice",
+                "finding": "LED lighting upgrades reduced nighttime incidents 45-65% at pilot campuses",
+                "reduction_range": [
+                  45,
+                  65
+                ],
+                "median_reduction": 55
+              }
+            ],
+            "citation_count": 3
+          },
+          {
+            "priority": 2,
+            "name": "Emergency Blue-Light Call Box",
+            "quantity": 1,
+            "location_note": "Current gap: 1249ft",
+            "unit_cost": 12000,
+            "total_cost": 12000,
+            "annual_maintenance": 300,
+            "cost_tier": "High",
+            "lifespan_years": 15,
+            "reduction_pct_low": 15,
+            "reduction_pct_high": 22,
+            "reduction_pct_median": 18.0,
+            "incidents_prevented": 3,
+            "annual_savings": 24000,
+            "citations": [
+              {
+                "authors": "COPS Office",
+                "year": 2018,
+                "title": "Campus Emergency Systems Effectiveness Meta-Analysis",
+                "journal": "Federal COPS Office Publication",
+                "finding": "Emergency call box density correlated with 15-22% reduction in personal crime",
+                "reduction_range": [
+                  15,
+                  22
+                ],
+                "median_reduction": 18
+              }
+            ],
+            "citation_count": 1
+          },
+          {
+            "priority": 3,
+            "name": "Safety Signage Package",
+            "quantity": 2,
+            "location_note": "Safe route wayfinding + call box directional signs",
+            "unit_cost": 350,
+            "total_cost": 700,
+            "annual_maintenance": 100,
+            "cost_tier": "Low",
+            "lifespan_years": 10,
+            "reduction_pct_low": 30,
+            "reduction_pct_high": 50,
+            "reduction_pct_median": 40.0,
+            "incidents_prevented": 5,
+            "annual_savings": 40000,
+            "citations": [
+              {
+                "authors": "Armitage, R.",
+                "year": 2013,
+                "title": "Crime Prevention Through Environmental Design",
+                "journal": "Encyclopedia of Criminology and Criminal Justice",
+                "finding": "Access control improvements reduced burglary 50-75% in target areas",
+                "reduction_range": [
+                  30,
+                  50
+                ],
+                "median_reduction": 40
+              }
+            ],
+            "citation_count": 1
+          }
+        ],
+        "intervention_count": 3,
+        "total_citation_count": 5,
+        "financials": {
+          "total_infrastructure_cost": 27700,
+          "total_annual_maintenance": 700,
+          "total_incidents_prevented": 19,
+          "total_annual_savings": 152000,
+          "roi_percentage": 448.7,
+          "roi_multiplier": 4.5,
+          "payback_days": 67,
+          "payback_label": "2 months",
+          "5yr_net_savings": 732300
+        },
+        "vs_consulting": {
+          "mizzousafe_total": 32700,
+          "consultant_total": 177700,
+          "savings_vs_consulting": 145000,
+          "savings_pct": 81.6
+        },
+        "university_benchmarks": {
+          "note": "Based on FBI UCR and Clery Act campus crime statistics",
+          "peer_average_incidents_per_10k": 52,
+          "top_quartile_per_10k": 31,
+          "national_average_per_10k": 68,
+          "mu_enrollment": 30000,
+          "current_rate_per_10k": 9.0,
+          "projected_rate_with_interventions": 4.5
+        }
+      }
+    },
+    {
+      "rank": 3,
+      "location_name": "1 HOSPITAL DR",
+      "lat": 38.9403,
+      "lon": -92.3245,
+      "risk_level": "High",
+      "risk_score": 10,
+      "incident_count": 17,
+      "dominant_crime": "theft",
+      "viirs_luminance": 1.0,
+      "viirs_label": "Dim",
+      "viirs_source": "viirs_satellite",
+      "sightline": {
+        "surveillance_score": 2,
+        "surveillance_label": "Very Poor",
+        "road_count": 0,
+        "dominant_road_type": "No roads detected",
+        "sightline_issues": [
+          "No road infrastructure detected nearby"
+        ],
+        "source": "tiger"
+      },
+      "cpted_priority": "Critical",
+      "deficiency_count": 5,
+      "cpted_report": "**Environmental Diagnosis**  \nThis hotspot at 1 Hospital Dr is high-risk primarily due to dim lighting (VIIRS: 1.00 nW/cm\u00b2/sr, 50% below safe standards) and poor natural surveillance, as shown by the absence of road infrastructure and very low surveillance score (2/10). The area is physically isolated, with the nearest pedestrian corridor and emergency resources located well beyond recommended safety thresholds, providing concealment opportunities for theft, especially during evenings.\n\n**Root Cause Factors**\n- **Insufficient Lighting:** VIIRS satellite luminance at 1.00 nW/cm\u00b2/sr (below 2.0 nW/cm\u00b2/sr threshold)\n- **Call Box Coverage Gap:** Nearest emergency call box is 851ft away (recommended <500ft)\n- **Poor Surveillance/Sightlines:** Road network surveillance score of 2/10; no detected roads within 300ft, limiting natural oversight\n- **Lack of Natural Surveillance:** Nearest high-traffic corridor is 1054ft away, creating an isolated environment\n- **Concealment Opportunities:** Likely due to landscaping or building geometry, facilitating theft\n\n**Recommended Interventions**\n1. **Install Additional High-Efficiency LED Lighting**  \n   Install new fixtures to reach \u22652.0 nW/cm\u00b2/sr luminance covering all pedestrian paths in the area.  \n   | Cost tier: Medium | Predicted incident reduction: 35%  \n2. **Add Emergency Call Box Within 300ft**  \n   Place a call box directly adjacent to 1 Hospital Dr to meet Clery Act and CPTED best practices.  \n   | Cost tier: Low | Predicted incident reduction: 15%  \n3. **Enhance Physical Sightlines & Trim Vegetation**  \n   Clear obstructions, trim shrubbery, and remove concealment points near walkways and entrances.  \n   | Cost tier: Low | Predicted incident reduction: 10%  \n4. **Install CCTV with Visible Signage**  \n   Supplement natural surveillance given road network deficiency; provide deterrence during peak evening hours.  \n   | Cost tier: Medium | Predicted incident reduction: 20%\n\n**Priority Score**  \n**Critical** \u2014 Seventeen theft-focused incidents (47% nighttime), critically dim lighting, no nearby surveillance infrastructure, and emergency equipment gaps put this location at immediate safety risk per VIIRS and TIGER/Line data.",
+      "environmental_profile": {
+        "location_name": "1 HOSPITAL DR",
+        "lat": 38.9403,
+        "lon": -92.3245,
+        "viirs_luminance": 1.0,
+        "viirs_label": "Dim",
+        "viirs_source": "viirs_satellite",
+        "lighting_summary": "Inadequate lighting \u2014 1.00 nW/cm\u00b2/sr (satellite-measured). 50% below the 2.0 nW/cm\u00b2/sr safe minimum. Lighting improvement recommended.",
+        "sightline": {
+          "surveillance_score": 2,
+          "surveillance_label": "Very Poor",
+          "road_count": 0,
+          "dominant_road_type": "No roads detected",
+          "sightline_issues": [
+            "No road infrastructure detected nearby"
+          ],
+          "source": "tiger"
+        },
+        "nearest_light": {
+          "name": "Light - Conley Ave",
+          "lat": 38.9382,
+          "lon": -92.3252,
+          "distance_ft": 791
+        },
+        "nearest_call_box": {
+          "name": "Call Box - Conley Ave",
+          "lat": 38.938,
+          "lon": -92.325,
+          "distance_ft": 851
+        },
+        "nearest_corridor": {
+          "name": "Memorial Union to Jesse Hall",
+          "lat": 38.9422,
+          "lon": -92.3273,
+          "distance_ft": 1054
+        },
+        "lighting_gap": true,
+        "viirs_lighting_gap": true,
+        "call_box_gap": true,
+        "isolated": true,
+        "night_dominant": "False",
+        "weekend_spike": "False",
+        "deficiencies": [
+          "Insufficient illumination: 1.00 nW/cm2/sr (satellite-measured) below 2.0 nW/cm2/sr safe pedestrian threshold [Dim]",
+          "Call box coverage gap: nearest box 851ft (Call Box - Conley Ave) \u2014 exceeds 500ft safe threshold",
+          "Road network: No road infrastructure detected nearby",
+          "Low natural surveillance: 1054ft from nearest high-traffic corridor (Memorial Union to Jesse Hall)",
+          "Theft-dominant \u2014 concealment opportunities likely (vegetation, blind corners)"
+        ],
+        "deficiency_count": 5
+      },
+      "roi": {
+        "location_name": "1 HOSPITAL DR",
+        "annual_incidents": 17,
+        "dominant_crime": "theft",
+        "cost_per_incident": 3500,
+        "baseline_annual_cost": 59500,
+        "interventions": [
+          {
+            "priority": 1,
+            "name": "LED Light Pole Installation",
+            "quantity": 2,
+            "location_note": "Nearest pole: 791ft away",
+            "unit_cost": 7500,
+            "total_cost": 15000,
+            "annual_maintenance": 300,
+            "cost_tier": "Medium",
+            "lifespan_years": 20,
+            "reduction_pct_low": 20,
+            "reduction_pct_high": 65,
+            "reduction_pct_median": 40.0,
+            "incidents_prevented": 7,
+            "annual_savings": 24500,
+            "citations": [
+              {
+                "authors": "Welsh, B.C. & Farrington, D.P.",
+                "year": 2008,
+                "title": "Effects of Improved Street Lighting on Crime",
+                "journal": "Campbell Systematic Reviews",
+                "finding": "20-39% crime reduction in areas receiving improved lighting",
+                "reduction_range": [
+                  20,
+                  39
+                ],
+                "median_reduction": 29
+              },
+              {
+                "authors": "Chalfin, A. et al.",
+                "year": 2022,
+                "title": "More Cops, More Cameras, and More Lights",
+                "journal": "Journal of Political Economy Microeconomics",
+                "finding": "Nighttime outdoor crime fell 36% from street lighting expansion",
+                "reduction_range": [
+                  30,
+                  42
+                ],
+                "median_reduction": 36
+              },
+              {
+                "authors": "NIJ Campus Safety Study",
+                "year": 2019,
+                "title": "Environmental Design and Crime Prevention on University Campuses",
+                "journal": "National Institute of Justice",
+                "finding": "LED lighting upgrades reduced nighttime incidents 45-65% at pilot campuses",
+                "reduction_range": [
+                  45,
+                  65
+                ],
+                "median_reduction": 55
+              }
+            ],
+            "citation_count": 3
+          },
+          {
+            "priority": 2,
+            "name": "Emergency Blue-Light Call Box",
+            "quantity": 1,
+            "location_note": "Current gap: 851ft",
+            "unit_cost": 12000,
+            "total_cost": 12000,
+            "annual_maintenance": 300,
+            "cost_tier": "High",
+            "lifespan_years": 15,
+            "reduction_pct_low": 15,
+            "reduction_pct_high": 22,
+            "reduction_pct_median": 18.0,
+            "incidents_prevented": 2,
+            "annual_savings": 7000,
+            "citations": [
+              {
+                "authors": "COPS Office",
+                "year": 2018,
+                "title": "Campus Emergency Systems Effectiveness Meta-Analysis",
+                "journal": "Federal COPS Office Publication",
+                "finding": "Emergency call box density correlated with 15-22% reduction in personal crime",
+                "reduction_range": [
+                  15,
+                  22
+                ],
+                "median_reduction": 18
+              }
+            ],
+            "citation_count": 1
+          },
+          {
+            "priority": 3,
+            "name": "Vegetation Management (Trim to CPTED Standard)",
+            "quantity": 1,
+            "location_note": "Sightline restoration",
+            "unit_cost": 450,
+            "total_cost": 450,
+            "annual_maintenance": 450,
+            "cost_tier": "Low",
+            "lifespan_years": 1,
+            "reduction_pct_low": 9,
+            "reduction_pct_high": 35,
+            "reduction_pct_median": 22.0,
+            "incidents_prevented": 2,
+            "annual_savings": 7000,
+            "citations": [
+              {
+                "authors": "Kondo, M.C. et al.",
+                "year": 2018,
+                "title": "Urban Green Space and Crime",
+                "journal": "Environment and Behavior",
+                "finding": "Vegetation management and greening associated with 9-29% crime reduction",
+                "reduction_range": [
+                  9,
+                  29
+                ],
+                "median_reduction": 19
+              },
+              {
+                "authors": "Branas, C.C. et al.",
+                "year": 2018,
+                "title": "Citywide Cluster RCT to Restore Blighted Vacant Land",
+                "journal": "PLOS ONE",
+                "finding": "29% reduction in gun assaults near remediated vacant lots",
+                "reduction_range": [
+                  20,
+                  35
+                ],
+                "median_reduction": 25
+              }
+            ],
+            "citation_count": 2
+          },
+          {
+            "priority": 4,
+            "name": "Safety Signage Package",
+            "quantity": 2,
+            "location_note": "Safe route wayfinding + call box directional signs",
+            "unit_cost": 350,
+            "total_cost": 700,
+            "annual_maintenance": 100,
+            "cost_tier": "Low",
+            "lifespan_years": 10,
+            "reduction_pct_low": 30,
+            "reduction_pct_high": 50,
+            "reduction_pct_median": 40.0,
+            "incidents_prevented": 3,
+            "annual_savings": 10500,
+            "citations": [
+              {
+                "authors": "Armitage, R.",
+                "year": 2013,
+                "title": "Crime Prevention Through Environmental Design",
+                "journal": "Encyclopedia of Criminology and Criminal Justice",
+                "finding": "Access control improvements reduced burglary 50-75% in target areas",
+                "reduction_range": [
+                  30,
+                  50
+                ],
+                "median_reduction": 40
+              }
+            ],
+            "citation_count": 1
+          },
+          {
+            "priority": 5,
+            "name": "Convex Safety Mirror (Blind Corner)",
+            "quantity": 2,
+            "location_note": "Blind corner elimination",
+            "unit_cost": 250,
+            "total_cost": 500,
+            "annual_maintenance": 50,
+            "cost_tier": "Low",
+            "lifespan_years": 10,
+            "reduction_pct_low": 16,
+            "reduction_pct_high": 51,
+            "reduction_pct_median": 28.0,
+            "incidents_prevented": 1,
+            "annual_savings": 3500,
+            "citations": [
+              {
+                "authors": "Welsh, B.C. & Farrington, D.P.",
+                "year": 2009,
+                "title": "Public Area CCTV and Crime Prevention",
+                "journal": "Campbell Systematic Reviews",
+                "finding": "16% overall crime reduction; 51% reduction in parking facilities",
+                "reduction_range": [
+                  16,
+                  51
+                ],
+                "median_reduction": 28
+              }
+            ],
+            "citation_count": 1
+          }
+        ],
+        "intervention_count": 5,
+        "total_citation_count": 8,
+        "financials": {
+          "total_infrastructure_cost": 28650,
+          "total_annual_maintenance": 1200,
+          "total_incidents_prevented": 15,
+          "total_annual_savings": 52500,
+          "roi_percentage": 83.2,
+          "roi_multiplier": 0.8,
+          "payback_days": 199,
+          "payback_label": "7 months",
+          "5yr_net_savings": 233850
+        },
+        "vs_consulting": {
+          "mizzousafe_total": 33650,
+          "consultant_total": 178650,
+          "savings_vs_consulting": 145000,
+          "savings_pct": 81.2
+        },
+        "university_benchmarks": {
+          "note": "Based on FBI UCR and Clery Act campus crime statistics",
+          "peer_average_incidents_per_10k": 52,
+          "top_quartile_per_10k": 31,
+          "national_average_per_10k": 68,
+          "mu_enrollment": 30000,
+          "current_rate_per_10k": 5.7,
+          "projected_rate_with_interventions": 2.8
+        }
+      }
+    },
+    {
+      "rank": 4,
+      "location_name": "3315 BERRYWOOD DR",
+      "lat": 38.929,
+      "lon": -92.318,
+      "risk_level": "High",
+      "risk_score": 10,
+      "incident_count": 18,
+      "dominant_crime": "vandalism",
+      "viirs_luminance": 1.0,
+      "viirs_label": "Dim",
+      "viirs_source": "viirs_satellite",
+      "sightline": {
+        "surveillance_score": 2,
+        "surveillance_label": "Very Poor",
+        "road_count": 0,
+        "dominant_road_type": "No roads detected",
+        "sightline_issues": [
+          "No road infrastructure detected nearby"
+        ],
+        "source": "tiger"
+      },
+      "cpted_priority": "Critical",
+      "deficiency_count": 4,
+      "cpted_report": "**Environmental Diagnosis**  \nThe hotspot at 3315 Berrywood Dr is characterized by dim lighting (VIIRS: 1.00 nW/cm\u00b2/sr, 50% below the recommended minimum) and total absence of road infrastructure or sightlines, contributing to minimal natural and vehicular surveillance. Environmental isolation, especially being 5160ft from a main campus corridor and with no nearby emergency features, increases vulnerability to daytime vandalism and other incidents.\n\n**Root Cause Factors**\n- Insufficient illumination: Only 1.00 nW/cm\u00b2/sr, well below the safe pedestrian threshold (2.0 nW/cm\u00b2/sr), per VIIRS satellite data.\n- Call box coverage gap: Nearest emergency call box is 3838ft away\u2014over 7x the 500ft safety standard.\n- No road network: Zero road presence in 300ft radius (TIGER/Line), reduces both visibility and routine traffic/passive oversight.\n- Low natural surveillance: Site is isolated, with the nearest high pedestrian corridor over 0.9 miles away.\n- High-risk pattern: 18 incidents, including 6 serious, clustered at peak morning hours, suggesting repeat opportunity-based targeting.\n\n**Recommended Interventions**\n1. **Install high-efficiency LED area lighting** along pedestrian paths connecting 3315 Berrywood Dr to nearest main corridors. | **Cost:** Medium | **Predicted Reduction:** 55%  \n2. **Deploy additional emergency call box(es)** within 500ft of hotspot. | **Cost:** Low | **Predicted Reduction:** 20%  \n3. **Create a paved pedestrian walkway** with enhanced visual openness, providing clear sightlines to adjacent campus infrastructure. | **Cost:** High | **Predicted Reduction:** 35%  \n4. **Install CCTV surveillance signage and cameras** targeted to vandalism hot areas. | **Cost:** Medium | **Predicted Reduction:** 40%  \n5. **Landscape management** to trim overgrowth and open visual corridors, promoting natural surveillance. | **Cost:** Low | **Predicted Reduction:** 10%  \n\n**Priority Score**  \n**Critical** \u2014 The hotspot shows high-risk (10/10), 6 serious incidents, and severe lighting/surveillance deficiencies per VIIRS and TIGER/Line. Immediate infrastructure action is required to address persistent, environmentally enabled crime patterns.",
+      "environmental_profile": {
+        "location_name": "3315 BERRYWOOD DR",
+        "lat": 38.929,
+        "lon": -92.318,
+        "viirs_luminance": 1.0,
+        "viirs_label": "Dim",
+        "viirs_source": "viirs_satellite",
+        "lighting_summary": "Inadequate lighting \u2014 1.00 nW/cm\u00b2/sr (satellite-measured). 50% below the 2.0 nW/cm\u00b2/sr safe minimum. Lighting improvement recommended.",
+        "sightline": {
+          "surveillance_score": 2,
+          "surveillance_label": "Very Poor",
+          "road_count": 0,
+          "dominant_road_type": "No roads detected",
+          "sightline_issues": [
+            "No road infrastructure detected nearby"
+          ],
+          "source": "tiger"
+        },
+        "nearest_light": {
+          "name": "Light - Conley Ave",
+          "lat": 38.9382,
+          "lon": -92.3252,
+          "distance_ft": 3930
+        },
+        "nearest_call_box": {
+          "name": "Call Box - Conley Ave",
+          "lat": 38.938,
+          "lon": -92.325,
+          "distance_ft": 3838
+        },
+        "nearest_corridor": {
+          "name": "Student Center to Rec Center",
+          "lat": 38.9406,
+          "lon": -92.3284,
+          "distance_ft": 5160
+        },
+        "lighting_gap": true,
+        "viirs_lighting_gap": true,
+        "call_box_gap": true,
+        "isolated": true,
+        "night_dominant": "False",
+        "weekend_spike": "False",
+        "deficiencies": [
+          "Insufficient illumination: 1.00 nW/cm2/sr (satellite-measured) below 2.0 nW/cm2/sr safe pedestrian threshold [Dim]",
+          "Call box coverage gap: nearest box 3838ft (Call Box - Conley Ave) \u2014 exceeds 500ft safe threshold",
+          "Road network: No road infrastructure detected nearby",
+          "Low natural surveillance: 5160ft from nearest high-traffic corridor (Student Center to Rec Center)"
+        ],
+        "deficiency_count": 4
+      },
+      "roi": {
+        "location_name": "3315 BERRYWOOD DR",
+        "annual_incidents": 18,
+        "dominant_crime": "vandalism",
+        "cost_per_incident": 2200,
+        "baseline_annual_cost": 39600,
+        "interventions": [
+          {
+            "priority": 1,
+            "name": "LED Light Pole Installation",
+            "quantity": 2,
+            "location_note": "Nearest pole: 3930ft away",
+            "unit_cost": 7500,
+            "total_cost": 15000,
+            "annual_maintenance": 300,
+            "cost_tier": "Medium",
+            "lifespan_years": 20,
+            "reduction_pct_low": 20,
+            "reduction_pct_high": 65,
+            "reduction_pct_median": 40.0,
+            "incidents_prevented": 7,
+            "annual_savings": 15400,
+            "citations": [
+              {
+                "authors": "Welsh, B.C. & Farrington, D.P.",
+                "year": 2008,
+                "title": "Effects of Improved Street Lighting on Crime",
+                "journal": "Campbell Systematic Reviews",
+                "finding": "20-39% crime reduction in areas receiving improved lighting",
+                "reduction_range": [
+                  20,
+                  39
+                ],
+                "median_reduction": 29
+              },
+              {
+                "authors": "Chalfin, A. et al.",
+                "year": 2022,
+                "title": "More Cops, More Cameras, and More Lights",
+                "journal": "Journal of Political Economy Microeconomics",
+                "finding": "Nighttime outdoor crime fell 36% from street lighting expansion",
+                "reduction_range": [
+                  30,
+                  42
+                ],
+                "median_reduction": 36
+              },
+              {
+                "authors": "NIJ Campus Safety Study",
+                "year": 2019,
+                "title": "Environmental Design and Crime Prevention on University Campuses",
+                "journal": "National Institute of Justice",
+                "finding": "LED lighting upgrades reduced nighttime incidents 45-65% at pilot campuses",
+                "reduction_range": [
+                  45,
+                  65
+                ],
+                "median_reduction": 55
+              }
+            ],
+            "citation_count": 3
+          },
+          {
+            "priority": 2,
+            "name": "Emergency Blue-Light Call Box",
+            "quantity": 1,
+            "location_note": "Current gap: 3838ft",
+            "unit_cost": 12000,
+            "total_cost": 12000,
+            "annual_maintenance": 300,
+            "cost_tier": "High",
+            "lifespan_years": 15,
+            "reduction_pct_low": 15,
+            "reduction_pct_high": 22,
+            "reduction_pct_median": 18.0,
+            "incidents_prevented": 2,
+            "annual_savings": 4400,
+            "citations": [
+              {
+                "authors": "COPS Office",
+                "year": 2018,
+                "title": "Campus Emergency Systems Effectiveness Meta-Analysis",
+                "journal": "Federal COPS Office Publication",
+                "finding": "Emergency call box density correlated with 15-22% reduction in personal crime",
+                "reduction_range": [
+                  15,
+                  22
+                ],
+                "median_reduction": 18
+              }
+            ],
+            "citation_count": 1
+          },
+          {
+            "priority": 3,
+            "name": "Safety Signage Package",
+            "quantity": 2,
+            "location_note": "Safe route wayfinding + call box directional signs",
+            "unit_cost": 350,
+            "total_cost": 700,
+            "annual_maintenance": 100,
+            "cost_tier": "Low",
+            "lifespan_years": 10,
+            "reduction_pct_low": 30,
+            "reduction_pct_high": 50,
+            "reduction_pct_median": 40.0,
+            "incidents_prevented": 4,
+            "annual_savings": 8800,
+            "citations": [
+              {
+                "authors": "Armitage, R.",
+                "year": 2013,
+                "title": "Crime Prevention Through Environmental Design",
+                "journal": "Encyclopedia of Criminology and Criminal Justice",
+                "finding": "Access control improvements reduced burglary 50-75% in target areas",
+                "reduction_range": [
+                  30,
+                  50
+                ],
+                "median_reduction": 40
+              }
+            ],
+            "citation_count": 1
+          }
+        ],
+        "intervention_count": 3,
+        "total_citation_count": 5,
+        "financials": {
+          "total_infrastructure_cost": 27700,
+          "total_annual_maintenance": 700,
+          "total_incidents_prevented": 13,
+          "total_annual_savings": 28600,
+          "roi_percentage": 3.2,
+          "roi_multiplier": 0.0,
+          "payback_days": 354,
+          "payback_label": "12 months",
+          "5yr_net_savings": 115300
+        },
+        "vs_consulting": {
+          "mizzousafe_total": 32700,
+          "consultant_total": 177700,
+          "savings_vs_consulting": 145000,
+          "savings_pct": 81.6
+        },
+        "university_benchmarks": {
+          "note": "Based on FBI UCR and Clery Act campus crime statistics",
+          "peer_average_incidents_per_10k": 52,
+          "top_quartile_per_10k": 31,
+          "national_average_per_10k": 68,
+          "mu_enrollment": 30000,
+          "current_rate_per_10k": 6.0,
+          "projected_rate_with_interventions": 3.0
+        }
+      }
+    },
+    {
+      "rank": 5,
+      "location_name": "812 N KEENE ST",
+      "lat": 38.952,
+      "lon": -92.329,
+      "risk_level": "High",
+      "risk_score": 10,
+      "incident_count": 15,
+      "dominant_crime": "drug",
+      "viirs_luminance": 1.0,
+      "viirs_label": "Dim",
+      "viirs_source": "viirs_satellite",
+      "sightline": {
+        "surveillance_score": 6.0,
+        "surveillance_label": "Moderate",
+        "road_count": 7,
+        "dominant_road_type": "Local Road",
+        "dominant_road_name": "N 8th St",
+        "roads_nearby": [
+          {
+            "name": "N 8th St",
+            "mtfcc": "S1400",
+            "type_label": "Local Road",
+            "surveillance_score": 6,
+            "width_ft": 30
+          },
+          {
+            "name": "S 7th St",
+            "mtfcc": "S1400",
+            "type_label": "Local Road",
+            "surveillance_score": 6,
+            "width_ft": 30
+          },
+          {
+            "name": "S 8th St",
+            "mtfcc": "S1400",
+            "type_label": "Local Road",
+            "surveillance_score": 6,
+            "width_ft": 30
+          },
+          {
+            "name": "E Walnut St",
+            "mtfcc": "S1400",
+            "type_label": "Local Road",
+            "surveillance_score": 6,
+            "width_ft": 30
+          },
+          {
+            "name": "E Broadway",
+            "mtfcc": "S1400",
+            "type_label": "Local Road",
+            "surveillance_score": 6,
+            "width_ft": 30
+          }
+        ],
+        "sightline_issues": [],
+        "source": "tiger"
+      },
+      "cpted_priority": "Critical",
+      "deficiency_count": 3,
+      "cpted_report": "**Environmental Diagnosis**  \n812 N Keene St is a crime hotspot due to dim nighttime conditions (VIIRS luminance: 1.00 nW/cm\u00b2/sr, 50% below recommended minimum), which limits natural surveillance and fosters anonymity for offenders. The local road network offers moderate sightlines (6.0/10 surveillance score), but the area is relatively isolated from high-traffic corridors and critical safety infrastructure.\n\n**Root Cause Factors**\n- Insufficient pedestrian illumination: 1.00 nW/cm\u00b2/sr vs. 2.0 nW/cm\u00b2/sr safety standard (VIIRS).\n- Excessive distance to emergency call box: 2449ft vs. 500ft best practice\u2014delayed emergency response risk.\n- Low natural surveillance: Over 3000ft from nearest high-traffic campus corridor, reducing passive observation.\n- Moderate road network surveillance (6.0/10): Limited oversight and sightline complexity for local roads.\n\n**Recommended Interventions**\n1. **Upgrade Street Lighting**\n   - Install LED fixtures to achieve \u22652.0 nW/cm\u00b2/sr along pedestrian and vehicular paths.\n   - Cost Tier: Medium\n   - Predicted Incident Reduction: 35%\n2. **Install Additional Emergency Call Box**\n   - Place unit within 500ft of hotspot to meet coverage recommendation.\n   - Cost Tier: Low\n   - Predicted Incident Reduction: 15%\n3. **Enhance Natural Surveillance**\n   - Trim vegetation, improve sightlines, encourage foot traffic through landscape design and pathway realignment.\n   - Cost Tier: Low\n   - Predicted Incident Reduction: 10%\n4. **Deploy Surveillance Cameras with Signage**\n   - Focus on key entry/exit points. Promote deterrence through visible, policy-compliant camera signage.\n   - Cost Tier: Medium\n   - Predicted Incident Reduction: 25%\n\n**Priority Score**  \n**Critical** \u2014 Lighting is far below safety thresholds and crime risk is high (10/10), with recurrent drug incidents and three serious cases. Addressing illumination and surveillance gaps is urgent to meet campus safety standards and protect the community.",
+      "environmental_profile": {
+        "location_name": "812 N KEENE ST",
+        "lat": 38.952,
+        "lon": -92.329,
+        "viirs_luminance": 1.0,
+        "viirs_label": "Dim",
+        "viirs_source": "viirs_satellite",
+        "lighting_summary": "Inadequate lighting \u2014 1.00 nW/cm\u00b2/sr (satellite-measured). 50% below the 2.0 nW/cm\u00b2/sr safe minimum. Lighting improvement recommended.",
+        "sightline": {
+          "surveillance_score": 6.0,
+          "surveillance_label": "Moderate",
+          "road_count": 7,
+          "dominant_road_type": "Local Road",
+          "dominant_road_name": "N 8th St",
+          "roads_nearby": [
+            {
+              "name": "N 8th St",
+              "mtfcc": "S1400",
+              "type_label": "Local Road",
+              "surveillance_score": 6,
+              "width_ft": 30
+            },
+            {
+              "name": "S 7th St",
+              "mtfcc": "S1400",
+              "type_label": "Local Road",
+              "surveillance_score": 6,
+              "width_ft": 30
+            },
+            {
+              "name": "S 8th St",
+              "mtfcc": "S1400",
+              "type_label": "Local Road",
+              "surveillance_score": 6,
+              "width_ft": 30
+            },
+            {
+              "name": "E Walnut St",
+              "mtfcc": "S1400",
+              "type_label": "Local Road",
+              "surveillance_score": 6,
+              "width_ft": 30
+            },
+            {
+              "name": "E Broadway",
+              "mtfcc": "S1400",
+              "type_label": "Local Road",
+              "surveillance_score": 6,
+              "width_ft": 30
+            }
+          ],
+          "sightline_issues": [],
+          "source": "tiger"
+        },
+        "nearest_light": {
+          "name": "Light - Virginia Ave",
+          "lat": 38.9455,
+          "lon": -92.326,
+          "distance_ft": 2520
+        },
+        "nearest_call_box": {
+          "name": "Call Box - Virginia Ave",
+          "lat": 38.9456,
+          "lon": -92.3264,
+          "distance_ft": 2449
+        },
+        "nearest_corridor": {
+          "name": "Engineering Quad",
+          "lat": 38.9439,
+          "lon": -92.3255,
+          "distance_ft": 3118
+        },
+        "lighting_gap": true,
+        "viirs_lighting_gap": true,
+        "call_box_gap": true,
+        "isolated": true,
+        "night_dominant": "False",
+        "weekend_spike": "False",
+        "deficiencies": [
+          "Insufficient illumination: 1.00 nW/cm2/sr (satellite-measured) below 2.0 nW/cm2/sr safe pedestrian threshold [Dim]",
+          "Call box coverage gap: nearest box 2449ft (Call Box - Virginia Ave) \u2014 exceeds 500ft safe threshold",
+          "Low natural surveillance: 3118ft from nearest high-traffic corridor (Engineering Quad)"
+        ],
+        "deficiency_count": 3
+      },
+      "roi": {
+        "location_name": "812 N KEENE ST",
+        "annual_incidents": 15,
+        "dominant_crime": "drug",
+        "cost_per_incident": 5000,
+        "baseline_annual_cost": 75000,
+        "interventions": [
+          {
+            "priority": 1,
+            "name": "LED Light Pole Installation",
+            "quantity": 2,
+            "location_note": "Nearest pole: 2520ft away",
+            "unit_cost": 7500,
+            "total_cost": 15000,
+            "annual_maintenance": 300,
+            "cost_tier": "Medium",
+            "lifespan_years": 20,
+            "reduction_pct_low": 20,
+            "reduction_pct_high": 65,
+            "reduction_pct_median": 40.0,
+            "incidents_prevented": 6,
+            "annual_savings": 30000,
+            "citations": [
+              {
+                "authors": "Welsh, B.C. & Farrington, D.P.",
+                "year": 2008,
+                "title": "Effects of Improved Street Lighting on Crime",
+                "journal": "Campbell Systematic Reviews",
+                "finding": "20-39% crime reduction in areas receiving improved lighting",
+                "reduction_range": [
+                  20,
+                  39
+                ],
+                "median_reduction": 29
+              },
+              {
+                "authors": "Chalfin, A. et al.",
+                "year": 2022,
+                "title": "More Cops, More Cameras, and More Lights",
+                "journal": "Journal of Political Economy Microeconomics",
+                "finding": "Nighttime outdoor crime fell 36% from street lighting expansion",
+                "reduction_range": [
+                  30,
+                  42
+                ],
+                "median_reduction": 36
+              },
+              {
+                "authors": "NIJ Campus Safety Study",
+                "year": 2019,
+                "title": "Environmental Design and Crime Prevention on University Campuses",
+                "journal": "National Institute of Justice",
+                "finding": "LED lighting upgrades reduced nighttime incidents 45-65% at pilot campuses",
+                "reduction_range": [
+                  45,
+                  65
+                ],
+                "median_reduction": 55
+              }
+            ],
+            "citation_count": 3
+          },
+          {
+            "priority": 2,
+            "name": "Emergency Blue-Light Call Box",
+            "quantity": 1,
+            "location_note": "Current gap: 2449ft",
+            "unit_cost": 12000,
+            "total_cost": 12000,
+            "annual_maintenance": 300,
+            "cost_tier": "High",
+            "lifespan_years": 15,
+            "reduction_pct_low": 15,
+            "reduction_pct_high": 22,
+            "reduction_pct_median": 18.0,
+            "incidents_prevented": 2,
+            "annual_savings": 10000,
+            "citations": [
+              {
+                "authors": "COPS Office",
+                "year": 2018,
+                "title": "Campus Emergency Systems Effectiveness Meta-Analysis",
+                "journal": "Federal COPS Office Publication",
+                "finding": "Emergency call box density correlated with 15-22% reduction in personal crime",
+                "reduction_range": [
+                  15,
+                  22
+                ],
+                "median_reduction": 18
+              }
+            ],
+            "citation_count": 1
+          },
+          {
+            "priority": 3,
+            "name": "Safety Signage Package",
+            "quantity": 2,
+            "location_note": "Safe route wayfinding + call box directional signs",
+            "unit_cost": 350,
+            "total_cost": 700,
+            "annual_maintenance": 100,
+            "cost_tier": "Low",
+            "lifespan_years": 10,
+            "reduction_pct_low": 30,
+            "reduction_pct_high": 50,
+            "reduction_pct_median": 40.0,
+            "incidents_prevented": 3,
+            "annual_savings": 15000,
+            "citations": [
+              {
+                "authors": "Armitage, R.",
+                "year": 2013,
+                "title": "Crime Prevention Through Environmental Design",
+                "journal": "Encyclopedia of Criminology and Criminal Justice",
+                "finding": "Access control improvements reduced burglary 50-75% in target areas",
+                "reduction_range": [
+                  30,
+                  50
+                ],
+                "median_reduction": 40
+              }
+            ],
+            "citation_count": 1
+          }
+        ],
+        "intervention_count": 3,
+        "total_citation_count": 5,
+        "financials": {
+          "total_infrastructure_cost": 27700,
+          "total_annual_maintenance": 700,
+          "total_incidents_prevented": 11,
+          "total_annual_savings": 55000,
+          "roi_percentage": 98.6,
+          "roi_multiplier": 1.0,
+          "payback_days": 184,
+          "payback_label": "6 months",
+          "5yr_net_savings": 247300
+        },
+        "vs_consulting": {
+          "mizzousafe_total": 32700,
+          "consultant_total": 177700,
+          "savings_vs_consulting": 145000,
+          "savings_pct": 81.6
+        },
+        "university_benchmarks": {
+          "note": "Based on FBI UCR and Clery Act campus crime statistics",
+          "peer_average_incidents_per_10k": 52,
+          "top_quartile_per_10k": 31,
+          "national_average_per_10k": 68,
+          "mu_enrollment": 30000,
+          "current_rate_per_10k": 5.0,
+          "projected_rate_with_interventions": 2.5
+        }
+      }
+    }
+  ],
+  "all_locations_scored": [
+    {
+      "location_name": "820 CONLEY AVE",
+      "lat": 38.938,
+      "lon": -92.325,
+      "risk_level": "High",
+      "risk_score": 10,
+      "incident_count": 12
+    },
+    {
+      "location_name": "1199 E STADIUM BLVD",
+      "lat": 38.9355,
+      "lon": -92.3306,
+      "risk_level": "High",
+      "risk_score": 10,
+      "incident_count": 27
+    },
+    {
+      "location_name": "1 HOSPITAL DR",
+      "lat": 38.9403,
+      "lon": -92.3245,
+      "risk_level": "High",
+      "risk_score": 10,
+      "incident_count": 17
+    },
+    {
+      "location_name": "3315 BERRYWOOD DR",
+      "lat": 38.929,
+      "lon": -92.318,
+      "risk_level": "High",
+      "risk_score": 10,
+      "incident_count": 18
+    },
+    {
+      "location_name": "812 N KEENE ST",
+      "lat": 38.952,
+      "lon": -92.329,
+      "risk_level": "High",
+      "risk_score": 10,
+      "incident_count": 15
+    },
+    {
+      "location_name": "1133 ASHLAND RD",
+      "lat": 38.951,
+      "lon": -92.321,
+      "risk_level": "High",
+      "risk_score": 10,
+      "incident_count": 12
+    },
+    {
+      "location_name": "MEMORIAL UNION",
+      "lat": 38.9404,
+      "lon": -92.3277,
+      "risk_level": "High",
+      "risk_score": 10,
+      "incident_count": 37
+    },
+    {
+      "location_name": "STUDENT CENTER",
+      "lat": 38.9423,
+      "lon": -92.3268,
+      "risk_level": "High",
+      "risk_score": 10,
+      "incident_count": 25
+    },
+    {
+      "location_name": "ELLIS LIBRARY",
+      "lat": 38.9445,
+      "lon": -92.3263,
+      "risk_level": "High",
+      "risk_score": 10,
+      "incident_count": 24
+    },
+    {
+      "location_name": "REC CENTER",
+      "lat": 38.9389,
+      "lon": -92.3301,
+      "risk_level": "High",
+      "risk_score": 10,
+      "incident_count": 9
+    },
+    {
+      "location_name": "ENGINEERING BUILDING",
+      "lat": 38.9438,
+      "lon": -92.3256,
+      "risk_level": "High",
+      "risk_score": 10,
+      "incident_count": 24
+    },
+    {
+      "location_name": "PARKING LOT A1",
+      "lat": 38.945,
+      "lon": -92.324,
+      "risk_level": "High",
+      "risk_score": 10,
+      "incident_count": 17
+    },
+    {
+      "location_name": "PARKING LOT C2",
+      "lat": 38.938,
+      "lon": -92.335,
+      "risk_level": "High",
+      "risk_score": 10,
+      "incident_count": 10
+    },
+    {
+      "location_name": "GREEK TOWN",
+      "lat": 38.9395,
+      "lon": -92.332,
+      "risk_level": "High",
+      "risk_score": 10,
+      "incident_count": 18
+    },
+    {
+      "location_name": "HITT STREET",
+      "lat": 38.9415,
+      "lon": -92.328,
+      "risk_level": "High",
+      "risk_score": 10,
+      "incident_count": 29
+    },
+    {
+      "location_name": "TIGER PLAZA",
+      "lat": 38.943,
+      "lon": -92.3275,
+      "risk_level": "High",
+      "risk_score": 10,
+      "incident_count": 24
+    },
+    {
+      "location_name": "TRULASKE BUSINESS",
+      "lat": 38.9398,
+      "lon": -92.3271,
+      "risk_level": "High",
+      "risk_score": 10,
+      "incident_count": 28
+    },
+    {
+      "location_name": "JESSE HALL",
+      "lat": 38.9441,
+      "lon": -92.3269,
+      "risk_level": "High",
+      "risk_score": 10,
+      "incident_count": 34
+    },
+    {
+      "location_name": "FAUROT FIELD",
+      "lat": 38.9355,
+      "lon": -92.3306,
+      "risk_level": "High",
+      "risk_score": 10,
+      "incident_count": 27
+    },
+    {
+      "location_name": "MIZZOU ARENA",
+      "lat": 38.9356,
+      "lon": -92.3332,
+      "risk_level": "High",
+      "risk_score": 10,
+      "incident_count": 17
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+Id,How safe do you feel on campus during the DAY? 1 (unsafe) - 5 (safe),How safe do you feel on campus at NIGHT (after 7 PM)? 1 (unsafe) - 5 (safe),Please list the location(s) where you feel unsafe on campus.,When do you feel most unsafe in these locations?,What type of safety concerns do you associate with these locations?,Have you ever changed your route on campus because you felt unsafe? ,"If yes, what did you do?",How likely are you to use an AI assistant that tells you what action to take in a safety situation? 1 (less likely) - 5 (very likely),How likely are you use an AI assistant to help you plan your route based on previous patterns? 1 (less likely) - 5 (very likely),Have you used the Mizzou Safe App before?
+1,5,5,Parking Garages;,Late Night (10 PM–4 AM);,Isolation (few people around);,No,,1,5,No
+2,4,4,Parking Garages;Conley Ave;,Late Night (10 PM–4 AM);Weekends;,Suspicious activity;,Yes,Avoided that area entirely;Left campus earlier than planned;,5,5,Yes
+3,5,2,Greek Town/East Campus;Rec Center;The Quad;Hitt Street;Student Dorms;Parking Garages;Downtown;,Late Night (10 PM–4 AM);,Poor lighting;Theft;Harassment;Assault;Isolation (few people around);,No,,1,2,No
+4,4,4,Downtown;,Late Night (10 PM–4 AM);,Isolation (few people around);,Yes,Walked a longer route;,5,5,No
+5,5,3,Student Dorms;Hitt Street;Parking Garages;Downtown;,Late Night (10 PM–4 AM);,Poor lighting;Isolation (few people around);,No,,5,5,No
+6,5,5,Parking Garages;,Evening (6 PM–9 PM);,Poor lighting;,Yes,Walked a longer route;,5,5,No
+7,5,4,Downtown;Parking Garages;,Late Night (10 PM–4 AM);,Poor lighting;Isolation (few people around);,No,,1,4,No
+8,5,5,Downtown;Conley Ave;,Late Night (10 PM–4 AM);,Theft;Harassment;Assault;Suspicious activity;,No,,2,2,No
+9,5,4,Downtown;Parking Garages;,Late Night (10 PM–4 AM);,Poor lighting;,No,,4,4,No
+10,4,3,Hitt Street;Parking Garages;Downtown;Greek Town/East Campus;,Late Night (10 PM–4 AM);,Assault;Suspicious activity;Isolation (few people around);,No,,1,1,No
+11,5,4,Downtown;,Late Night (10 PM–4 AM);,Isolation (few people around);,No,,2,2,Have never heard of it
+12,5,2,Downtown;,Late Night (10 PM–4 AM);Weekends;,Harassment;Assault;Theft;Suspicious activity;,Yes,Walked a longer route;Avoided that area entirely;,5,5,Have never heard of it
+13,5,3,Parking Garages;Downtown;,Late Night (10 PM–4 AM);Evening (6 PM–9 PM);,Poor lighting;Suspicious activity;Isolation (few people around);,Yes,Called or walked with a friend;Left campus earlier than planned;Walked a longer route;,1,3,Yes
+14,5,5,Downtown;,Late Night (10 PM–4 AM);,Suspicious activity;Isolation (few people around);,No,Avoided that area entirely;,4,4,No
+15,3,5,Downtown;Parking Garages;,Late Night (10 PM–4 AM);,"Poor lighting;Theft;Harassment;Suspicious activity;Traffic safety (speeding, accidents);Isolation (few people around);",No,,2,4,No
+16,5,3,Downtown;Greek Town/East Campus;Conley Ave;,Late Night (10 PM–4 AM);,Poor lighting;Harassment;Theft;,No,,3,3,No
+17,4,2,Greek Town/East Campus;Hitt Street;Parking Garages;Downtown;,Late Night (10 PM–4 AM);,Assault;Theft;Harassment;Poor lighting;,No,,1,1,No
+18,5,5,Downtown;,Weekends;,Poor lighting;,No,Left campus earlier than planned;,5,4,No
+19,5,4,Greek Town/East Campus;Conley Ave;Parking Garages;Downtown,Evening (6 PM–9 PM);Late Night (10 PM–4 AM),Harassment;Theft;Suspicious activity,Yes,Called or walked with a friend;Walked a longer route,3,3,Yes
+20,5,4,Conley Ave;Downtown;Parking Garages;Hitt Street,Late Night (10 PM–4 AM),Harassment;Assault,No,,1,2,Yes
+21,5,4,Parking Garages;Downtown,Late Night (10 PM–4 AM),"Harassment;Traffic safety (speeding, accidents)",Yes,Walked a longer route,1,1,Have never heard of it
+22,5,3,Parking Garages;Downtown;Hitt Street;Greek Town/East Campus,Late Night (10 PM–4 AM),Poor lighting;Suspicious activity;Isolation (few people around),Yes,Avoided that area entirely;Called or walked with a friend,2,2,No
+23,5,3,Greek Town/East Campus;Parking Garages;Hitt Street;Downtown;Conley Ave,Evening (6 PM–9 PM);Late Night (10 PM–4 AM);Weekends,"Poor lighting;Theft;Suspicious activity;Traffic safety (speeding, accidents);Isolation (few people around)",Yes,Walked a longer route;Called or walked with a friend;Avoided that area entirely;Left campus earlier than planned,5,5,No
+24,5,3,Conley Ave;Hitt Street;Parking Garages;Downtown;Greek Town/East Campus,Late Night (10 PM–4 AM);Evening (6 PM–9 PM),Poor lighting;Theft;Harassment;Assault;Suspicious activity;Isolation (few people around),Yes,Avoided that area entirely;Called or walked with a friend,4,4,No
+25,5,4,Hitt Street;Parking Garages;Downtown,Late Night (10 PM–4 AM);Weekends,"Poor lighting;Harassment;Assault;Traffic safety (speeding, accidents);Isolation (few people around)",Yes,Walked a longer route;Called or walked with a friend;Left campus earlier than planned,2,2,No
+26,1,1,Downtown;Parking Garages,Evening (6 PM–9 PM),Suspicious activity,Yes,Walked a longer route,1,1,No
+27,4,4,Greek Town/East Campus;Downtown,Late Night (10 PM–4 AM),Poor lighting;Isolation (few people around);Previous personal experience,Yes,Walked a longer route,5,5,Have never heard of it
+28,5,5,Parking Garages;Downtown,Weekends;Late Night (10 PM–4 AM),Assault;Suspicious activity,No,,1,1,No
+29,5,5,Downtown,Late Night (10 PM–4 AM),Poor lighting,No,Walked a longer route,5,5,Have never heard of it
+30,5,3,Greek Town/East Campus;Parking Garages;Rec Center,Evening (6 PM–9 PM);Late Night (10 PM–4 AM),Isolation (few people around);Harassment,No,,1,4,Have never heard of it
+31,5,3,Parking Garages;Hitt Street;Downtown,Evening (6 PM–9 PM);Late Night (10 PM–4 AM);Weekends,Assault;Suspicious activity;Isolation (few people around),Yes,Walked a longer route;Called or walked with a friend;Avoided that area entirely,1,1,No
+32,4,2,Parking Garages;Downtown;Memorial Union,Late Night (10 PM–4 AM);Evening (6 PM–9 PM);Weekends,"Poor lighting;Isolation (few people around);Traffic safety (speeding, accidents)",Yes,Walked a longer route,1,3,No
+33,5,2,Parking Garages;Downtown;Greek Town/East Campus;Memorial Union;Ellis Library,Late Night (10 PM–4 AM);Weekends,Poor lighting;Theft;Harassment,Yes,Walked a longer route;Avoided that area entirely,3,3,Yes
+34,5,5,Downtown,Late Night (10 PM–4 AM),Poor lighting,No,,1,1,Have never heard of it
+35,5,4,Hitt Street;Parking Garages;Downtown;Greek Town/East Campus,Evening (6 PM–9 PM);Late Night (10 PM–4 AM),"Theft;Harassment;Poor lighting;Suspicious activity;Traffic safety (speeding, accidents)",Yes,Walked a longer route;Called or walked with a friend;Left campus earlier than planned,3,4,Have never heard of it
+36,5,4,Memorial Union;Student Center;Ellis Library;Rec Center,Morning (6 AM–11 AM);Afternoon (12 PM–5 PM),Poor lighting;Isolation (few people around),No,,4,4,No
+37,5,3,Downtown,Late Night (10 PM–4 AM);Weekends,Poor lighting;Theft;Assault;Suspicious activity;Isolation (few people around),Yes,Avoided that area entirely,1,1,No
+38,4,3,Downtown;Parking Garages;Greek Town/East Campus,Late Night (10 PM–4 AM),"Harassment;Traffic safety (speeding, accidents)",Yes,Called or walked with a friend;Walked a longer route,4,4,No
+39,5,3,The Quad;Parking Garages;Downtown;Greek Town/East Campus;Ellis Library,Late Night (10 PM–4 AM);Evening (6 PM–9 PM),Harassment;Suspicious activity;Isolation (few people around),Yes,Walked a longer route;Avoided that area entirely,3,4,Yes
+40,4,3,Greek Town/East Campus;Student Dorms;Hitt Street;Parking Garages;Downtown,Late Night (10 PM–4 AM);Weekends,"Poor lighting;Theft;Suspicious activity;Traffic safety (speeding, accidents);Isolation (few people around)",Yes,Used Safe Ride/STRIPES;Called or walked with a friend;Avoided that area entirely,4,4,No
+41,5,4,Greek Town/East Campus,Late Night (10 PM–4 AM),"Harassment;Traffic safety (speeding, accidents);Assault;Isolation (few people around)",No,,2,2,No
+42,4,3,Hitt Street;Greek Town/East Campus;Parking Garages,Late Night (10 PM–4 AM),Poor lighting;Isolation (few people around),Yes,Avoided that area entirely;Walked a longer route,1,1,No
+43,5,4,Greek Town/East Campus;Downtown,Late Night (10 PM–4 AM);Weekends,Poor lighting;Harassment;Assault;Suspicious activity;Isolation (few people around),No,,2,2,No
+44,5,5,Greek Town/East Campus;Downtown,Late Night (10 PM–4 AM);Weekends,"Poor lighting;Harassment;Traffic safety (speeding, accidents);Isolation (few people around)",No,,1,1,Have never heard of it
+45,1,3,Hitt Street;Downtown;Greek Town/East Campus,Late Night (10 PM–4 AM),"Suspicious activity;Traffic safety (speeding, accidents);Poor lighting;Theft;Harassment",Yes,Avoided that area entirely,2,2,Have never heard of it
+46,5,5,Memorial Union;Student Center;The Quad;Hitt Street;Student Dorms;Ellis Library;Rec Center,All the time,Poor lighting,No,,4,3,Have never heard of it
+47,4,4,Hitt Street;Parking Garages;Downtown,Late Night (10 PM–4 AM);Weekends,"Suspicious activity;Traffic safety (speeding, accidents);Isolation (few people around)",Yes,Left campus earlier than planned;Called or walked with a friend,4,4,Have never heard of it
+48,5,3,Parking Garages;Downtown;Hitt Street;Student Dorms,Late Night (10 PM–4 AM);Weekends,Poor lighting;Theft;Harassment;Assault;Suspicious activity;Isolation (few people around),Yes,Avoided that area entirely,1,1,No
+49,4,3,Parking Garages;Downtown;Hitt Street;Student Dorms,Late Night (10 PM–4 AM);Weekends,Poor lighting;Harassment;Assault;Suspicious activity;Isolation (few people around),Yes,Called or walked with a friend;Walked a longer route,3,4,No
+50,5,5,Hitt Street;Parking Garages;Downtown;Student Dorms,Late Night (10 PM–4 AM);Weekends,Poor lighting;Theft;Harassment;Assault;Suspicious activity;Isolation (few people around),No,Called or walked with a friend,5,5,No
+51,5,5,Downtown,Late Night (10 PM–4 AM),Theft;Assault;Suspicious activity,No,Avoided that area entirely,5,5,No
