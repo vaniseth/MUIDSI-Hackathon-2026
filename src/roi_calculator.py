@@ -420,9 +420,9 @@ class ROICalculator:
         total_annual_savings = total_prevented * cost_per_incident
 
         # 5-year NPV (simple, 5% discount)
-        software_cost    = 5000  # MizzouSafe annual license (your system)
+        software_cost    = 5000  # TigerTown annual license (your system)
         consultant_cost  = TRADITIONAL_CONSULTING_COST + total_infra_cost
-        mizzousafe_cost  = total_infra_cost + software_cost
+        TigerTown_cost  = total_infra_cost + software_cost
 
         roi_pct = ((total_annual_savings - total_infra_cost) /
                    total_infra_cost * 100) if total_infra_cost > 0 else 0
@@ -455,10 +455,10 @@ class ROICalculator:
             },
 
             'vs_consulting': {
-                'mizzousafe_total':   mizzousafe_cost,
+                'TigerTown_total':   TigerTown_cost,
                 'consultant_total':   consultant_cost,
-                'savings_vs_consulting': consultant_cost - mizzousafe_cost,
-                'savings_pct':        round((1 - mizzousafe_cost/consultant_cost) * 100, 1)
+                'savings_vs_consulting': consultant_cost - TigerTown_cost,
+                'savings_pct':        round((1 - TigerTown_cost/consultant_cost) * 100, 1)
                                       if consultant_cost > 0 else 0,
             },
 
@@ -522,7 +522,7 @@ class ROICalculator:
             f"  Payback Period:          {fin['payback_label']}",
             f"  5-Year Net Savings:      ${fin['5yr_net_savings']:,}",
             f"\n  vs. Traditional Consulting:",
-            f"  MizzouSafe approach:     ${vc['mizzousafe_total']:,}",
+            f"  TigerTown approach:     ${vc['TigerTown_total']:,}",
             f"  Traditional consultant:  ${vc['consultant_total']:,}",
             f"  Your savings:            ${vc['savings_vs_consulting']:,} ({vc['savings_pct']}% cheaper)",
             f"{'─'*60}\n",

@@ -11,7 +11,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
 from src.archia_client import ArchiaClient
 
-BRIEFING_SYSTEM_PROMPT = """You are MizzouSafe, generating a concise pre-trip safety briefing for a Mizzou student about to start walking.
+BRIEFING_SYSTEM_PROMPT = """You are TigerTown, generating a concise pre-trip safety briefing for a Mizzou student about to start walking.
 
 Format (strictly):
 **Tonight's Route Brief**

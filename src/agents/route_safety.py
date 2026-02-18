@@ -18,7 +18,7 @@ from src.archia_client import ArchiaClient
 from src.agents.safety_copilot import SafetyCopilot
 
 
-ROUTE_SAFETY_SYSTEM_PROMPT = """You are MizzouSafe Route Safety Agent, a specialized AI for analyzing safe routes on the University of Missouri campus.
+ROUTE_SAFETY_SYSTEM_PROMPT = """You are TigerTown Route Safety Agent, a specialized AI for analyzing safe routes on the University of Missouri campus.
 
 Your role:
 1. Analyze route safety based on crime data

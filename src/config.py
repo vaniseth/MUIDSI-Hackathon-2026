@@ -1,5 +1,5 @@
 """
-Configuration for MizzouSafe Integrated System
+Configuration for TigerTown Integrated System
 Uses Archia for LLM access
 """
 import os

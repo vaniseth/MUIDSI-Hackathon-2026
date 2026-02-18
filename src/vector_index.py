@@ -191,7 +191,7 @@ class VectorIndexBuilder:
     def build(self, force_rebuild: bool = False):
         """Complete build pipeline: load → embed → index → save."""
         print("\n" + "=" * 55)
-        print("  MizzouSafe — FAISS Vector Index Builder")
+        print("  TigerTown — FAISS Vector Index Builder")
         print("=" * 55)
 
         # Return existing index if not forcing rebuild
@@ -227,7 +227,7 @@ class VectorIndexBuilder:
 
 def main():
     import argparse
-    parser = argparse.ArgumentParser(description='MizzouSafe FAISS Index Builder')
+    parser = argparse.ArgumentParser(description='TigerTown FAISS Index Builder')
     parser.add_argument('--force', action='store_true',
                         help='Force rebuild even if index exists')
     parser.add_argument('--data-only', action='store_true',

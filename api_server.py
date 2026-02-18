@@ -1,7 +1,7 @@
 """
-TigerTrail API Server
+TigerTown API Server
 ======================
-FastAPI wrapper for the MizzouSafe multi-agent backend.
+FastAPI wrapper for the TigerTown multi-agent backend.
 Exposes three endpoints for the Streamlit UI to call.
 """
 
@@ -14,10 +14,10 @@ from pathlib import Path
 
 # Add the backend to the path
 sys.path.append(str(Path(__file__).parent))
-from src.orchestrator import MizzouSafeOrchestrator
+from src.orchestrator import TigerTownOrchestrator
 from src.route_planner import RoutePlanner
 
-app = FastAPI(title="TigerTrail API", version="1.0.0")
+app = FastAPI(title="TigerTown API", version="1.0.0")
 
 # Enable CORS for Streamlit Cloud
 app.add_middleware(
@@ -29,10 +29,10 @@ app.add_middleware(
 )
 
 # Initialize the backend once on startup
-print("🚀 Initializing TigerTrail backend...")
-orchestrator = MizzouSafeOrchestrator()
+print("🚀 Initializing TigerTown backend...")
+orchestrator = TigerTownOrchestrator()
 route_planner = RoutePlanner()
-print("✅ TigerTrail API ready!\n")
+print("✅ TigerTown API ready!\n")
 
 
 # ── Request/Response Models ───────────────────────────────────────────────────
@@ -73,7 +73,7 @@ class ChatRequest(BaseModel):
 @app.get("/")
 def root():
     return {
-        "name": "TigerTrail API",
+        "name": "TigerTown API",
         "version": "1.0.0",
         "status": "operational",
         "endpoints": ["/analyze-route", "/enrich-step", "/chat"]

@@ -428,7 +428,7 @@ class CampusScanner:
 
     def print_report(self, report: Dict):
         print("\n" + "="*65)
-        print("  MizzouSafe — Campus Safety Infrastructure Report")
+        print("  TigerTown — Campus Safety Infrastructure Report")
         print(f"  {report.get('generated_date', 'N/A')}")
         print("="*65)
 
@@ -514,7 +514,7 @@ class CampusScanner:
                     print(f"  {fmt}: {path}")
 
         print("\n" + "="*65)
-        print("  MizzouSafe | CPTED Agent + Safety Copilot + VIIRS + TIGER")
+        print("  TigerTown | CPTED Agent + Safety Copilot + VIIRS + TIGER")
         print("="*65 + "\n")
 
     def export_report(self, report: Dict) -> Dict:
@@ -522,7 +522,7 @@ class CampusScanner:
 
 
 def main():
-    parser = argparse.ArgumentParser(description='MizzouSafe Campus CPTED Scanner')
+    parser = argparse.ArgumentParser(description='TigerTown Campus CPTED Scanner')
     parser.add_argument('--top',       type=int,   default=5)
     parser.add_argument('--hour',      type=int,   default=None)
     parser.add_argument('--min-risk',  type=float, default=0.5)
@@ -532,7 +532,7 @@ def main():
     args = parser.parse_args()
 
     print("\n" + "="*65)
-    print("  MizzouSafe — Campus Safety Infrastructure Scanner")
+    print("  TigerTown — Campus Safety Infrastructure Scanner")
     print("="*65)
 
     safety_copilot = None

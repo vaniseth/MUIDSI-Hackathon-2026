@@ -1,12 +1,12 @@
 """
-MizzouSafe Integrated System - Examples
+TigerTown Integrated System - Examples
 Demonstrates Agent 1 and Agent 2 working together
 """
 import sys
 from pathlib import Path
 
 sys.path.append(str(Path(__file__).parent))
-from src.orchestrator import MizzouSafeOrchestrator
+from src.orchestrator import TigerTownOrchestrator
 
 
 def example_1_safety_query():
@@ -16,7 +16,7 @@ def example_1_safety_query():
     print("Uses: Agent 1 (Safety Copilot) - RAG-based")
     print("="*70)
 
-    orchestrator = MizzouSafeOrchestrator()
+    orchestrator = TigerTownOrchestrator()
     query = "What should I do if I see suspicious activity on campus?"
     context = {'on_campus': True}
 
@@ -54,7 +54,7 @@ def example_2_route_query():
     print("Uses: Agent 2 (Route Safety) -> Consults Agent 1 (Safety Copilot)")
     print("="*70)
 
-    orchestrator = MizzouSafeOrchestrator()
+    orchestrator = TigerTownOrchestrator()
 
     print(f"\n📍 Route: Memorial Union -> Rec Center")
     print(f"⏰ Time: 22:00 (10 PM)")
@@ -104,7 +104,7 @@ def example_3_emergency():
     print("EXAMPLE 3: Emergency Situation")
     print("="*70)
 
-    orchestrator = MizzouSafeOrchestrator()
+    orchestrator = TigerTownOrchestrator()
     query = "Someone is following me and I feel threatened"
     context = {'immediate_danger': True, 'is_alone': True, 'on_campus': True}
 
@@ -143,7 +143,7 @@ def example_4_conversation_flow():
 
     from src.conversation_handler import ConversationHandler
 
-    orchestrator = MizzouSafeOrchestrator()
+    orchestrator = TigerTownOrchestrator()
     handler = ConversationHandler(orchestrator)
 
     # Turn 1: User reports suspicious activity
@@ -194,7 +194,7 @@ def demo_agent_dependency():
     print("      - Asks for user location")
     print("      - Routes to nearest safe destination")
 
-    orchestrator = MizzouSafeOrchestrator()
+    orchestrator = TigerTownOrchestrator()
     orchestrator.demo_full_workflow()
 
 def example_5_full_route_briefing():
@@ -209,11 +209,11 @@ def example_5_full_route_briefing():
     print("EXAMPLE 5: Full Route Briefing (Features 1+2+3+5)")
     print("="*70)
 
-    from src.orchestrator import MizzouSafeOrchestrator
+    from src.orchestrator import TigerTownOrchestrator
     from src.briefing_generator import BriefingGenerator
     from datetime import datetime
 
-    orchestrator = MizzouSafeOrchestrator()
+    orchestrator = TigerTownOrchestrator()
     briefer = BriefingGenerator()
 
     hour = datetime.now().hour

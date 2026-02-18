@@ -12,7 +12,7 @@ from src.agents.safety_copilot import SafetyCopilot
 from src.agents.route_safety import RouteSafetyAgent
 
 
-class MizzouSafeOrchestrator:
+class TigerTownOrchestrator:
     """
     Orchestrates multiple agents with clear dependencies
     
@@ -30,7 +30,7 @@ class MizzouSafeOrchestrator:
         print("🔧 Initializing Agent 2: Route Safety...")
         self.route_safety = RouteSafetyAgent()
         
-        print("\n✅ MizzouSafe Orchestrator ready!")
+        print("\n✅ TigerTown Orchestrator ready!")
         print("=" * 60)
         print("AGENT DEPENDENCY CHAIN:")
         print("  Agent 2 (Route Safety) → Agent 1 (Safety Copilot)")

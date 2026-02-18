@@ -562,7 +562,7 @@ def summarize_roi_research() -> List[Dict]:
                 f"Reduction range: {low}-{high}% (median {cite['median_reduction']}%)."
             )
         lines.append(
-            f"\nThese studies inform the MizzouSafe ROI calculator's "
+            f"\nThese studies inform the TigerTown ROI calculator's "
             f"expected impact estimates for {category} interventions."
         )
         chunks.append(_make_chunk(
@@ -602,7 +602,7 @@ def summarize_roi_research() -> List[Dict]:
         inc_lines.append(f"{crime_type.title()}: ${cost:,} per incident")
     inc_lines.append(
         "\nSource: Federal campus crime cost estimates and national averages. "
-        "Used by MizzouSafe to calculate annual savings from incident prevention."
+        "Used by TigerTown to calculate annual savings from incident prevention."
     )
     chunks.append(_make_chunk(
         'campus_incident_cost_benchmarks',
