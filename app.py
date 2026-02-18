@@ -1348,7 +1348,7 @@ RESPONSES_FILE = Path("data/survey_responses.csv")
 RESPONSES_FILE.parent.mkdir(parents=True, exist_ok=True)
 
 with tab_survey:
-    sub_results, sub_form, sub_pdf = st.tabs([
+    sub_results, sub_form = st.tabs([
         "📊 Results",
         "✏️ Take Survey",
         #"📄 PDF Report",
