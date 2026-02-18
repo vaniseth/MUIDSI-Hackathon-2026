@@ -1,0 +1,25 @@
+# Core
+streamlit>=1.32.0
+pandas>=2.0.0
+plotly>=5.18.0
+numpy>=1.26.0
+python-dotenv>=1.0.0
+
+# Anthropic / AI
+anthropic>=0.79.0
+
+# FAISS — use latest, no version pin (1.7.4 doesn't exist for Python 3.13)
+faiss-cpu>=1.9.0
+
+# Embeddings
+sentence-transformers>=2.7.0
+
+# Geospatial (optional — comment out if deploy still fails)
+geopandas>=0.14.0
+shapely>=2.0.0
+
+# HTTP
+httpx>=0.28.0
+
+# Excel export (for survey download button)
+openpyxl>=3.1.0
