@@ -141,6 +141,20 @@ class VIIRSLoader:
             print("   To enable real satellite data, place a VIIRS .tif in data/viirs/")
             return
 
+        # Filter out lit_mask files — those are binary 0/1 masks, NOT luminance values.
+        # The correct files are: average_masked.tif, average.tif, or cf_cvg.tif
+        luminance_files = [f for f in tif_files
+                           if 'lit_mask' not in f.name.lower()
+                           and 'cf_cvg' not in f.name.lower()]
+
+        if not luminance_files:
+            print(f"📡 VIIRS: Found {len(tif_files)} .tif file(s) but all are lit_mask/cf_cvg (binary masks).")
+            print("   These are NOT luminance values — using campus estimates instead.")
+            print("   Download the 'average_masked.tif' product from eogdata.mines.edu/products/vnl/")
+            return
+
+        tif_files = luminance_files  # Use only true luminance files
+
         # Try rasterio first (full GeoTIFF support)
         try:
             import rasterio
@@ -182,14 +196,32 @@ class VIIRSLoader:
         try:
             import rasterio
             from rasterio.transform import rowcol
+
+            # Bounds check — return None if coordinate is outside the raster extent
+            bounds = self.raster.bounds
+            if not (bounds.left <= lon <= bounds.right and
+                    bounds.bottom <= lat <= bounds.top):
+                return None
+
             row, col = rowcol(self.raster.transform, lon, lat)
+
+            # Validate pixel position is within raster dimensions
+            if row < 0 or col < 0 or row >= self.raster.height or col >= self.raster.width:
+                return None
+
             data = self.raster.read(1, window=((row, row+1), (col, col+1)))
             val = float(data[0][0])
-            # VIIRS values are scaled — typical raw values are in 0.1 nW/cm²/sr units
-            # Apply scale factor if needed (product-dependent)
-            if val <= 0:
+
+            # VIIRS VNL V2 annual/monthly composite: values are in nW/cm²/sr
+            # Typical campus values: 1-20 nW/cm²/sr
+            # Nodata is typically -9999 or 65535 (uint16 overflow)
+            nodata = self.raster.nodata
+            if nodata is not None and abs(val - nodata) < 1e-3:
                 return None
-            return val
+            if val <= 0 or val > 5000:   # Sanity check: 5000 nW is far above any campus
+                return None
+
+            return round(val, 3)
         except Exception:
             return None
 
@@ -197,15 +229,23 @@ class VIIRSLoader:
         """Sample VIIRS raster at lat/lon using GDAL."""
         try:
             gt = self._gdal_gt
+            cols = self.raster.RasterXSize
+            rows = self.raster.RasterYSize
             # Convert lat/lon to pixel coordinates
             px = int((lon - gt[0]) / gt[1])
             py = int((lat - gt[3]) / gt[5])
+            # Bounds check
+            if px < 0 or py < 0 or px >= cols or py >= rows:
+                return None
             band = self.raster.GetRasterBand(1)
+            nodata = band.GetNoDataValue()
             data = band.ReadAsArray(px, py, 1, 1)
             if data is None:
                 return None
             val = float(data[0][0])
-            return val if val > 0 else None
+            if nodata is not None and abs(val - nodata) < 1e-3:
+                return None
+            return val if (0 < val <= 5000) else None
         except Exception:
             return None
 
