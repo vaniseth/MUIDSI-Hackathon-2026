@@ -2190,6 +2190,10 @@ with tab_export:
 # TAB 6 — LIVE AGENT REASONING
 # ─────────────────────────────────────────────────────────────────────────────
 
+# ─────────────────────────────────────────────────────────────────────────────
+# TAB 6 — LIVE AGENT REASONING (ENHANCED)
+# ─────────────────────────────────────────────────────────────────────────────
+
 with tab_agent:
 
     # ── Enhanced CSS for the Live Agent tab ──────────────────────────────────
@@ -2197,8 +2201,8 @@ with tab_agent:
     <style>
     /* ═══ PIPELINE VISUALIZATION ═══ */
     .pipeline-wrapper {
-        background: #020c02;
-        border: 1px solid #1a3a1a;
+        background: #0b2210;
+        border: 1px solid #1e4a1e;
         border-radius: 10px;
         padding: 28px 24px 20px;
         margin-bottom: 20px;
@@ -2250,7 +2254,7 @@ with tab_agent:
 
     /* Agent node */
     .agent-node {
-        background: #061206;
+        background: #0e2a10;
         border: 1.5px solid #1a3a1a;
         border-radius: 8px;
         padding: 16px 14px;
@@ -2369,32 +2373,32 @@ with tab_agent:
 
     /* ═══ CRT TERMINAL ═══ */
     .crt-shell {
-        background: #000d00;
-        border: 2px solid #0d2a0d;
+        background: #0b2210;
+        border: 2px solid #1e4a1e;
         border-radius: 8px;
         overflow: hidden;
         box-shadow:
-            0 0 40px rgba(74,222,128,0.08),
-            inset 0 0 60px rgba(0,0,0,0.8);
+            0 0 40px rgba(74,222,128,0.12),
+            inset 0 0 60px rgba(0,0,0,0.4);
         position: relative;
         margin-bottom: 16px;
     }
     .crt-titlebar {
-        background: #050f05;
-        border-bottom: 1px solid #0d2a0d;
+        background: #0e2a12;
+        border-bottom: 1px solid #1e4a1e;
         padding: 8px 14px;
         display: flex;
         align-items: center;
         gap: 8px;
     }
     .crt-dot { width: 10px; height: 10px; border-radius: 50%; }
-    .crt-dot.red    { background: #3a1010; }
-    .crt-dot.yellow { background: #3a3010; }
-    .crt-dot.green  { background: #103a10; }
+    .crt-dot.red    { background: #5a1a1a; }
+    .crt-dot.yellow { background: #5a4a10; }
+    .crt-dot.green  { background: #1a5a1a; }
     .crt-titlebar-text {
         font-family: 'Courier New', monospace;
         font-size: 10px;
-        color: #2a4a2a;
+        color: #3a6a3a;
         letter-spacing: 0.25em;
         text-transform: uppercase;
         margin-left: auto;
@@ -2427,7 +2431,7 @@ with tab_agent:
         content: '';
         position: absolute;
         inset: 0;
-        background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.6) 100%);
+        background: radial-gradient(ellipse at center, transparent 55%, rgba(5,20,5,0.5) 100%);
         pointer-events: none;
         z-index: 3;
     }
@@ -2440,18 +2444,18 @@ with tab_agent:
     }
 
     /* Log line classes */
-    .ll-sys  { color: #2d6a2d; }
+    .ll-sys  { color: #3a8a3a; }
     .ll-a1   { color: #3b82f6; text-shadow: 0 0 8px rgba(59,130,246,0.4); }
     .ll-a2   { color: #f59e0b; text-shadow: 0 0 8px rgba(245,158,11,0.4); }
     .ll-a3   { color: #f472b6; text-shadow: 0 0 8px rgba(244,114,182,0.4); }
     .ll-ok   { color: #4ade80; font-weight: 700; text-shadow: 0 0 10px rgba(74,222,128,0.5); }
     .ll-warn { color: #fbbf24; }
-    .ll-ts   { color: #1a3a1a; font-size: 10px; }
-    .ll-val  { color: #e2e8f0; font-weight: 600; }
-    .ll-dim  { color: #1a4a1a; font-size: 10px; }
+    .ll-ts   { color: #2a5a2a; font-size: 10px; }
+    .ll-val  { color: #d4f7d4; font-weight: 600; }
+    .ll-dim  { color: #2d6a2d; font-size: 11px; }
 
     .ll-divider {
-        color: #1a4a1a;
+        color: #245024;
         letter-spacing: 0.05em;
     }
     .ll-section {
@@ -2571,7 +2575,7 @@ with tab_agent:
 
     /* ═══ BIG ROI DISPLAY ═══ */
     .roi-final-panel {
-        background: #020c02;
+        background: #0b2210;
         border: 1px solid rgba(74,222,128,0.2);
         border-radius: 8px;
         overflow: hidden;
@@ -2609,7 +2613,7 @@ with tab_agent:
     .roi-stat-block {
         padding: 16px 12px;
         text-align: center;
-        background: #020c02;
+        background: #0b2210;
     }
     .roi-stat-num {
         font-family: 'Oswald', sans-serif;
@@ -2629,8 +2633,8 @@ with tab_agent:
 
     /* ═══ IDLE STATE ═══ */
     .agent-idle-screen {
-        background: #000d00;
-        border: 1px solid #0d2a0d;
+        background: #0b2210;
+        border: 1px solid #1e4a1e;
         border-radius: 8px;
         padding: 40px 32px;
         text-align: center;
@@ -2650,7 +2654,7 @@ with tab_agent:
         font-family: 'Courier New', monospace;
         font-size: 11px;
         letter-spacing: 0.4em;
-        color: #1a5c1a;
+        color: #2a7a2a;
         text-transform: uppercase;
         margin-bottom: 20px;
         position: relative;
@@ -2659,7 +2663,7 @@ with tab_agent:
         font-family: 'Courier New', monospace;
         font-size: 10px;
         line-height: 1.4;
-        color: #0d300d;
+        color: #1e501e;
         margin-bottom: 20px;
         white-space: pre;
         position: relative;
@@ -2986,92 +2990,9 @@ with tab_agent:
             unsafe_allow_html=True,
         )
 
-        # ── Results cards ─────────────────────────────────────────────────────
-        iv_names = [f"P{iv['priority']} {iv['name']}" for iv in ivs]
-        iv_costs = [f"${iv['total_cost']:,}" for iv in ivs]
-
+        # ── ROI Summary panel ─────────────────────────────────────────────────
         results_placeholder.markdown(f"""
         <div style="margin-top:16px">
-
-          <div class="results-grid">
-            <!-- Agent 1 -->
-            <div class="result-agent-card c-a1">
-              <div class="result-card-header">
-                <div class="result-card-badge">Agent 1 · Safety Copilot</div>
-                <div class="result-card-title">RAG Retrieval</div>
-              </div>
-              <div class="result-card-body">
-                <div class="result-metric-row">
-                  <span class="rm-key">INDEX SIZE</span>
-                  <span class="rm-val" style="color:#93c5fd">572 vectors</span>
-                </div>
-                <div class="result-metric-row">
-                  <span class="rm-key">CHUNKS INJECTED</span>
-                  <span class="rm-val" style="color:#93c5fd">5</span>
-                </div>
-                <div class="result-metric-row">
-                  <span class="rm-key">TOP SIMILARITY</span>
-                  <span class="rm-val" style="color:#93c5fd">0.91</span>
-                </div>
-                <div class="result-metric-row">
-                  <span class="rm-key">SOURCE</span>
-                  <span class="rm-val" style="color:#93c5fd;font-size:11px">MU Policy §4.2</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Agent 2 -->
-            <div class="result-agent-card c-a2">
-              <div class="result-card-header">
-                <div class="result-card-badge">Agent 2 · Route Safety</div>
-                <div class="result-card-title">Sightline Analysis</div>
-              </div>
-              <div class="result-card-body">
-                <div class="result-metric-row">
-                  <span class="rm-key">SIGHTLINE SCORE</span>
-                  <span class="rm-val" style="color:#fcd34d">{sight:.1f}/10</span>
-                </div>
-                <div class="result-metric-row">
-                  <span class="rm-key">ROAD SEGMENTS</span>
-                  <span class="rm-val" style="color:#fcd34d">{max(2,int(sight*1.5))}</span>
-                </div>
-                <div class="result-metric-row">
-                  <span class="rm-key">TEMPORAL BONUS</span>
-                  <span class="rm-val" style="color:#fcd34d">+{2.1 if (scan_hour>=20 or scan_hour<6) else 0.8:.1f} pts</span>
-                </div>
-                <div class="result-metric-row">
-                  <span class="rm-key">CLASSIFICATION</span>
-                  <span class="rm-val" style="color:#fcd34d">{sight_l}</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Agent 3 -->
-            <div class="result-agent-card c-a3">
-              <div class="result-card-header">
-                <div class="result-card-badge">Agent 3 · CPTED Analysis</div>
-                <div class="result-card-title">Satellite + ROI</div>
-              </div>
-              <div class="result-card-body">
-                <div class="result-metric-row">
-                  <span class="rm-key">VIIRS LUMINANCE</span>
-                  <span class="rm-val" style="color:#f9a8d4">{viirs:.2f} nW/cm²/sr</span>
-                </div>
-                <div class="result-metric-row">
-                  <span class="rm-key">LIGHTING STATUS</span>
-                  <span class="rm-val" style="color:{'#fca5a5' if viirs < 2.0 else '#86efac'}">{viirs_l}</span>
-                </div>
-                <div class="result-metric-row">
-                  <span class="rm-key">INTERVENTIONS</span>
-                  <span class="rm-val" style="color:#f9a8d4">{len(ivs)}</span>
-                </div>
-                <div class="result-metric-row">
-                  <span class="rm-key">PRIORITY</span>
-                  <span class="rm-val" style="color:{'#fca5a5' if priority=='Critical' else '#fcd34d' if priority=='High' else '#86efac'}">{priority.upper()}</span>
-                </div>
-              </div>
-            </div>
-          </div>
 
           <!-- Big ROI panel -->
           <div class="roi-final-panel">
