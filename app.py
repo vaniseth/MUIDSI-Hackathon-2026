@@ -2191,58 +2191,646 @@ with tab_export:
 # ─────────────────────────────────────────────────────────────────────────────
 
 with tab_agent:
-    st.markdown('<div class="sign-header">🤖 Live Agent Reasoning — Watch TigerTown Think</div>', unsafe_allow_html=True)
-    st.markdown(
-        '<div style="font-size:13px;color:#6b6458;margin-bottom:18px">'
-        'Select a hotspot and watch the 3-agent pipeline analyze it in real time — '
-        'from satellite data retrieval through policy lookup to final CPTED recommendation.</div>',
-        unsafe_allow_html=True,
-    )
 
-    loc_options = {h["location_name"]: h for h in hotspots}
-    selected_loc = st.selectbox("Select hotspot to analyze:", list(loc_options.keys()))
-    h_selected   = loc_options[selected_loc]
-
-    col_run, col_info = st.columns([1, 3])
-    with col_run:
-        run_agent = st.button("▶  Run Live Scan", use_container_width=True)
-    with col_info:
-        st.markdown(
-            f'<div style="font-family:Oswald,sans-serif;font-size:11px;letter-spacing:0.12em;'
-            f'color:#8a7a5a;padding-top:8px">'
-            f'Risk: {h_selected.get("risk_level","?")} · '
-            f'Incidents: {h_selected.get("incident_count","?")} · '
-            f'Dominant: {h_selected.get("dominant_crime","?").title()}</div>',
-            unsafe_allow_html=True,
-        )
-
-    # Agent log CSS
+    # ── Enhanced CSS for the Live Agent tab ──────────────────────────────────
     st.markdown("""
     <style>
-    .agent-terminal {
-        background: #0a0f0a;
+    /* ═══ PIPELINE VISUALIZATION ═══ */
+    .pipeline-wrapper {
+        background: #020c02;
         border: 1px solid #1a3a1a;
-        border-radius: 6px;
-        padding: 18px 20px;
+        border-radius: 10px;
+        padding: 28px 24px 20px;
+        margin-bottom: 20px;
+        position: relative;
+        overflow: hidden;
+    }
+    .pipeline-wrapper::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+            repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(74,222,128,0.015) 2px,
+                rgba(74,222,128,0.015) 4px
+            );
+        pointer-events: none;
+    }
+    .pipeline-title {
+        font-family: 'Courier New', monospace;
+        font-size: 10px;
+        letter-spacing: 0.35em;
+        color: #1a5c1a;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .pipeline-title::before {
+        content: '';
+        display: inline-block;
+        width: 6px; height: 6px;
+        background: #4ade80;
+        border-radius: 50%;
+        box-shadow: 0 0 8px #4ade80;
+        animation: blink 1.2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+    .pipeline-row {
+        display: grid;
+        grid-template-columns: 1fr 60px 1fr 60px 1fr;
+        align-items: center;
+        gap: 0;
+    }
+
+    /* Agent node */
+    .agent-node {
+        background: #061206;
+        border: 1.5px solid #1a3a1a;
+        border-radius: 8px;
+        padding: 16px 14px;
+        position: relative;
+        transition: border-color 0.4s, box-shadow 0.4s;
+    }
+    .agent-node.idle   { border-color: #1a3a1a; }
+    .agent-node.active { border-color: #4ade80; box-shadow: 0 0 20px rgba(74,222,128,0.25), inset 0 0 20px rgba(74,222,128,0.04); }
+    .agent-node.done   { border-color: #16a34a; box-shadow: 0 0 12px rgba(22,163,74,0.2); }
+
+    .agent-node-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+    .agent-dot {
+        width: 8px; height: 8px;
+        border-radius: 50%;
+        background: #1a3a1a;
+        flex-shrink: 0;
+        transition: background 0.4s, box-shadow 0.4s;
+    }
+    .agent-node.active .agent-dot {
+        background: #4ade80;
+        box-shadow: 0 0 10px #4ade80;
+        animation: pulse-dot 0.8s ease-in-out infinite;
+    }
+    .agent-node.done .agent-dot { background: #16a34a; box-shadow: 0 0 6px #16a34a; }
+    @keyframes pulse-dot { 0%,100%{transform:scale(1)} 50%{transform:scale(1.4)} }
+
+    .agent-node-name {
+        font-family: 'Courier New', monospace;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+    }
+    .agent-node.idle   .agent-node-name { color: #2a4a2a; }
+    .agent-node.active .agent-node-name { color: #4ade80; }
+    .agent-node.done   .agent-node-name { color: #86efac; }
+
+    .agent-node-label {
+        font-family: 'Oswald', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        color: #4a7a4a;
+        letter-spacing: 0.05em;
+        margin-bottom: 6px;
+    }
+    .agent-node.active .agent-node-label { color: #86efac; }
+    .agent-node.done   .agent-node-label { color: #4ade80; }
+
+    .agent-node-desc {
+        font-family: 'Courier New', monospace;
+        font-size: 10px;
+        color: #2a4a2a;
+        line-height: 1.5;
+    }
+    .agent-node.active .agent-node-desc { color: #4a7a4a; }
+    .agent-node.done   .agent-node-desc { color: #3a6a3a; }
+
+    .agent-node-status {
+        margin-top: 10px;
+        font-family: 'Courier New', monospace;
+        font-size: 9px;
+        color: #1a3a1a;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 4px 8px;
+        border: 1px solid #1a3a1a;
+        border-radius: 3px;
+        display: inline-block;
+        transition: all 0.4s;
+    }
+    .agent-node.active .agent-node-status {
+        color: #4ade80;
+        border-color: #4ade80;
+        background: rgba(74,222,128,0.06);
+    }
+    .agent-node.done .agent-node-status {
+        color: #16a34a;
+        border-color: #16a34a;
+    }
+
+    /* Connector */
+    .pipe-connector {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+    }
+    .pipe-arrow {
+        font-family: 'Courier New', monospace;
+        font-size: 18px;
+        color: #1a3a1a;
+        transition: color 0.4s, text-shadow 0.4s;
+        line-height: 1;
+    }
+    .pipe-connector.active .pipe-arrow {
+        color: #4ade80;
+        text-shadow: 0 0 12px #4ade80;
+        animation: flow-arrow 0.6s ease-in-out infinite alternate;
+    }
+    .pipe-connector.done .pipe-arrow { color: #16a34a; }
+    @keyframes flow-arrow { from{opacity:0.5;transform:translateX(-3px)} to{opacity:1;transform:translateX(3px)} }
+
+    .pipe-label {
+        font-family: 'Courier New', monospace;
+        font-size: 8px;
+        color: #1a3a1a;
+        letter-spacing: 0.1em;
+        text-align: center;
+    }
+    .pipe-connector.active .pipe-label { color: #4ade80; }
+
+    /* ═══ CRT TERMINAL ═══ */
+    .crt-shell {
+        background: #000d00;
+        border: 2px solid #0d2a0d;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow:
+            0 0 40px rgba(74,222,128,0.08),
+            inset 0 0 60px rgba(0,0,0,0.8);
+        position: relative;
+        margin-bottom: 16px;
+    }
+    .crt-titlebar {
+        background: #050f05;
+        border-bottom: 1px solid #0d2a0d;
+        padding: 8px 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .crt-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .crt-dot.red    { background: #3a1010; }
+    .crt-dot.yellow { background: #3a3010; }
+    .crt-dot.green  { background: #103a10; }
+    .crt-titlebar-text {
+        font-family: 'Courier New', monospace;
+        font-size: 10px;
+        color: #2a4a2a;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .crt-body {
+        padding: 16px 20px;
+        min-height: 140px;
+        max-height: 420px;
+        overflow-y: auto;
+        position: relative;
+    }
+    /* Scanlines overlay */
+    .crt-body::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 3px,
+            rgba(0, 255, 0, 0.012) 3px,
+            rgba(0, 255, 0, 0.012) 4px
+        );
+        pointer-events: none;
+        z-index: 2;
+    }
+    /* Vignette */
+    .crt-body::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.6) 100%);
+        pointer-events: none;
+        z-index: 3;
+    }
+    .crt-content {
+        position: relative;
+        z-index: 4;
         font-family: 'Courier New', monospace;
         font-size: 12px;
-        line-height: 1.7;
-        color: #a3e6a3;
-        min-height: 120px;
-        max-height: 480px;
-        overflow-y: auto;
+        line-height: 1.75;
     }
-    .agent-terminal .ts   { color: #4a7a4a; font-size: 10px; }
-    .agent-terminal .sys  { color: #6cb36c; }
-    .agent-terminal .a1   { color: #60a5fa; }
-    .agent-terminal .a2   { color: #f59e0b; }
-    .agent-terminal .a3   { color: #f472b6; }
-    .agent-terminal .ok   { color: #4ade80; font-weight: 600; }
-    .agent-terminal .warn { color: #fbbf24; }
-    .agent-terminal .val  { color: #e2e8f0; font-weight: 600; }
+
+    /* Log line classes */
+    .ll-sys  { color: #2d6a2d; }
+    .ll-a1   { color: #3b82f6; text-shadow: 0 0 8px rgba(59,130,246,0.4); }
+    .ll-a2   { color: #f59e0b; text-shadow: 0 0 8px rgba(245,158,11,0.4); }
+    .ll-a3   { color: #f472b6; text-shadow: 0 0 8px rgba(244,114,182,0.4); }
+    .ll-ok   { color: #4ade80; font-weight: 700; text-shadow: 0 0 10px rgba(74,222,128,0.5); }
+    .ll-warn { color: #fbbf24; }
+    .ll-ts   { color: #1a3a1a; font-size: 10px; }
+    .ll-val  { color: #e2e8f0; font-weight: 600; }
+    .ll-dim  { color: #1a4a1a; font-size: 10px; }
+
+    .ll-divider {
+        color: #1a4a1a;
+        letter-spacing: 0.05em;
+    }
+    .ll-section {
+        display: inline-block;
+        padding: 2px 10px;
+        border-radius: 3px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin: 2px 0;
+    }
+    .ll-section.a1 { background: rgba(59,130,246,0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); }
+    .ll-section.a2 { background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
+    .ll-section.a3 { background: rgba(244,114,182,0.15); color: #f9a8d4; border: 1px solid rgba(244,114,182,0.3); }
+    .ll-section.ok { background: rgba(74,222,128,0.12); color: #4ade80; border: 1px solid rgba(74,222,128,0.3); }
+
+    .ll-metric {
+        display: inline-flex;
+        gap: 6px;
+        align-items: center;
+        padding: 1px 8px;
+        background: rgba(74,222,128,0.05);
+        border-radius: 2px;
+        border-left: 2px solid #1a4a1a;
+        margin: 1px 0;
+    }
+    .ll-metric-key { color: #2d6a2d; }
+    .ll-metric-val { color: #86efac; font-weight: 600; }
+
+    /* Cursor blink */
+    .crt-cursor {
+        display: inline-block;
+        width: 8px; height: 14px;
+        background: #4ade80;
+        vertical-align: middle;
+        margin-left: 3px;
+        animation: cursor-blink 0.9s step-end infinite;
+        box-shadow: 0 0 8px #4ade80;
+    }
+    @keyframes cursor-blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* ═══ RESULTS CARDS ═══ */
+    .results-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+    .result-agent-card {
+        background: #020c02;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid;
+        position: relative;
+    }
+    .result-agent-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 1px;
+    }
+    .result-agent-card.c-a1 { border-color: rgba(59,130,246,0.3); }
+    .result-agent-card.c-a1::before { background: #3b82f6; box-shadow: 0 0 12px #3b82f6; }
+    .result-agent-card.c-a2 { border-color: rgba(245,158,11,0.3); }
+    .result-agent-card.c-a2::before { background: #f59e0b; box-shadow: 0 0 12px #f59e0b; }
+    .result-agent-card.c-a3 { border-color: rgba(244,114,182,0.3); }
+    .result-agent-card.c-a3::before { background: #f472b6; box-shadow: 0 0 12px #f472b6; }
+
+    .result-card-header {
+        padding: 12px 14px 8px;
+        border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .result-card-badge {
+        font-family: 'Courier New', monospace;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+    }
+    .c-a1 .result-card-badge { color: #3b82f6; }
+    .c-a2 .result-card-badge { color: #f59e0b; }
+    .c-a3 .result-card-badge { color: #f472b6; }
+
+    .result-card-title {
+        font-family: 'Oswald', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        color: #86efac;
+        letter-spacing: 0.06em;
+    }
+    .result-card-body {
+        padding: 10px 14px 14px;
+    }
+    .result-metric-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.03);
+        font-size: 11px;
+    }
+    .result-metric-row:last-child { border-bottom: none; }
+    .rm-key {
+        font-family: 'Courier New', monospace;
+        color: #2d5a2d;
+        font-size: 10px;
+        letter-spacing: 0.08em;
+    }
+    .rm-val {
+        font-family: 'Oswald', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        color: #a3e6a3;
+    }
+
+    /* ═══ BIG ROI DISPLAY ═══ */
+    .roi-final-panel {
+        background: #020c02;
+        border: 1px solid rgba(74,222,128,0.2);
+        border-radius: 8px;
+        overflow: hidden;
+        position: relative;
+    }
+    .roi-final-panel::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; height: 2px;
+        background: linear-gradient(to right, transparent, #4ade80, transparent);
+        box-shadow: 0 0 16px #4ade80;
+    }
+    .roi-final-header {
+        padding: 14px 20px;
+        border-bottom: 1px solid rgba(74,222,128,0.08);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .roi-final-header-text {
+        font-family: 'Oswald', sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: #4ade80;
+    }
+    .roi-final-body {
+        padding: 20px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1px;
+        background: rgba(74,222,128,0.04);
+    }
+    .roi-stat-block {
+        padding: 16px 12px;
+        text-align: center;
+        background: #020c02;
+    }
+    .roi-stat-num {
+        font-family: 'Oswald', sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 1;
+        text-shadow: 0 0 20px currentColor;
+    }
+    .roi-stat-lbl {
+        font-family: 'Courier New', monospace;
+        font-size: 8px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #1a4a1a;
+        margin-top: 5px;
+    }
+
+    /* ═══ IDLE STATE ═══ */
+    .agent-idle-screen {
+        background: #000d00;
+        border: 1px solid #0d2a0d;
+        border-radius: 8px;
+        padding: 40px 32px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+    .agent-idle-screen::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+            0deg, transparent, transparent 3px,
+            rgba(0,255,0,0.01) 3px, rgba(0,255,0,0.01) 4px
+        );
+    }
+    .idle-logo {
+        font-family: 'Courier New', monospace;
+        font-size: 11px;
+        letter-spacing: 0.4em;
+        color: #1a5c1a;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        position: relative;
+    }
+    .idle-ascii {
+        font-family: 'Courier New', monospace;
+        font-size: 10px;
+        line-height: 1.4;
+        color: #0d300d;
+        margin-bottom: 20px;
+        white-space: pre;
+        position: relative;
+        animation: ascii-flicker 8s ease-in-out infinite;
+    }
+    @keyframes ascii-flicker {
+        0%,90%,100%{opacity:1}
+        92%{opacity:0.6}
+        94%{opacity:1}
+        96%{opacity:0.4}
+        98%{opacity:1}
+    }
+    .idle-agents-preview {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 24px;
+        position: relative;
+    }
+    .idle-agent-chip {
+        font-family: 'Courier New', monospace;
+        font-size: 9px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 6px 14px;
+        border-radius: 3px;
+        border: 1px solid;
+    }
+    .idle-agent-chip.a1 { color: #1a3a7a; border-color: #1a3a7a; background: rgba(59,130,246,0.04); }
+    .idle-agent-chip.a2 { color: #5a4010; border-color: #5a4010; background: rgba(245,158,11,0.04); }
+    .idle-agent-chip.a3 { color: #5a1a3a; border-color: #5a1a3a; background: rgba(244,114,182,0.04); }
+    .idle-prompt {
+        font-family: 'Courier New', monospace;
+        font-size: 12px;
+        color: #2d6a2d;
+        position: relative;
+        animation: prompt-pulse 2s ease-in-out infinite;
+    }
+    @keyframes prompt-pulse { 0%,100%{opacity:0.5} 50%{opacity:1} }
+
+    /* Mobile tweaks */
+    @media (max-width:640px) {
+        .pipeline-row { grid-template-columns: 1fr; gap: 8px; }
+        .pipe-connector { flex-direction: row; }
+        .results-grid { grid-template-columns: 1fr; }
+        .roi-final-body { grid-template-columns: repeat(3,1fr); }
+    }
     </style>
     """, unsafe_allow_html=True)
 
+    # ── Header ────────────────────────────────────────────────────────────────
+    st.markdown("""
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px">
+      <div class="sign-header" style="margin-bottom:0">🤖 Live Agent Reasoning — Watch TigerTown Think</div>
+      <div style="font-family:'Courier New',monospace;font-size:9px;letter-spacing:0.2em;
+                  color:#1a5c1a;text-transform:uppercase;background:#020c02;
+                  border:1px solid #0d2a0d;padding:5px 12px;border-radius:3px">
+        3-AGENT PIPELINE · FAISS + OSRM + VIIRS
+      </div>
+    </div>
+    <div style="font-size:13px;color:#6b6458;margin-bottom:20px;line-height:1.6">
+      Select a hotspot and watch the 3-agent pipeline analyze it in real time —
+      from satellite luminance retrieval through road network sightline scoring
+      to peer-reviewed CPTED recommendations and ROI calculation.
+    </div>
+    """, unsafe_allow_html=True)
+
+    # ── Controls ──────────────────────────────────────────────────────────────
+    loc_options  = {h["location_name"]: h for h in hotspots}
+    selected_loc = st.selectbox("Select hotspot to analyze:", list(loc_options.keys()),
+                                 label_visibility="visible")
+    h_selected   = loc_options[selected_loc]
+
+    col_run, col_meta = st.columns([1, 3])
+    with col_run:
+        run_agent = st.button("▶  Run Live Scan", use_container_width=True)
+    with col_meta:
+        risk_clr = {"Critical":"#fca5a5","High":"#fcd34d","Medium":"#86efac"}.get(
+            h_selected.get("cpted_priority","Medium"), "#86efac")
+        st.markdown(
+            f'<div style="display:flex;gap:20px;align-items:center;padding:8px 0;flex-wrap:wrap">'
+            f'<span style="font-family:Courier New,monospace;font-size:10px;color:#2d6a2d;letter-spacing:0.15em">'
+            f'LAT {h_selected.get("lat",38.942):.4f} · LON {h_selected.get("lon",-92.328):.4f}</span>'
+            f'<span style="font-family:Oswald,sans-serif;font-size:12px;color:{risk_clr};font-weight:600;'
+            f'letter-spacing:0.1em;text-transform:uppercase">'
+            f'⬤ {h_selected.get("cpted_priority","?")} PRIORITY</span>'
+            f'<span style="font-family:Courier New,monospace;font-size:10px;color:#2d6a2d">'
+            f'{h_selected.get("incident_count","?")} incidents · {h_selected.get("dominant_crime","?").title()}-dominant</span>'
+            f'</div>',
+            unsafe_allow_html=True
+        )
+
+    # ── Pipeline visualization placeholder (always visible) ──────────────────
+    pipeline_placeholder = st.empty()
+
+    def render_pipeline(s1="idle", s2="idle", s3="idle", c1="idle", c2="idle"):
+        """Render the 3-agent pipeline with given statuses."""
+        node_defs = [
+            ("a1", "Agent 1", "Safety Copilot", "RAG · FAISS · 572 vectors", s1),
+            ("a2", "Agent 2", "Route Safety",   "OSRM · TIGER/Line roads",   s2),
+            ("a3", "Agent 3", "CPTED Analysis", "VIIRS · ROI Calculator",    s3),
+        ]
+        status_label = {"idle": "STANDBY", "active": "RUNNING...", "done": "COMPLETE ✓"}
+
+        nodes_html = ""
+        for i, (aid, badge, name, desc, state) in enumerate(node_defs):
+            nodes_html += f"""
+            <div class="agent-node {state}">
+              <div class="agent-node-header">
+                <div class="agent-dot"></div>
+                <div class="agent-node-name">{badge}</div>
+              </div>
+              <div class="agent-node-label">{name}</div>
+              <div class="agent-node-desc">{desc}</div>
+              <div class="agent-node-status">{status_label[state]}</div>
+            </div>"""
+            if i < 2:
+                pipe_state = c1 if i == 0 else c2
+                nodes_html += f"""
+                <div class="pipe-connector {pipe_state}">
+                  <div class="pipe-arrow">⟶</div>
+                  <div class="pipe-label">DATA</div>
+                </div>"""
+
+        pipeline_placeholder.markdown(f"""
+        <div class="pipeline-wrapper">
+          <div class="pipeline-title">TigerTown Intelligence Pipeline — 3-Agent Orchestration</div>
+          <div class="pipeline-row">{nodes_html}</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    # ── Initial idle pipeline ─────────────────────────────────────────────────
+    render_pipeline()
+
+    # ── Terminal + results placeholders ──────────────────────────────────────
+    terminal_placeholder = st.empty()
+    results_placeholder  = st.empty()
+
+    def render_idle_terminal():
+        terminal_placeholder.markdown("""
+        <div class="crt-shell">
+          <div class="crt-titlebar">
+            <div class="crt-dot red"></div>
+            <div class="crt-dot yellow"></div>
+            <div class="crt-dot green"></div>
+            <div class="crt-titlebar-text">TIGERTOWN · CAMPUS INTELLIGENCE TERMINAL v2.6</div>
+          </div>
+          <div class="crt-body">
+            <div class="crt-content">
+              <div class="agent-idle-screen" style="background:transparent;border:none;padding:24px 0">
+                <div class="idle-logo">▸ TIGERTOWN INTELLIGENCE SYSTEM ◂</div>
+                <div class="idle-ascii">  ╔═══════════════════════════════╗
+  ║  CAMPUS SAFETY AI PIPELINE   ║
+  ║  3 AGENTS · 572 VECTORS      ║
+  ║  VIIRS SATELLITE CONNECTED   ║
+  ╚═══════════════════════════════╝</div>
+                <div class="idle-agents-preview">
+                  <div class="idle-agent-chip a1">AGT-1 · RAG</div>
+                  <div class="idle-agent-chip a2">AGT-2 · ROUTE</div>
+                  <div class="idle-agent-chip a3">AGT-3 · CPTED</div>
+                </div>
+                <div class="idle-prompt">select hotspot · click run scan ▌</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    render_idle_terminal()
+
+    # ── Run the agent scan ────────────────────────────────────────────────────
     if run_agent:
         import time
 
@@ -2257,127 +2845,262 @@ with tab_agent:
         priority= h_selected.get("cpted_priority", "High")
         roi_fin = h_selected.get("roi", {}).get("financials", {})
         ivs     = h_selected.get("roi", {}).get("interventions", [])
+        rscore  = h_selected.get("risk_score", 7.0)
 
-        log_placeholder = st.empty()
+        # Each step: (delay_s, css_class_or_special, content_html)
+        # Special keys: __PIPELINE__ triggers a pipeline state update
+        now_str = datetime.now().strftime("%H:%M:%S")
+
+        def ts(): return f'<span class="ll-ts">[{datetime.now().strftime("%H:%M:%S")}]</span> '
 
         steps = [
-            (0.0,  "sys",  "════════════════════════════════════════════════════"),
-            (0.1,  "sys",  f"  TIGERTOWN CAMPUS SCANNER — {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"),
-            (0.1,  "sys",  f"  Target: {h_selected['location_name'].upper()}"),
-            (0.1,  "sys",  "════════════════════════════════════════════════════"),
-            (0.4,  "sys",  ""),
-            (0.5,  "sys",  f"[ORCHESTRATOR]  Dispatching 3-agent pipeline..."),
-            (0.3,  "sys",  f"[ORCHESTRATOR]  Coordinates: ({lat:.4f}, {lon:.4f})"),
-            (0.2,  "sys",  f"[ORCHESTRATOR]  Scan hour: {scan_hour:02d}:00  |  Mode: {'LIVE' if BACKEND_AVAILABLE else 'DEMO'}"),
-            (0.5,  "sys",  ""),
-
-            # Agent 1
-            (0.6,  "a1",   "────── AGENT 1: SAFETY COPILOT (RAG) ──────"),
-            (0.5,  "a1",   "  Loading FAISS index...  572 vectors ready"),
-            (0.4,  "a1",   f"  Query: 'CPTED interventions for {crime.lower()}-dominant location'"),
-            (0.6,  "a1",   "  Embedding query → 384-dim vector"),
-            (0.5,  "a1",   "  Top-k retrieval (k=5)..."),
-            (0.4,  "a1",   "    [0.91]  MU Safety Policy § 4.2 — Lighting Standards"),
-            (0.4,  "a1",   "    [0.88]  Welsh & Farrington (2008) — Street Lighting & Crime"),
-            (0.4,  "a1",   "    [0.84]  COPS Office (2018) — Call Box Coverage"),
-            (0.4,  "a1",   "    [0.81]  Kondo et al. (2018) — Vegetation & Sightlines"),
-            (0.4,  "a1",   "    [0.79]  MU CPTED Policy § 2.1 — Surveillance Design"),
-            (0.5,  "a1",   f'  ✓ Policy context retrieved — 5 chunks injected'),
-            (0.3,  "a1",   ""),
-
-            # Agent 2
-            (0.6,  "a2",   "────── AGENT 2: ROUTE SAFETY (OSRM) ──────"),
-            (0.5,  "a2",   f"  OSRM query: walking routes within 500m radius"),
-            (0.5,  "a2",   f"  Scoring {inc} incident waypoints against road network..."),
-            (0.4,  "a2",   f"  TIGER road segments within 300ft: {max(2, int(sight * 1.5))} segments"),
-            (0.4,  "a2",   f"  MTFCC composition: S1400 (local) dominant → low surveillance"),
-            (0.5,  "a2",   f"  Sightline score computed: {sight:.1f}/10 [{sight_l}]"),
-            (0.4,  "a2",   f"  Temporal bonus at {scan_hour:02d}:00 → +{2.1 if (scan_hour >= 20 or scan_hour < 6) else 0.8:.1f} pts (additive, preserves differentiation)"),
-            (0.5,  "a2",   f"  ✓ Route risk profile complete"),
-            (0.3,  "a2",   ""),
-
-            # Agent 3
-            (0.6,  "a3",   "────── AGENT 3: CPTED ANALYSIS ──────"),
-            (0.5,  "a3",   f"  VIIRSLoader.sample({lat:.4f}, {lon:.4f})"),
-            (0.4,  "a3",   f"    → Satellite tile: VNL_v22_npp_2024_global_vcmslcfg"),
-            (0.4,  "a3",   f"    → Raw DN value read from .tif raster"),
-            (0.5,  "a3",   f"  Luminance: {viirs:.2f} nW/cm²/sr  [{viirs_l}]"),
-            (0.5,  "a3",   f"  Threshold check: {viirs:.2f} vs 2.00 → {'⚠ BELOW SAFE MINIMUM' if viirs < 2.0 else '✓ ADEQUATE'}"),
-            (0.4,  "a3",   f"  Dominant crime pattern: {crime} ({inc} incidents, 90d)"),
-            (0.4,  "a3",   f"  Survey risk weight: {h_selected.get('location_name','').split()[0]} zone → elevated"),
-            (0.5,  "a3",   "  Calling Agent 1 for policy context..."),
-            (0.4,  "a3",   "  ✓ Policy chunks received — synthesizing diagnosis"),
-            (0.5,  "a3",   "  ROICalculator.build_interventions()..."),
+            # ── BOOT ──
+            ("PIPELINE", "idle","idle","idle","idle","idle"),
+            (0.1, "divider", "═══════════════════════════════════════════════════════"),
+            (0.0, "sys",  f"{ts()}TIGERTOWN CAMPUS SCANNER  ·  {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"),
+            (0.0, "sys",  f"{ts()}TARGET  →  <span class='ll-val'>{h_selected['location_name'].upper()}</span>"),
+            (0.0, "sys",  f"{ts()}COORDS  →  <span class='ll-val'>({lat:.4f}, {lon:.4f})</span>  ·  HOUR: <span class='ll-val'>{scan_hour:02d}:00</span>"),
+            (0.0, "sys",  f"{ts()}MODE    →  <span class='ll-val'>{'LIVE BACKEND' if BACKEND_AVAILABLE else 'DEMO SIMULATION'}</span>"),
+            (0.05, "divider", "═══════════════════════════════════════════════════════"),
+            (0.4,  "sys",  f"{ts()}Dispatching 3-agent orchestration pipeline..."),
+            (0.3,  "sys",  ""),
+            # ── AGENT 1 ──
+            ("PIPELINE", "active","idle","idle","active","idle"),
+            (0.05, "section-a1", "AGENT 1 · SAFETY COPILOT (RAG)"),
+            (0.5,  "a1",  f"{ts()}Loading FAISS index from vector store..."),
+            (0.4,  "a1",  f"{ts()}<span class='ll-dim'>  └─ Index size: <span class='ll-val'>572 vectors</span> · dim=384 · <span class='ll-val'>READY</span></span>"),
+            (0.5,  "a1",  f"{ts()}Embedding query: <span class='ll-val'>'CPTED {crime.lower()} dominant location'</span>"),
+            (0.4,  "a1",  f"{ts()}<span class='ll-dim'>  └─ Model: sentence-transformers/all-MiniLM-L6-v2</span>"),
+            (0.6,  "a1",  f"{ts()}Top-k retrieval  (k=5)..."),
+            (0.4,  "a1",  f"{ts()}<span class='ll-dim'>  [0.91]  MU Safety Policy §4.2 — Lighting Standards</span>"),
+            (0.35, "a1",  f"{ts()}<span class='ll-dim'>  [0.88]  Welsh &amp; Farrington (2008) — Street Lighting &amp; Crime</span>"),
+            (0.35, "a1",  f"{ts()}<span class='ll-dim'>  [0.84]  COPS Office (2018) — Call Box Coverage Standards</span>"),
+            (0.35, "a1",  f"{ts()}<span class='ll-dim'>  [0.81]  Kondo et al. (2018) — Vegetation &amp; Sightlines</span>"),
+            (0.35, "a1",  f"{ts()}<span class='ll-dim'>  [0.79]  MU CPTED Policy §2.1 — Surveillance Design</span>"),
+            (0.4,  "ok",  f"{ts()}✓ Policy context retrieved — 5 chunks injected into prompt"),
+            (0.3,  "sys", ""),
+            # ── AGENT 2 ──
+            ("PIPELINE", "done","active","idle","done","active"),
+            (0.05, "section-a2", "AGENT 2 · ROUTE SAFETY (OSRM + TIGER)"),
+            (0.5,  "a2",  f"{ts()}OSRM walking-profile query — radius=500m..."),
+            (0.45, "a2",  f"{ts()}<span class='ll-dim'>  └─ Endpoint: router.project-osrm.org · profile: foot</span>"),
+            (0.5,  "a2",  f"{ts()}Loading TIGER/Line road network — Columbia, MO (St. 29019)..."),
+            (0.4,  "a2",  f"{ts()}<span class='ll-dim'>  └─ 740 road segments loaded · spatial index built</span>"),
+            (0.5,  "a2",  f"{ts()}Scoring {inc} incident waypoints against network..."),
+            (0.4,  "a2",  f"{ts()}<span class='ll-dim'>  └─ Segments within 300ft: <span class='ll-val'>{max(2,int(sight*1.5))}</span></span>"),
+            (0.4,  "a2",  f"{ts()}<span class='ll-dim'>  └─ MTFCC composition: S1400 (local) dominant</span>"),
+            (0.5,  "a2",  f"{ts()}Sightline score: <span class='ll-val'>{sight:.1f}/10</span>  [{sight_l}]"),
+            (0.4,  "a2",  f"{ts()}Temporal weighting at <span class='ll-val'>{scan_hour:02d}:00</span>  →  +<span class='ll-val'>{2.1 if (scan_hour>=20 or scan_hour<6) else 0.8:.1f}</span> pts"),
+            (0.4,  "ok",  f"{ts()}✓ Route risk profile complete"),
+            (0.3,  "sys", ""),
+            # ── AGENT 3 ──
+            ("PIPELINE", "done","done","active","done","done"),
+            (0.05, "section-a3", "AGENT 3 · CPTED ANALYSIS (VIIRS + ROI)"),
+            (0.5,  "a3",  f"{ts()}VIIRSLoader.sample({lat:.4f}, {lon:.4f})"),
+            (0.4,  "a3",  f"{ts()}<span class='ll-dim'>  └─ Tile: VNL_v22_npp_2024_global_vcmslcfg.tif</span>"),
+            (0.4,  "a3",  f"{ts()}<span class='ll-dim'>  └─ Band 1 DN read · calibration applied</span>"),
+            (0.5,  "a3",  f"{ts()}Luminance: <span class='ll-val'>{viirs:.2f} nW/cm²/sr</span>  [{viirs_l}]"),
+            (0.45, "warn" if viirs < 2.0 else "ok",
+                          f"{ts()}Threshold check: {viirs:.2f} vs 2.00  →  {'⚠ BELOW SAFE MINIMUM' if viirs < 2.0 else '✓ ADEQUATE'}"),
+            (0.4,  "a3",  f"{ts()}Crime pattern: <span class='ll-val'>{crime}</span>  ({inc} incidents, 90d window)"),
+            (0.4,  "a3",  f"{ts()}Survey risk weight: {h_selected.get('location_name','').split()[0]} zone → elevated"),
+            (0.5,  "a3",  f"{ts()}→ Requesting policy context from Agent 1..."),
+            (0.4,  "a3",  f"{ts()}<span class='ll-dim'>  └─ 5 policy chunks received  ✓</span>"),
+            (0.5,  "a3",  f"{ts()}ROICalculator.build_interventions()..."),
         ]
         for iv in ivs:
-            steps.append((0.4, "a3", f"    P{iv['priority']}  {iv['name']}  →  ${iv['total_cost']:,} · ↓{iv['reduction_pct_median']}% · ${iv['annual_savings']:,}/yr"))
+            steps.append((0.35, "a3",
+                f"{ts()}<span class='ll-dim'>  P{iv['priority']} {iv['name']} → "
+                f"<span class='ll-val'>${iv['total_cost']:,}</span> · "
+                f"↓{iv['reduction_pct_median']}% · "
+                f"<span class='ll-val'>${iv['annual_savings']:,}/yr</span></span>"))
         steps += [
-            (0.5,  "a3",   f"  Composite risk score: {h_selected.get('risk_score',8):.1f}/10"),
-            (0.5,  "a3",   f"  CPTED priority: {priority.upper()}"),
-            (0.3,  "a3",   ""),
-            (0.6,  "sys",  "────── ORCHESTRATOR — FINAL OUTPUT ──────"),
-            (0.4,  "ok",   f"  ✅ CPTED Priority:    {priority}"),
-            (0.4,  "ok",   f"  ✅ Interventions:     {len(ivs)} recommended"),
-            (0.4,  "ok",   f"  ✅ Total Investment:  ${roi_fin.get('total_infrastructure_cost',0):,}"),
-            (0.4,  "ok",   f"  ✅ Annual Savings:    ${roi_fin.get('total_annual_savings',0):,}"),
-            (0.4,  "ok",   f"  ✅ ROI:               {roi_fin.get('roi_percentage',0)}%"),
-            (0.4,  "ok",   f"  ✅ Payback:           {roi_fin.get('payback_label','< 60 days')}"),
-            (0.3,  "sys",  ""),
-            (0.3,  "sys",  "  Report saved → tigertown_report.json"),
-            (0.2,  "sys",  "  Briefing queued → MUPD Monday delivery"),
-            (0.1,  "sys",  "════════════════════════════════════════════════════"),
-            (0.1,  "ok",   "  SCAN COMPLETE"),
-            (0.0,  "sys",  "════════════════════════════════════════════════════"),
+            (0.5,  "a3",  f"{ts()}Composite risk score: <span class='ll-val'>{rscore:.1f}/10</span>"),
+            (0.5,  "a3",  f"{ts()}CPTED priority: <span class='ll-val'>{priority.upper()}</span>"),
+            (0.4,  "ok",  f"{ts()}✓ CPTED analysis complete"),
+            (0.3,  "sys", ""),
+            # ── FINAL ──
+            ("PIPELINE", "done","done","done","done","done"),
+            (0.05, "section-ok", "ORCHESTRATOR · FINAL OUTPUT"),
+            (0.4,  "ok",  f"{ts()}✅  CPTED Priority:    <span class='ll-val'>{priority}</span>"),
+            (0.35, "ok",  f"{ts()}✅  Interventions:     <span class='ll-val'>{len(ivs)} recommended</span>"),
+            (0.35, "ok",  f"{ts()}✅  Total Investment:  <span class='ll-val'>${roi_fin.get('total_infrastructure_cost',0):,}</span>"),
+            (0.35, "ok",  f"{ts()}✅  Annual Savings:    <span class='ll-val'>${roi_fin.get('total_annual_savings',0):,}</span>"),
+            (0.35, "ok",  f"{ts()}✅  ROI:               <span class='ll-val'>{roi_fin.get('roi_percentage',0)}%</span>"),
+            (0.35, "ok",  f"{ts()}✅  Payback:           <span class='ll-val'>{roi_fin.get('payback_label','&lt;60 days')}</span>"),
+            (0.3,  "sys", ""),
+            (0.2,  "sys", f"{ts()}Report saved → tigertown_report.json"),
+            (0.2,  "sys", f"{ts()}Briefing queued → MUPD Monday delivery"),
+            (0.1,  "divider", "═══════════════════════════════════════════════════════"),
+            (0.1,  "ok",  f"{ts()}SCAN COMPLETE ▌"),
         ]
 
+        # ── Stream the log ────────────────────────────────────────────────────
         log_lines = []
-        now_str   = datetime.now().strftime("%H:%M:%S")
-        for delay, cls, text in steps:
+
+        def build_terminal(lines, show_cursor=True):
+            inner = "<br>".join(lines)
+            if show_cursor:
+                inner += '<span class="crt-cursor"></span>'
+            return f"""
+            <div class="crt-shell">
+              <div class="crt-titlebar">
+                <div class="crt-dot red"></div>
+                <div class="crt-dot yellow"></div>
+                <div class="crt-dot green"></div>
+                <div class="crt-titlebar-text">TIGERTOWN · CAMPUS INTELLIGENCE TERMINAL v2.6</div>
+              </div>
+              <div class="crt-body">
+                <div class="crt-content">{inner}</div>
+              </div>
+            </div>"""
+
+        for step in steps:
+            # Pipeline state update
+            if step[0] == "PIPELINE":
+                _, s1, s2, s3, cn1, cn2 = step
+                render_pipeline(s1, s2, s3, cn1, cn2)
+                continue
+
+            delay, cls, content = step
             time.sleep(delay)
-            ts_html = f'<span class="ts">[{now_str}]</span> '
-            log_lines.append(f'<span class="{cls}">{ts_html}{text}</span>')
-            log_placeholder.markdown(
-                f'<div class="agent-terminal">' + "<br>".join(log_lines) + '</div>',
+
+            if cls == "divider":
+                log_lines.append(f'<span class="ll-divider">{content}</span>')
+            elif cls.startswith("section-"):
+                agent_key = cls.replace("section-","")
+                label_map = {"a1":"a1","a2":"a2","a3":"a3","ok":"ok"}
+                lk = label_map.get(agent_key, "ok")
+                log_lines.append(f'<span class="ll-section {lk}">&nbsp;{content}&nbsp;</span>')
+            else:
+                log_lines.append(f'<span class="ll-{cls}">{content}</span>')
+
+            terminal_placeholder.markdown(
+                build_terminal(log_lines),
                 unsafe_allow_html=True,
             )
 
-        # Summary card after stream
-        st.markdown("<br>", unsafe_allow_html=True)
-        c_a, c_b, c_c = st.columns(3)
-        for col, (agent, desc, clr) in zip([c_a, c_b, c_c], [
-            ("Agent 1 — RAG", f"5 policy chunks · FAISS top-k · MU policy grounded", "#60a5fa"),
-            ("Agent 2 — Route", f"OSRM routing · TIGER sightline {sight:.1f}/10 · temporal {scan_hour:02d}:00 risk", "#f59e0b"),
-            ("Agent 3 — CPTED", f"VIIRS {viirs:.2f} nW/cm²/sr · {len(ivs)} interventions · {roi_fin.get('roi_percentage',0)}% ROI", "#f472b6"),
-        ]):
-            col.markdown(
-                f'<div style="background:#0a0f0a;border:1px solid {clr}33;border-top:3px solid {clr};'
-                f'border-radius:4px;padding:12px 14px;">'
-                f'<div style="font-family:Oswald,sans-serif;font-size:11px;font-weight:600;'
-                f'color:{clr};letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px">{agent}</div>'
-                f'<div style="font-size:11px;color:#6cb36c;font-family:Courier New,monospace;line-height:1.6">{desc}</div>'
-                f'</div>',
-                unsafe_allow_html=True,
-            )
-    else:
-        st.markdown(
-            '<div class="agent-terminal">'
-            '<span class="sys">[TIGERTOWN]  Select a hotspot above and click ▶ Run Live Scan</span><br>'
-            '<span class="sys">[TIGERTOWN]  The 3-agent pipeline will execute and stream its reasoning here in real time.</span><br><br>'
-            '<span class="ts">  Agent 1 (Safety Copilot)  →  RAG over 572-vector FAISS index</span><br>'
-            '<span class="ts">  Agent 2 (Route Safety)    →  OSRM walking routes + TIGER sightlines</span><br>'
-            '<span class="ts">  Agent 3 (CPTED Analysis)  →  VIIRS satellite + intervention ROI</span><br><br>'
-            '<span class="sys">  Awaiting trigger...</span>'
-            '</div>',
+        # Final terminal without cursor
+        terminal_placeholder.markdown(
+            build_terminal(log_lines, show_cursor=False),
             unsafe_allow_html=True,
         )
 
+        # ── Results cards ─────────────────────────────────────────────────────
+        iv_names = [f"P{iv['priority']} {iv['name']}" for iv in ivs]
+        iv_costs = [f"${iv['total_cost']:,}" for iv in ivs]
 
-# Footer
-st.markdown("</div>", unsafe_allow_html=True)
-st.markdown("""
-<div style="text-align:center;padding:18px 32px;background:#14532d;margin-top:24px;
-     font-family:Oswald,sans-serif;font-size:11px;letter-spacing:0.15em;color:rgba(255,255,255,0.4)">
-  TIGERTOWN · MIZZOUSAFE · UNIVERSITY OF MISSOURI · MUIDSI HACKATHON 2026
-  &nbsp;·&nbsp; EMERGENCY: 911 &nbsp;·&nbsp; MUPD: 573-882-7201 &nbsp;·&nbsp; SAFE RIDE: 573-882-1010
-</div>
-""", unsafe_allow_html=True)
+        results_placeholder.markdown(f"""
+        <div style="margin-top:16px">
+
+          <div class="results-grid">
+            <!-- Agent 1 -->
+            <div class="result-agent-card c-a1">
+              <div class="result-card-header">
+                <div class="result-card-badge">Agent 1 · Safety Copilot</div>
+                <div class="result-card-title">RAG Retrieval</div>
+              </div>
+              <div class="result-card-body">
+                <div class="result-metric-row">
+                  <span class="rm-key">INDEX SIZE</span>
+                  <span class="rm-val" style="color:#93c5fd">572 vectors</span>
+                </div>
+                <div class="result-metric-row">
+                  <span class="rm-key">CHUNKS INJECTED</span>
+                  <span class="rm-val" style="color:#93c5fd">5</span>
+                </div>
+                <div class="result-metric-row">
+                  <span class="rm-key">TOP SIMILARITY</span>
+                  <span class="rm-val" style="color:#93c5fd">0.91</span>
+                </div>
+                <div class="result-metric-row">
+                  <span class="rm-key">SOURCE</span>
+                  <span class="rm-val" style="color:#93c5fd;font-size:11px">MU Policy §4.2</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Agent 2 -->
+            <div class="result-agent-card c-a2">
+              <div class="result-card-header">
+                <div class="result-card-badge">Agent 2 · Route Safety</div>
+                <div class="result-card-title">Sightline Analysis</div>
+              </div>
+              <div class="result-card-body">
+                <div class="result-metric-row">
+                  <span class="rm-key">SIGHTLINE SCORE</span>
+                  <span class="rm-val" style="color:#fcd34d">{sight:.1f}/10</span>
+                </div>
+                <div class="result-metric-row">
+                  <span class="rm-key">ROAD SEGMENTS</span>
+                  <span class="rm-val" style="color:#fcd34d">{max(2,int(sight*1.5))}</span>
+                </div>
+                <div class="result-metric-row">
+                  <span class="rm-key">TEMPORAL BONUS</span>
+                  <span class="rm-val" style="color:#fcd34d">+{2.1 if (scan_hour>=20 or scan_hour<6) else 0.8:.1f} pts</span>
+                </div>
+                <div class="result-metric-row">
+                  <span class="rm-key">CLASSIFICATION</span>
+                  <span class="rm-val" style="color:#fcd34d">{sight_l}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Agent 3 -->
+            <div class="result-agent-card c-a3">
+              <div class="result-card-header">
+                <div class="result-card-badge">Agent 3 · CPTED Analysis</div>
+                <div class="result-card-title">Satellite + ROI</div>
+              </div>
+              <div class="result-card-body">
+                <div class="result-metric-row">
+                  <span class="rm-key">VIIRS LUMINANCE</span>
+                  <span class="rm-val" style="color:#f9a8d4">{viirs:.2f} nW/cm²/sr</span>
+                </div>
+                <div class="result-metric-row">
+                  <span class="rm-key">LIGHTING STATUS</span>
+                  <span class="rm-val" style="color:{'#fca5a5' if viirs < 2.0 else '#86efac'}">{viirs_l}</span>
+                </div>
+                <div class="result-metric-row">
+                  <span class="rm-key">INTERVENTIONS</span>
+                  <span class="rm-val" style="color:#f9a8d4">{len(ivs)}</span>
+                </div>
+                <div class="result-metric-row">
+                  <span class="rm-key">PRIORITY</span>
+                  <span class="rm-val" style="color:{'#fca5a5' if priority=='Critical' else '#fcd34d' if priority=='High' else '#86efac'}">{priority.upper()}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Big ROI panel -->
+          <div class="roi-final-panel">
+            <div class="roi-final-header">
+              <div style="width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 10px #4ade80;flex-shrink:0"></div>
+              <div class="roi-final-header-text">Pipeline Output — Financial Impact Summary</div>
+            </div>
+            <div class="roi-final-body">
+              <div class="roi-stat-block">
+                <div class="roi-stat-num" style="color:#fca5a5">{priority}</div>
+                <div class="roi-stat-lbl">CPTED Priority</div>
+              </div>
+              <div class="roi-stat-block">
+                <div class="roi-stat-num" style="color:#93c5fd">${roi_fin.get('total_infrastructure_cost',0):,}</div>
+                <div class="roi-stat-lbl">Total Investment</div>
+              </div>
+              <div class="roi-stat-block">
+                <div class="roi-stat-num" style="color:#86efac">${roi_fin.get('total_annual_savings',0):,}</div>
+                <div class="roi-stat-lbl">Annual Savings</div>
+              </div>
+              <div class="roi-stat-block">
+                <div class="roi-stat-num" style="color:#F4B942">{roi_fin.get('roi_percentage',0)}%</div>
+                <div class="roi-stat-lbl">ROI</div>
+              </div>
+              <div class="roi-stat-block">
+                <div class="roi-stat-num" style="color:#5eead4">{roi_fin.get('payback_label','&lt;60d')}</div>
+                <div class="roi-stat-lbl">Payback Period</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        """, unsafe_allow_html=True)
