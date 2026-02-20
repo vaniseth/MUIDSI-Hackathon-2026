@@ -458,8 +458,9 @@ body, p, div, span, label {
     padding: 6px 0;
     border-bottom: 1px solid rgba(255,255,255,0.07);
     font-size: 13px;
-    color: rgba(255,255,255,0.75);
+    color: rgba(255,255,255,0.85);
 }
+.survey-stat span { color: rgba(255,255,255,0.85) !important; }
 .survey-stat:last-child { border-bottom: none; }
 .survey-stat strong { color: white; font-weight: 600; }
 
@@ -1231,10 +1232,14 @@ with tab_map:
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
         legend=dict(
-            bgcolor="rgba(245,242,228,0.95)",
+            bgcolor="rgba(245,242,228,0.92)",
             bordercolor="#ccc9b8",
             borderwidth=1,
             font=dict(family="Oswald, sans-serif", size=12, color="#14532d"),
+            x=0.01,
+            y=0.99,
+            xanchor="left",
+            yanchor="top",
         ),
     )
 
@@ -2213,8 +2218,8 @@ with tab_agent:
     }
     .pipeline-title {
         font-family: 'Courier New', monospace;
-        font-size: 10px;
-        letter-spacing: 0.35em;
+        font-size: 13px;
+        letter-spacing: 0.25em;
         color: #14532d;
         text-transform: uppercase;
         margin-bottom: 20px;
@@ -2282,9 +2287,9 @@ with tab_agent:
 
     .agent-node-name {
         font-family: 'Courier New', monospace;
-        font-size: 9px;
+        font-size: 12px;
         font-weight: 700;
-        letter-spacing: 0.25em;
+        letter-spacing: 0.2em;
         text-transform: uppercase;
     }
     .agent-node.idle   .agent-node-name { color: #86a886; }
@@ -2293,7 +2298,7 @@ with tab_agent:
 
     .agent-node-label {
         font-family: 'Oswald', sans-serif;
-        font-size: 14px;
+        font-size: 17px;
         font-weight: 600;
         letter-spacing: 0.04em;
         margin-bottom: 5px;
@@ -2304,7 +2309,7 @@ with tab_agent:
 
     .agent-node-desc {
         font-family: 'Courier New', monospace;
-        font-size: 10px;
+        font-size: 12px;
         line-height: 1.5;
     }
     .agent-node.idle   .agent-node-desc { color: #a3c6a3; }
@@ -2314,8 +2319,8 @@ with tab_agent:
     .agent-node-status {
         margin-top: 10px;
         font-family: 'Courier New', monospace;
-        font-size: 9px;
-        letter-spacing: 0.18em;
+        font-size: 11px;
+        letter-spacing: 0.15em;
         text-transform: uppercase;
         padding: 4px 9px;
         border-radius: 3px;
@@ -2349,8 +2354,8 @@ with tab_agent:
 
     .pipe-label {
         font-family: 'Courier New', monospace;
-        font-size: 8px;
-        letter-spacing: 0.12em;
+        font-size: 11px;
+        letter-spacing: 0.1em;
         text-align: center;
         transition: color 0.35s;
     }
@@ -2381,9 +2386,9 @@ with tab_agent:
     .crt-dot.green  { background: #22c55e; }
     .crt-titlebar-text {
         font-family: 'Courier New', monospace;
-        font-size: 10px;
-        color: rgba(255,255,255,0.55);
-        letter-spacing: 0.22em;
+        font-size: 12px;
+        color: rgba(255,255,255,0.7);
+        letter-spacing: 0.18em;
         text-transform: uppercase;
         margin-left: auto;
         margin-right: auto;
@@ -2397,8 +2402,8 @@ with tab_agent:
     }
     .crt-content {
         font-family: 'Courier New', monospace;
-        font-size: 12.5px;
-        line-height: 1.8;
+        font-size: 14px;
+        line-height: 1.85;
     }
 
     /* Log line classes — dark on white */
@@ -2408,19 +2413,19 @@ with tab_agent:
     .ll-a3   { color: #be185d; }
     .ll-ok   { color: #15803d; font-weight: 700; }
     .ll-warn { color: #b45309; font-weight: 600; }
-    .ll-ts   { color: #a3c6a3; font-size: 10px; }
+    .ll-ts   { color: #a3c6a3; font-size: 12px; }
     .ll-val  { color: #14532d; font-weight: 700; }
-    .ll-dim  { color: #6b9a6b; font-size: 11px; }
+    .ll-dim  { color: #6b9a6b; font-size: 13px; }
 
     .ll-divider { color: #c8dfc8; letter-spacing: 0.04em; }
 
     .ll-section {
         display: inline-block;
-        padding: 2px 11px;
+        padding: 3px 13px;
         border-radius: 3px;
-        font-size: 10px;
+        font-size: 12px;
         font-weight: 700;
-        letter-spacing: 0.2em;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
         margin: 2px 0;
     }
@@ -2491,8 +2496,8 @@ with tab_agent:
     }
     .roi-stat-lbl {
         font-family: 'Courier New', monospace;
-        font-size: 8px;
-        letter-spacing: 0.2em;
+        font-size: 11px;
+        letter-spacing: 0.15em;
         text-transform: uppercase;
         color: #86a886;
         margin-top: 6px;
@@ -2509,15 +2514,15 @@ with tab_agent:
     }
     .idle-logo {
         font-family: 'Courier New', monospace;
-        font-size: 11px;
-        letter-spacing: 0.4em;
+        font-size: 14px;
+        letter-spacing: 0.3em;
         color: #14532d;
         text-transform: uppercase;
         margin-bottom: 20px;
     }
     .idle-ascii {
         font-family: 'Courier New', monospace;
-        font-size: 10px;
+        font-size: 12px;
         line-height: 1.4;
         color: #86a886;
         margin-bottom: 20px;
@@ -2536,10 +2541,10 @@ with tab_agent:
     }
     .idle-agent-chip {
         font-family: 'Courier New', monospace;
-        font-size: 9px;
-        letter-spacing: 0.15em;
+        font-size: 12px;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
-        padding: 5px 14px;
+        padding: 6px 16px;
         border-radius: 3px;
         border: 1px solid;
         font-weight: 600;
@@ -2549,7 +2554,7 @@ with tab_agent:
     .idle-agent-chip.a3 { color: #9d174d; border-color: #f9a8d4; background: #fdf2f8; }
     .idle-prompt {
         font-family: 'Courier New', monospace;
-        font-size: 12px;
+        font-size: 14px;
         color: #14532d;
         animation: prompt-pulse 2s ease-in-out infinite;
     }
@@ -2568,13 +2573,13 @@ with tab_agent:
     st.markdown("""
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px">
       <div class="sign-header" style="margin-bottom:0">🤖 Live Agent Reasoning — Watch TigerTown Think</div>
-      <div style="font-family:'Courier New',monospace;font-size:9px;letter-spacing:0.2em;
+      <div style="font-family:'Courier New',monospace;font-size:12px;letter-spacing:0.15em;
                   color:#1a5c1a;text-transform:uppercase;background:#020c02;
-                  border:1px solid #0d2a0d;padding:5px 12px;border-radius:3px">
+                  border:1px solid #0d2a0d;padding:6px 14px;border-radius:3px">
         3-AGENT PIPELINE · FAISS + OSRM + VIIRS
       </div>
     </div>
-    <div style="font-size:13px;color:#6b6458;margin-bottom:20px;line-height:1.6">
+    <div style="font-size:14px;color:#6b6458;margin-bottom:20px;line-height:1.6">
       Select a hotspot and watch the 3-agent pipeline analyze it in real time —
       from satellite luminance retrieval through road network sightline scoring
       to peer-reviewed CPTED recommendations and ROI calculation.
@@ -2876,5 +2881,3 @@ with tab_agent:
 
         </div>
         """, unsafe_allow_html=True)
-
-
