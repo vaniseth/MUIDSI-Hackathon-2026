@@ -1178,7 +1178,7 @@ tab_map, tab_recs, tab_impact, tab_survey, tab_export, tab_agent = st.tabs([
 # ─────────────────────────────────────────────────────────────────────────────
 
 with tab_map:
-    st.markdown('<div class="sign-header">🗺 Crime Hotspot Map — MU Campus</div>', unsafe_allow_html=True)
+    st.markdown('<div class="sign-header">Crime Hotspot Map — MU Campus</div>', unsafe_allow_html=True)
 
     fig = go.Figure()
 
@@ -1424,7 +1424,7 @@ with tab_impact:
         st.plotly_chart(fig, use_container_width=True)
 
     with col_r:
-        st.markdown('<div class="sign-header amber">⏱ Time-of-Day Incident Pattern</div>', unsafe_allow_html=True)
+        st.markdown('<div class="sign-header amber">Time-of-Day Incident Pattern</div>', unsafe_allow_html=True)
         by_hour = temporal.get("by_hour", {})
         if by_hour:
             hours  = list(by_hour.keys())
@@ -1509,7 +1509,7 @@ with tab_impact:
 # ─────────────────────────────────────────────────────────────────────────────
     # ── Counterfactual ───────────────────────────────────────────────────────────
     st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown('<div class="sign-header red">⏮ What Would Have Happened?</div>', unsafe_allow_html=True)
+    st.markdown('<div class="sign-header red">What Would Have Happened?</div>', unsafe_allow_html=True)
 
     total_incidents_all   = sum(h.get("incident_count", 0) for h in hotspots)
     total_prevented       = roi_sum.get("total_incidents_prevented", 47)
