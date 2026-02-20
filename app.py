@@ -79,7 +79,7 @@ body, p, div, span, label {
     box-shadow: 0 3px 16px rgba(0,0,0,0.18);
 }
 
-<!-- /* Bolt holes */
+/* Bolt holes
 .plate-header::before,
 .plate-header::after {
     content: '';
@@ -92,7 +92,7 @@ body, p, div, span, label {
     box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
 }
 .plate-header::before { left: 22px; }
-.plate-header::after  { right: 22px; } -->
+.plate-header::after  { right: 22px; } */
 
 /* Meta info — top corners */
 .plate-meta-left {
