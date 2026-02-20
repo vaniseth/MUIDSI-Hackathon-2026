@@ -1102,7 +1102,6 @@ st.markdown(f"""
   </div>
   <div class="plate-meta-right">
     {report.get('generated_date', datetime.now().strftime('%b %d, %Y'))}<br>
-    # <span class="status-live">{"⬤ LIVE" if data_mode == "live" else "⬤ DEMO"}</span>
   </div>
 </div>
 <div class="plate-divider"></div>
