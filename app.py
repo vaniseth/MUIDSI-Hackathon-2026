@@ -1094,10 +1094,6 @@ hotspots = report.get("top_hotspots", [])
 
 st.markdown(f"""
 <div class="plate-header">
-  <div class="plate-meta-left">
-    University of Missouri<br>
-    Campus Safety Intelligence
-  </div>
   <div class="plate-logo-area">
     <div class="sign-badge">
       <div class="sign-title">TIGER TOWN <span class="sign-paws">🐾</span></div>
@@ -1106,7 +1102,7 @@ st.markdown(f"""
   </div>
   <div class="plate-meta-right">
     {report.get('generated_date', datetime.now().strftime('%b %d, %Y'))}<br>
-    <span class="status-live">{"⬤ LIVE" if data_mode == "live" else "⬤ DEMO"}</span>
+    # <span class="status-live">{"⬤ LIVE" if data_mode == "live" else "⬤ DEMO"}</span>
   </div>
 </div>
 <div class="plate-divider"></div>
