@@ -1704,7 +1704,7 @@ with tab_survey:
                     <div style="background:#14532d;color:white;border-radius:4px;padding:10px 16px;
                                 font-family:Oswald,sans-serif;font-size:12px;letter-spacing:0.1em;
                                 display:flex;align-items:center;gap:12px">
-                      <span style="font-size:22px;font-weight:700;color:#F4B942">{n_live}</span>
+                      <span style="font-size:22px;font-weight:700;color:#FFFFFF">{n_live}</span>
                       <span>NEW RESPONSES COLLECTED VIA TIGERTOWN FORM</span>
                     </div>
                     """, unsafe_allow_html=True)
