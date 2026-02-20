@@ -1311,7 +1311,7 @@ with tab_map:
 # ─────────────────────────────────────────────────────────────────────────────
 
 with tab_recs:
-    st.markdown('<div class="sign-header">🔧 CPTED Infrastructure Recommendations</div>', unsafe_allow_html=True)
+    st.markdown('<div class="sign-header">CPTED Infrastructure Recommendations</div>', unsafe_allow_html=True)
     st.markdown(
         '<div style="font-size:13px;color:#6b6458;margin-bottom:18px">'
         'Ranked by risk score · Satellite-backed deficiency analysis · Academic citation support'
