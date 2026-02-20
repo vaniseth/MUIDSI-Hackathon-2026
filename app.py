@@ -1399,7 +1399,7 @@ with tab_impact:
     col_l, col_r = st.columns(2)
 
     with col_l:
-        st.markdown('<div class="sign-header">📉 Before vs. After — Incident Projection</div>', unsafe_allow_html=True)
+        st.markdown('<div class="sign-header">Before vs. After — Incident Projection</div>', unsafe_allow_html=True)
         names    = [h["location_name"][:22] for h in hotspots]
         current  = [h["incident_count"] for h in hotspots]
         projected = [
@@ -1446,7 +1446,7 @@ with tab_impact:
                 font=dict(family="Oswald, sans-serif"),
             )
             fig2.add_annotation(
-                text="🔴 Night hours (8PM–6AM)", x=0.98, y=0.98,
+                text="Night hours (8PM–6AM)", x=0.98, y=0.98,
                 xref="paper", yref="paper", showarrow=False,
                 font=dict(size=10, family="Oswald, sans-serif", color="#dc2626"),
                 align="right",
@@ -1456,7 +1456,7 @@ with tab_impact:
     # Campus-wide ROI + peer benchmarks
     c1, c2 = st.columns(2)
     with c1:
-        st.markdown('<div class="sign-header navy">💰 Campus-Wide ROI Summary</div>', unsafe_allow_html=True)
+        st.markdown('<div class="sign-header navy">Campus-Wide ROI Summary</div>', unsafe_allow_html=True)
         st.markdown(f"""
         <div class="card">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
@@ -1476,7 +1476,7 @@ with tab_impact:
         """, unsafe_allow_html=True)
 
     with c2:
-        st.markdown('<div class="sign-header amber">🏫 Peer Institution Benchmarks</div>', unsafe_allow_html=True)
+        st.markdown('<div class="sign-header amber">Peer Institution Benchmarks</div>', unsafe_allow_html=True)
         mu_rate   = bench.get("mu_rate_per_10k", 58)
         peer_avg  = bench.get("peer_average_per_10k", 52)
         top_q     = bench.get("top_quartile_per_10k", 31)
@@ -1605,8 +1605,8 @@ RESPONSES_FILE.parent.mkdir(parents=True, exist_ok=True)
 with tab_survey:
 
     sub_results, sub_form = st.tabs([
-        "📊  Survey Results",
-        "✏️  Take the Survey"
+        "Survey Results",
+        "Take the Survey"
     ])
 
     # ══════════════════════════════════════════════════════════════
@@ -1614,7 +1614,7 @@ with tab_survey:
     # ══════════════════════════════════════════════════════════════
     with sub_results:
         st.markdown(
-            '<div class="sign-header">📊 Aggregated Results — n=50 Responses</div>',
+            '<div class="sign-header">Aggregated Results — n=50 Responses</div>',
             unsafe_allow_html=True,
         )
 
@@ -1735,7 +1735,7 @@ with tab_survey:
     # ══════════════════════════════════════════════════════════════
     with sub_form:
         st.markdown(
-            '<div class="sign-header amber">✏️ Student Safety Perception Survey</div>',
+            '<div class="sign-header amber">Student Safety Perception Survey</div>',
             unsafe_allow_html=True,
         )
         st.markdown(
@@ -1908,7 +1908,7 @@ with tab_survey:
                 col_dl1, col_dl2 = st.columns(2)
                 with col_dl1:
                     st.download_button(
-                        "📥 Download Responses (CSV)",
+                        "Download Responses (CSV)",
                         data=resp_df.to_csv(index=False),
                         file_name=f"tigertown_responses_{datetime.now().strftime('%Y%m%d')}.csv",
                         mime="text/csv",
@@ -1920,7 +1920,7 @@ with tab_survey:
                         with pd.ExcelWriter(buf, engine="openpyxl") as xw:
                             resp_df.to_excel(xw, index=False, sheet_name="Survey Responses")
                         st.download_button(
-                            "📥 Download Responses (Excel)",
+                            "Download Responses (Excel)",
                             data=buf.getvalue(),
                             file_name=f"tigertown_responses_{datetime.now().strftime('%Y%m%d')}.xlsx",
                             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
@@ -1935,7 +1935,7 @@ with tab_survey:
     # ══════════════════════════════════════════════════════════════
     # with sub_pdf:
     #     st.markdown(
-    #         '<div class="sign-header navy">📄 Full Survey Report PDF</div>',
+    #         '<div class="sign-header navy">Full Survey Report PDF</div>',
     #         unsafe_allow_html=True,
     #     )
 
@@ -1970,7 +1970,7 @@ with tab_survey:
     #         st.markdown("""
     #         <div style="background:#F5F2E4;border:2px dashed #ccc9b8;border-radius:6px;
     #                     padding:48px 32px;text-align:center">
-    #           <div style="font-size:36px;margin-bottom:14px">📄</div>
+    #           <div style="font-size:36px;margin-bottom:14px"></div>
     #           <div style="font-family:Oswald,sans-serif;font-size:13px;letter-spacing:0.14em;
     #                       color:#8a7a5a;text-transform:uppercase;margin-bottom:10px">
     #             PDF Report Not Found</div>
@@ -1986,7 +1986,7 @@ with tab_survey:
 # ─────────────────────────────────────────────────────────────────────────────
 
 with tab_export:
-    st.markdown('<div class="sign-header navy">📄 Export Report</div>', unsafe_allow_html=True)
+    st.markdown('<div class="sign-header navy">Export Report</div>', unsafe_allow_html=True)
 
     rows = []
     for h in hotspots:
@@ -2026,7 +2026,7 @@ with tab_export:
         c1, c2 = st.columns(2)
         with c1:
             st.download_button(
-                "📥 Download Interventions CSV",
+                "Download Interventions CSV",
                 data=csv,
                 file_name=f"tigertown_cpted_{ts}.csv",
                 mime="text/csv",
@@ -2034,7 +2034,7 @@ with tab_export:
         with c2:
             json_out = json.dumps(report, indent=2, default=str)
             st.download_button(
-                "📥 Download Full JSON Report",
+                "Download Full JSON Report",
                 data=json_out,
                 file_name=f"tigertown_report_{ts}.json",
                 mime="application/json",
@@ -2141,7 +2141,7 @@ with tab_export:
 
 <div class="body">
 
-{'<div class="alert-box red">⚠️ <strong>CRITICAL ALERT:</strong> ' + str(n_critical) + ' location(s) are flagged Critical priority this week. Immediate environmental assessment recommended.</div>' if n_critical > 0 else ''}
+{'<div class="alert-box red"><strong>CRITICAL ALERT:</strong> ' + str(n_critical) + ' location(s) are flagged Critical priority this week. Immediate environmental assessment recommended.</div>' if n_critical > 0 else ''}
 
 <div class="section-head">Top 5 Hotspots — This Week</div>
 <table>
@@ -2593,7 +2593,7 @@ with tab_agent:
     # ── Header ────────────────────────────────────────────────────────────────
     st.markdown("""
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px">
-      <div class="sign-header" style="margin-bottom:0">🤖 Live Agent Reasoning — Watch TigerTown Think</div>
+      <div class="sign-header" style="margin-bottom:0">Live Agent Reasoning — Watch TigerTown Think</div>
       <div style="font-family:'Courier New',monospace;font-size:12px;letter-spacing:0.15em;
                   color:#1a5c1a;text-transform:uppercase;background:#020c02;
                   border:1px solid #0d2a0d;padding:6px 14px;border-radius:3px">
@@ -2625,7 +2625,7 @@ with tab_agent:
             f'LAT {h_selected.get("lat",38.942):.4f} · LON {h_selected.get("lon",-92.328):.4f}</span>'
             f'<span style="font-family:Oswald,sans-serif;font-size:12px;color:{risk_clr};font-weight:600;'
             f'letter-spacing:0.1em;text-transform:uppercase">'
-            f'⬤ {h_selected.get("cpted_priority","?")} PRIORITY</span>'
+            f'{h_selected.get("cpted_priority","?")} PRIORITY</span>'
             f'<span style="font-family:Courier New,monospace;font-size:10px;color:#2d6a2d">'
             f'{h_selected.get("incident_count","?")} incidents · {h_selected.get("dominant_crime","?").title()}-dominant</span>'
             f'</div>',
@@ -2692,10 +2692,10 @@ with tab_agent:
               <div class="agent-idle-screen">
                 <div class="idle-logo">▸ TIGERTOWN INTELLIGENCE SYSTEM ◂</div>
                 <div class="idle-ascii">  ╔═══════════════════════════════╗
-  ║  CAMPUS SAFETY AI PIPELINE   ║
-  ║  3 AGENTS · 572 VECTORS      ║
-  ║  VIIRS SATELLITE CONNECTED   ║
-  ╚═══════════════════════════════╝</div>
+                                          ║  CAMPUS SAFETY AI PIPELINE    ║
+                                          ║  3 AGENTS · 572 VECTORS       ║
+                                          ║  VIIRS SATELLITE CONNECTED    ║
+                                          ╚═══════════════════════════════╝</div>
                 <div class="idle-agents-preview">
                   <div class="idle-agent-chip a1">AGT-1 · RAG</div>
                   <div class="idle-agent-chip a2">AGT-2 · ROUTE</div>
