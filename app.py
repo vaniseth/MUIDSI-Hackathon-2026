@@ -2198,18 +2198,61 @@ with tab_export:
 </body>
 </html>"""
 
-        st.download_button(
-            label="📥 Download MUPD Briefing (HTML → Print as PDF)",
-            data=briefing_html,
-            file_name=f"MUPD_Briefing_{datetime.now().strftime('%Y%m%d')}.html",
-            mime="text/html",
-            use_container_width=True,
-        )
+        # ── Two action buttons side by side ──────────────────────────────────
+        st.markdown("""
+        <style>
+        div[data-testid="stButton"].mupd-action-btn > button,
+        div[data-testid="stDownloadButton"].mupd-action-btn > button {
+            background: linear-gradient(135deg, #b91c1c 0%, #7f1d1d 100%) !important;
+            color: white !important;
+            border: 2px solid #7f1d1d !important;
+            border-bottom: 4px solid #5a1212 !important;
+            font-family: 'Oswald', sans-serif !important;
+            font-weight: 700 !important;
+            font-size: 15px !important;
+            letter-spacing: 0.18em !important;
+            text-transform: uppercase !important;
+            border-radius: 5px !important;
+            padding: 0.75rem 1.4rem !important;
+            box-shadow: 3px 3px 0 #5a1212, 0 4px 16px rgba(185,28,28,0.3) !important;
+            transition: all 0.15s !important;
+            width: 100% !important;
+        }
+        div[data-testid="stButton"].mupd-action-btn > button:hover,
+        div[data-testid="stDownloadButton"].mupd-action-btn > button:hover {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%) !important;
+            box-shadow: 1px 1px 0 #5a1212, 0 2px 8px rgba(185,28,28,0.25) !important;
+            transform: translateY(2px) !important;
+            border-bottom-width: 2px !important;
+        }
+        div[data-testid="stButton"].mupd-action-btn > button:active,
+        div[data-testid="stDownloadButton"].mupd-action-btn > button:active {
+            transform: translateY(3px) !important;
+            box-shadow: none !important;
+        }
+        </style>
+        """, unsafe_allow_html=True)
 
-        # Preview
-        st.markdown("<br>", unsafe_allow_html=True)
-        st.markdown('<div class="sign-header" style="font-size:10px">Briefing Preview</div>', unsafe_allow_html=True)
-        st.components.v1.html(briefing_html, height=600, scrolling=True)
+        col_preview, col_download = st.columns(2)
+        with col_preview:
+            st.markdown('<div class="mupd-action-btn">', unsafe_allow_html=True)
+            show_preview = st.button("👁  Preview Briefing", use_container_width=True, key="mupd_preview_btn")
+            st.markdown('</div>', unsafe_allow_html=True)
+        with col_download:
+            st.markdown('<div class="mupd-action-btn">', unsafe_allow_html=True)
+            st.download_button(
+                label="📥  Download Briefing",
+                data=briefing_html,
+                file_name=f"MUPD_Briefing_{datetime.now().strftime('%Y%m%d')}.html",
+                mime="text/html",
+                use_container_width=True,
+                key="mupd_download_btn",
+            )
+            st.markdown('</div>', unsafe_allow_html=True)
+
+        if show_preview:
+            st.markdown("<br>", unsafe_allow_html=True)
+            st.components.v1.html(briefing_html, height=600, scrolling=True)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
