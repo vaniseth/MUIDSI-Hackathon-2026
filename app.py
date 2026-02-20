@@ -1100,9 +1100,6 @@ st.markdown(f"""
       <div class="sign-tagline">Fix the campus, not the route</div>
     </div>
   </div>
-  <div class="plate-meta-right">
-    {report.get('generated_date', datetime.now().strftime('%b %d, %Y'))}<br>
-  </div>
 </div>
 <div class="plate-divider"></div>
 """, unsafe_allow_html=True)
