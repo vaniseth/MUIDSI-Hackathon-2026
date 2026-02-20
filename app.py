@@ -1103,7 +1103,6 @@ st.markdown(f"""
       <div class="sign-title">TIGER TOWN <span class="sign-paws">🐾</span></div>
       <div class="sign-tagline">Fix the campus, not the route</div>
     </div>
-    <div class="plate-sub">MizzouSafe · MUIDSI Hackathon 2026</div>
   </div>
   <div class="plate-meta-right">
     {report.get('generated_date', datetime.now().strftime('%b %d, %Y'))}<br>
@@ -1589,10 +1588,9 @@ RESPONSES_FILE.parent.mkdir(parents=True, exist_ok=True)
 
 with tab_survey:
 
-    sub_results, sub_form, sub_pdf = st.tabs([
+    sub_results, sub_form = st.tabs([
         "📊  Survey Results",
-        "✏️  Take the Survey",
-        "📄  Full Report PDF",
+        "✏️  Take the Survey"
     ])
 
     # ══════════════════════════════════════════════════════════════
