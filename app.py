@@ -2691,7 +2691,7 @@ with tab_agent:
             <div class="crt-content">
               <div class="agent-idle-screen">
                 <div class="idle-logo">▸ TIGERTOWN INTELLIGENCE SYSTEM ◂</div>
-                <div class="idle-ascii">  ╔═══════════════════════════════╗
+                <div class="idle-ascii"> ╔═══════════════════════════════╗
          ║  CAMPUS SAFETY AI PIPELINE    ║
          ║  3 AGENTS · 572 VECTORS       ║
          ║  VIIRS SATELLITE CONNECTED    ║
