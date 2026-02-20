@@ -2188,15 +2188,18 @@ with tab_export:
 </html>"""
 
 
-        # ── Download button ───────────────────────────────────────────────────
+        # ── Download + Preview ────────────────────────────────────────────────
         st.download_button(
-            label="📥  Download Briefing",
+            label="Download Briefing",
             data=briefing_html,
             file_name=f"MUPD_Briefing_{datetime.now().strftime('%Y%m%d')}.html",
             mime="text/html",
             use_container_width=True,
             key="mupd_download_btn",
         )
+
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.components.v1.html(briefing_html, height=640, scrolling=True)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
