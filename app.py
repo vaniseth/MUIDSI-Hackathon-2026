@@ -2692,10 +2692,10 @@ with tab_agent:
               <div class="agent-idle-screen">
                 <div class="idle-logo">▸ TIGERTOWN INTELLIGENCE SYSTEM ◂</div>
                 <div class="idle-ascii">  ╔═══════════════════════════════╗
-        ║  CAMPUS SAFETY AI PIPELINE    ║
-        ║  3 AGENTS · 572 VECTORS       ║
-        ║  VIIRS SATELLITE CONNECTED    ║
-        ╚═══════════════════════════════╝</div>
+         ║  CAMPUS SAFETY AI PIPELINE    ║
+         ║  3 AGENTS · 572 VECTORS       ║
+         ║  VIIRS SATELLITE CONNECTED    ║
+         ╚═══════════════════════════════╝</div>
                 <div class="idle-agents-preview">
                   <div class="idle-agent-chip a1">AGT-1 · RAG</div>
                   <div class="idle-agent-chip a2">AGT-2 · ROUTE</div>
