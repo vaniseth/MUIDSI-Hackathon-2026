@@ -2592,13 +2592,13 @@ with tab_agent:
 
     # ── Header ────────────────────────────────────────────────────────────────
     st.markdown("""
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px">
+    <!-- <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px">
       <div class="sign-header" style="margin-bottom:0">Live Agent Reasoning — Watch TigerTown Think</div>
       <div style="font-family:'Courier New',monospace;font-size:12px;letter-spacing:0.15em;
                   color:#1a5c1a;text-transform:uppercase;background:#020c02;
                   border:1px solid #0d2a0d;padding:6px 14px;border-radius:3px">
         3-AGENT PIPELINE · FAISS + OSRM + VIIRS
-      </div>
+      </div> -->
     </div>
     <div style="font-size:14px;color:#6b6458;margin-bottom:20px;line-height:1.6">
       Select a hotspot and watch the 3-agent pipeline analyze it in real time —
