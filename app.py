@@ -515,6 +515,21 @@ body, p, div, span, label {
     padding: 0.55rem 1.4rem !important;
 }
 
+/* Generate MUPD briefing button — matches download style */
+.mupd-generate-btn button {
+    background: #2E7D32 !important;
+    color: white !important;
+    border: 2px solid #1B5E20 !important;
+    font-family: 'Oswald', sans-serif !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    font-size: 13px !important;
+    border-radius: 4px !important;
+    box-shadow: 2px 2px 0 #1B5E20 !important;
+    padding: 0.55rem 1.4rem !important;
+}
+
 /* ══════════════════════════════════════════
    RESPONSIVE — TABLET (max 900px)
    ══════════════════════════════════════════ */
@@ -2028,41 +2043,13 @@ with tab_export:
 
     # ── MUPD Weekly Briefing Generator ───────────────────────────────────────
     st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("""
-    <style>
-    div[data-testid="stButton"].mupd-btn > button {
-        background: linear-gradient(135deg, #b91c1c 0%, #7f1d1d 100%) !important;
-        color: white !important;
-        border: 2px solid #7f1d1d !important;
-        border-bottom: 4px solid #5a1212 !important;
-        font-family: 'Oswald', sans-serif !important;
-        font-weight: 700 !important;
-        font-size: 16px !important;
-        letter-spacing: 0.18em !important;
-        text-transform: uppercase !important;
-        border-radius: 5px !important;
-        padding: 0.8rem 1.6rem !important;
-        box-shadow: 3px 3px 0 #5a1212, 0 4px 16px rgba(185,28,28,0.3) !important;
-        transition: all 0.15s !important;
-        width: 100% !important;
-    }
-    div[data-testid="stButton"].mupd-btn > button:hover {
-        background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%) !important;
-        box-shadow: 1px 1px 0 #5a1212, 0 2px 8px rgba(185,28,28,0.25) !important;
-        transform: translateY(2px) !important;
-        border-bottom-width: 2px !important;
-    }
-    div[data-testid="stButton"].mupd-btn > button:active {
-        transform: translateY(3px) !important;
-        box-shadow: none !important;
-    }
-    </style>
-    <div style="font-size:13px;color:#6b6458;margin-bottom:10px">
-      Auto-generates a formatted briefing for the MU Police Department — ready to email every Monday morning.
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown(
+        '<div style="font-size:13px;color:#6b6458;margin-bottom:10px">'
+        'Auto-generates a formatted briefing for the MU Police Department — ready to email every Monday morning.</div>',
+        unsafe_allow_html=True,
+    )
 
-    st.markdown('<div class="mupd-btn">', unsafe_allow_html=True)
+    st.markdown('<div class="mupd-generate-btn">', unsafe_allow_html=True)
     _run_briefing = st.button("📬  Generate MUPD Weekly Briefing", use_container_width=True, key="mupd_briefing_btn")
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -2198,43 +2185,8 @@ with tab_export:
 </body>
 </html>"""
 
-        # ── Two full-width stacked action buttons ─────────────────────────────
-        st.markdown("""
-        <style>
-        .mupd-action-btn > button {
-            background: #2E7D32 !important;
-            color: white !important;
-            border: 2px solid #1B5E20 !important;
-            border-bottom: 4px solid #145214 !important;
-            font-family: 'Oswald', sans-serif !important;
-            font-weight: 700 !important;
-            font-size: 15px !important;
-            letter-spacing: 0.18em !important;
-            text-transform: uppercase !important;
-            border-radius: 5px !important;
-            padding: 0.75rem 1.4rem !important;
-            box-shadow: 3px 3px 0 #145214, 0 4px 16px rgba(46,125,50,0.25) !important;
-            transition: all 0.15s !important;
-            width: 100% !important;
-        }
-        .mupd-action-btn > button:hover {
-            background: #388E3C !important;
-            box-shadow: 1px 1px 0 #145214, 0 2px 8px rgba(46,125,50,0.2) !important;
-            transform: translateY(2px) !important;
-            border-bottom-width: 2px !important;
-        }
-        .mupd-action-btn > button:active {
-            transform: translateY(3px) !important;
-            box-shadow: none !important;
-        }
-        </style>
-        """, unsafe_allow_html=True)
 
-        st.markdown('<div class="mupd-action-btn">', unsafe_allow_html=True)
-        show_preview = st.button("👁  Preview Briefing", use_container_width=True, key="mupd_preview_btn")
-        st.markdown('</div>', unsafe_allow_html=True)
-
-        st.markdown('<div class="mupd-action-btn">', unsafe_allow_html=True)
+        # ── Download button ───────────────────────────────────────────────────
         st.download_button(
             label="📥  Download Briefing",
             data=briefing_html,
@@ -2243,11 +2195,6 @@ with tab_export:
             use_container_width=True,
             key="mupd_download_btn",
         )
-        st.markdown('</div>', unsafe_allow_html=True)
-
-        if show_preview:
-            st.markdown("<br>", unsafe_allow_html=True)
-            st.components.v1.html(briefing_html, height=600, scrolling=True)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
