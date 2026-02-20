@@ -515,8 +515,8 @@ body, p, div, span, label {
     padding: 0.55rem 1.4rem !important;
 }
 
-/* Generate MUPD briefing button — matches download style */
-.mupd-generate-btn button {
+/* All primary action buttons — match download button style */
+.stButton > button {
     background: #2E7D32 !important;
     color: white !important;
     border: 2px solid #1B5E20 !important;
@@ -528,6 +528,10 @@ body, p, div, span, label {
     border-radius: 4px !important;
     box-shadow: 2px 2px 0 #1B5E20 !important;
     padding: 0.55rem 1.4rem !important;
+}
+.stButton > button:hover {
+    background: #388E3C !important;
+    box-shadow: none !important;
 }
 
 /* ══════════════════════════════════════════
@@ -1090,7 +1094,7 @@ with st.sidebar:
     st.divider()
     st.markdown("**Data Sources**")
     st.caption(f"Backend: {'🟢 Live' if BACKEND_AVAILABLE else '🟡 Demo data'}")
-    if st.button("🔄 Refresh Scan"):
+    if st.button("Refresh Scan"):
         st.cache_data.clear()
         st.rerun()
 
@@ -1161,12 +1165,12 @@ st.markdown('<div class="page-body">', unsafe_allow_html=True)
 # ══════════════════════════════════════════════════════════════════════════════
 
 tab_map, tab_recs, tab_impact, tab_survey, tab_export, tab_agent = st.tabs([
-    "🗺️  Hotspot Map",
-    "🔧  CPTED Recommendations",
-    "📊  Impact & ROI",
-    "📋  Student Survey",
-    "📄  Export Report",
-    "🤖  Live Agent",
+    "Hotspot Map",
+    "CPTED Recommendations",
+    "Impact & ROI",
+    "Student Survey",
+    "Export Report",
+    "Live Agent",
 ])
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -1853,7 +1857,7 @@ with tab_survey:
                 )
 
             submitted = st.form_submit_button(
-                "🐾  Submit Response",
+                "Submit Response",
                 use_container_width=True,
             )
 
@@ -2049,9 +2053,7 @@ with tab_export:
         unsafe_allow_html=True,
     )
 
-    st.markdown('<div class="mupd-generate-btn">', unsafe_allow_html=True)
-    _run_briefing = st.button("📬  Generate MUPD Weekly Briefing", use_container_width=True, key="mupd_briefing_btn")
-    st.markdown('</div>', unsafe_allow_html=True)
+    _run_briefing = st.button("Generate MUPD Weekly Briefing", use_container_width=True, key="mupd_briefing_btn")
 
     if _run_briefing:
         scan_date  = datetime.now().strftime("%B %d, %Y")
@@ -2610,7 +2612,7 @@ with tab_agent:
 
     col_run, col_meta = st.columns([1, 3])
     with col_run:
-        run_agent = st.button("▶  Run Live Scan", use_container_width=True)
+        run_agent = st.button("Run Live Scan", use_container_width=True)
     with col_meta:
         risk_clr = {"Critical":"#fca5a5","High":"#fcd34d","Medium":"#86efac"}.get(
             h_selected.get("cpted_priority","Medium"), "#86efac")
